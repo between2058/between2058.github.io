@@ -1,713 +1,469 @@
 <!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>JohnnyChang&#39;s Blog</title>
+<html lang="en"><head>
+	<meta name="generator" content="Hugo 0.98.0" />
+  <meta charset="utf-8" />
+  <title>舜程 Johnny&#39;s Blog</title>
 
   <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JohnnyChang的個人網站">
-  <meta name="author" content="JohnnyChang">
-  <meta name="generator" content="Hugo 0.98.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Personal Portfolio"
+  />
+  
+    <meta name="author" content="Johnny" />
+  
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://between2058.github.io/plugins/bootstrap/bootstrap.min.css ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   
-  <link rel="stylesheet" href="https://between2058.github.io/plugins/slick/slick.css ">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
   
-  <link rel="stylesheet" href="https://between2058.github.io/plugins/themify-icons/themify-icons.css ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css" />
   
-  <link rel="stylesheet" href="https://between2058.github.io/plugins/venobox/venobox.css ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;display=swap" />
+  
+    <link rel="stylesheet" href="/plugins/text-animation/text-animation.css" />
+  
+    <link rel="stylesheet" href="/plugins/hugrid/hugrid.css" />
   
 
   <!-- Main Stylesheet -->
+
   
-  <link rel="stylesheet" href="https://between2058.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="/css/style.min.css" media="screen" />
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://between2058.github.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://between2058.github.io/images/favicon.png " type="image/x-icon">
 
-  <!-- google analitycs -->
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'Your ID', 'auto');
-    ga('send', 'pageview');
-  </script>
+  
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+  
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ABCDEFG123"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-</head><body>
-<!-- preloader start -->
+      gtag('config', 'G-ABCDEFG123');
+    </script>
+  
+</head>
+<body> <!-- preloader start -->
 <div class="preloader">
   
+  <img src="/images/preloader.gif" alt="preloader" />
+  
 </div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container">
+<!-- preloader end --> 
+<section class="menu menu-fix" id="menu">
+  <nav>
     
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
-      <a class="navbar-brand mobile-view" href="https://between2058.github.io"><img class="img-fluid"
-          src="https://between2058.github.io/images/logo.png" alt="JohnnyChang&#39;s Blog"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu"></i>
-      </button>
-
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <div class="desktop-view">
-          <ul class="navbar-nav mr-auto">
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="ti-facebook"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="ti-twitter-alt"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="ti-instagram"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="%20https://github.com/between2058"><i class="ti-github"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="ti-linkedin"></i></a>
-            </li>
-            
-          </ul>
+    <div class="menu-container">
+      <div class="desktop-menu-logo">
+        <a href="/"
+          ><img
+            class="img-fluid"
+            src="/images/logo.svg"
+            alt="舜程 Johnny&#39;s Blog"
+            id="desktop-logo"
+        /></a>
+      </div>
+      <ul class="desktop-menu list-inline mb-0" id="desktop-menu">
+        
+        <li class="menu-item hvr-underline-from-left 1">
+          <a href="#home">Home</a>
+        </li>
+        
+        <li class="menu-item hvr-underline-from-left 2">
+          <a href="#about">About me</a>
+        </li>
+        
+        <li class="menu-item hvr-underline-from-left 3">
+          <a href="#portfolio">Project</a>
+        </li>
+        
+      </ul>
+      
+      <div class="mobile-menu">
+        <div class="mobile-menu-nav">
+          <a class="menu-link">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
         </div>
+        <div class="mobile-menu-logo">
+          <a href="/"
+            ><img
+              class="img-fluid"
+              src="/images/logo-dark.svg"
+              alt="舜程 Johnny&#39;s Blog"
+          /></a>
+        </div>
+        <div class="menu-slider">
+          <nav>
+            <ul class="mobile-menu-list">
+              
+              <li class="mobile-menu-item 1 mx-auto">
+                <a href="#home">Home</a>
+              </li>
+              
+              <li class="mobile-menu-item 1 mx-auto">
+                <a href="#about">About me</a>
+              </li>
+              
+              <li class="mobile-menu-item 1 mx-auto">
+                <a href="#portfolio">Project</a>
+              </li>
+              
+            </ul>
+            <ul class="mobile-menu-icons list-inline mx-auto">
+              
+              <li>
+                <a href="https://github.com/tylerjlawson"
+                  ><i class="fab fab fa-github fa-2x"></i
+                ></a>
+              </li>
+              
+              <li>
+                <a href="https://www.linkedin.com/"
+                  ><i class="fab fab fa-linkedin fa-2x"></i
+                ></a>
+              </li>
+              
+              <li>
+                <a href="mailto:guster@burton.com"
+                  ><i class="fab fas fa-envelope fa-2x"></i
+                ></a>
+              </li>
+              
+              <li>
+                <a href="https://medium.com/@gusburton"
+                  ><i class="fab fab fa-medium fa-2x"></i
+                ></a>
+              </li>
+              
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>
+<section class="header" id="header">
+   
+  <div class="hero-image">
+    
+    <img
+      class="d-none d-md-block"
+      src="/images/background.jpg"
+      alt="background"
+    /><img
+      class="d-md-none"
+      src="/images/gus_small.jpg"
+      alt="background"
+    />
+  </div>
+  <div class="container">
+    <div class="row content">
+      <div
+        class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 head-container"
+      >
+        <div class="head-holder">
+          <h1 class="introduction">I&rsquo;m Johnny Chang</h1>
+          <div class="animated-text">
+            <strong class="cd-headline clip">
+              <span class="cd-words-wrapper">
+                 
+                <b class="is-visible">Programer</b>  <b>Master Degree Student</b>  <b>Guitarist</b> 
+              </span>
+            </strong>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
 
-        <a class="navbar-brand mx-auto desktop-view" href="https://between2058.github.io"><img class="img-fluid"
-            src="https://between2058.github.io/images/logo.png" alt="JohnnyChang&#39;s Blog"></a>
+<section class="about-me" id="about">
+  <div class="container">
+     
+    <div class="row about-me-holder">
+      <div
+        class="
+          col-lg-6 col-md-6 col-sm-6
+          about-me-text
+          d-flex
+          align-self-center
+        "
+      >
+        <div class="text-holder">
+          <h1>THIS IS ME</h1>
+          <p>Hi, thank you for taking a look around my site. If you have any questions feel free to reach out on <a href="#contact">LinkedIn, Github, or by email</a>!</p>
+          
+        </div>
+      </div>
+      
+      <div class="col-lg-6 col-sm-6 col-9 about-me-images">
+        <img src="/images/profile.jpg" alt="about-me" />
+      </div>
+      
+    </div>
+     
 
-        <ul class="navbar-nav">
+    <div class="row experience-skill">
+       
+      <div class="col-lg-6 col-sm-6 col-11 experience">
+        <h2>EXPERIENCE</h2>
+        <ul class="experience-chart">
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="https://between2058.github.io/about/">About</a>
-          </li>
+            <li>
+              <div class="single-experience">
+                <h3>台灣大學 電信工程研究所</h3>
+                
+                <span>碩士 |</span>
+                 
+                <span>2022-至今</span>
+                 
+                <p>台大電信所首屆改以書審面試，以正取第4名錄取</p>
+                
+              </div>
+            </li>
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="https://between2058.github.io/blog/">Post</a>
-          </li>
+            <li>
+              <div class="single-experience">
+                <h3>iDSSP LAB</h3>
+                
+                <span>BioTech 生物科技組 |</span>
+                 
+                <span>2022-至今</span>
+                 
+                <p>台灣大學 林澤 教授之實驗團隊</p>
+                
+              </div>
+            </li>
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="https://between2058.github.io/contact/">Contact</a>
-          </li>
+            <li>
+              <div class="single-experience">
+                <h3>元智大學 電機工程學系乙組</h3>
+                
+                <span>學士 |</span>
+                 
+                <span>2018-2022</span>
+                 
+                <p>在林智揚教授的實驗室，研究《基於深度學習與電腦視覺實現吉他和弦之辨識與應用》</p>
+                
+              </div>
+            </li>
           
           
         </ul>
-
-        
-        <!-- search -->
-        <div class="search pl-lg-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://between2058.github.io/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+      </div>
+         
+      <div class="col-lg-6 col-sm-6 col-11 skill">
+        <h2>My SKILLS</h2>
+        <div class="skill-progress-bar">
+          
+          <div class="clearfix">
+            <span class="skillbar-title">Python</span>
+            
+            <div class="skillbar" data-percent="99%">
+              <div class="skillbar-bar"></div>
+            </div>
           </div>
+          
+          <div class="clearfix">
+            <span class="skillbar-title">Deep Learning</span>
+            
+            <div class="skillbar" data-percent="75%">
+              <div class="skillbar-bar"></div>
+            </div>
+          </div>
+          
+          <div class="clearfix">
+            <span class="skillbar-title">Computer Vison &amp; Image Processing</span>
+            
+            <div class="skillbar" data-percent="90%">
+              <div class="skillbar-bar"></div>
+            </div>
+          </div>
+          
+          <div class="clearfix">
+            <span class="skillbar-title">Big Data</span>
+            
+            <div class="skillbar" data-percent="80%">
+              <div class="skillbar-bar"></div>
+            </div>
+          </div>
+          
         </div>
-        
-
-        
       </div>
-    </nav>
-  </div>
-</header>
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-10 featured-post-slider">
-        
-        
-        <article class="card featured-post">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-5">
-              
-              <img src="https://between2058.github.io/images/featured-post/post-1.jpg" class="card-img" alt="How To Use Checklists To Improve Your UX">
-              
-            </div>
-            <div class="col-md-6 offset-md-1">
-              <div class="card-body">
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <a href="https://between2058.github.io/blog/post-1/"
-                  class="h1 font-weight-bold d-block text-dark mb-4 card-title">How To Use Checklists To Improve Your UX</a>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores....</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        
-        <article class="card featured-post">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-5">
-              
-              <img src="https://between2058.github.io/images/featured-post/post-2.jpg" class="card-img" alt="How To Use Checklists To Improve Your UX">
-              
-            </div>
-            <div class="col-md-6 offset-md-1">
-              <div class="card-body">
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <a href="https://between2058.github.io/blog/post-2/"
-                  class="h1 font-weight-bold d-block text-dark mb-4 card-title">How To Use Checklists To Improve Your UX</a>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores....</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        
-        <article class="card featured-post">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-5">
-              
-              <img src="https://between2058.github.io/images/featured-post/post-3.jpg" class="card-img" alt="How To Use Checklists To Improve Your UX">
-              
-            </div>
-            <div class="col-md-6 offset-md-1">
-              <div class="card-body">
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <a href="https://between2058.github.io/blog/post-3/"
-                  class="h1 font-weight-bold d-block text-dark mb-4 card-title">How To Use Checklists To Improve Your UX</a>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores....</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        
-      </div>
+       
     </div>
   </div>
 </section>
 
 
+ 
+<div class="fun-facts container pt-5">
+  
+  <div class="fun-fact-holder">
+    <img class="img-fluid" src="/images/icons/award3.png" alt="第19屆 育秀盃創意獎 《當吉他遇見AI—吉他和弦神偷》 銀獎" />
+    <p class="fact-counter count" ></p>
+    <p>第19屆 育秀盃創意獎 《當吉他遇見AI—吉他和弦神偷》 銀獎</p>
+  </div>
+  
+  <div class="fun-fact-holder">
+    <img class="img-fluid" src="/images/icons/award2.png" alt="元智大學 學生創客競賽《吉他和弦神偷》特優獎" />
+    <p class="fact-counter count" ></p>
+    <p>元智大學 學生創客競賽《吉他和弦神偷》特優獎</p>
+  </div>
+  
+  <div class="fun-fact-holder">
+    <img class="img-fluid" src="/images/icons/award1.png" alt="元智大學 電通學院專題實作競賽《和弦神偷》特優獎" />
+    <p class="fact-counter count" ></p>
+    <p>元智大學 電通學院專題實作競賽《和弦神偷》特優獎</p>
+  </div>
+  
+  <div class="fun-fact-holder">
+    <img class="img-fluid" src="/images/icons/driving-license.png" alt="TQC&#43; Python3程式 能力認證" />
+    <p class="fact-counter count" ></p>
+    <p>TQC&#43; Python3程式 能力認證</p>
+  </div>
+  
+  <div class="fun-fact-holder">
+    <img class="img-fluid" src="/images/icons/project2.png" alt="臺灣電磁產學聯盟 電磁能力認證" />
+    <p class="fact-counter count" ></p>
+    <p>臺灣電磁產學聯盟 電磁能力認證</p>
+  </div>
+  
+</div>
+ 
 
-<section>
-  <div class="container">
-    <div class="row">
+
+
+    
       
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://between2058.github.io/images/post/post-1.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By JohnnyChang</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>29 Oct 2019</span>
-              
-            </div>
-            <a href="https://between2058.github.io/blog/post-10/" class="h5 d-block mb-3">How To Use Checklists To Improve Your UX</a>
-            <a href="https://between2058.github.io/blog/post-10/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
+
+
+ 
+<section class="portfolio" id="portfolio">
+  <div class="container-fluid text-center">
+    <div class="row portfolio-holder text-left">
+      <div class="col-12 text-center">
+        <h2>Project</h2>
       </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://between2058.github.io/images/post/post-2.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By JohnnyChang</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>29 Oct 2019</span>
-              
-            </div>
-            <a href="https://between2058.github.io/blog/post-11/" class="h5 d-block mb-3">How To Use Checklists To Improve Your UX</a>
-            <a href="https://between2058.github.io/blog/post-11/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://between2058.github.io/images/post/post-3.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By JohnnyChang</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>29 Oct 2019</span>
-              
-            </div>
-            <a href="https://between2058.github.io/blog/post-12/" class="h5 d-block mb-3">How To Use Checklists To Improve Your UX</a>
-            <a href="https://between2058.github.io/blog/post-12/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
+      <ul id="og-grid" class="og-grid">
+            
+        <li>
+          <p id="description-hugo" class="hidden">
+            Commodo non mollit commodo esse. Quis ad Lorem eiusmod ad velit Lorem sint elit. Anim magna duis et duis pariatur eiusmod laboris esse. Sit duis labore sit esse enim laborum nisi sunt magna sint labore tempor. Sit sit sint eu laboris officia et sunt consequat sit excepteur nostrud eu. Fugiat aliqua id et pariatur quis commodo aute aliqua et magna officia eu cillum mollit. Sint culpa excepteur culpa culpa sint est eu dolore culpa duis adipisicing proident.
+          </p>
+          <a
+            href="https://gohugo.io"
+            data-largesrc="/images/portfolio/hugo_huf751e52a98abc43cadcc772acb69f9f5_81161_780x500_fill_q75_bgffffff_box_smart1_3.jpg"
+            data-title="Hugo"
+            data-buttontext="SEE SITE"
+          >
+            <img
+              src="/images/portfolio/hugo_huf751e52a98abc43cadcc772acb69f9f5_81161_395x250_fill_q75_bgffffff_box_smart1_3.jpg"
+              alt="Hugo image"
+            />
+          </a>
+        </li>
+            
+        <li>
+          <p id="description-hugo-themes" class="hidden">
+            Commodo non mollit commodo esse. Quis ad Lorem eiusmod ad velit Lorem sint elit. Anim magna duis et duis pariatur eiusmod laboris esse. Sit duis labore sit esse enim laborum nisi sunt magna sint labore tempor. Sit sit sint eu laboris officia et sunt consequat sit excepteur nostrud eu. Fugiat aliqua id et pariatur quis commodo aute aliqua et magna officia eu cillum mollit. Sint culpa excepteur culpa culpa sint est eu dolore culpa duis adipisicing proident.
+          </p>
+          <a
+            href="https://gohugo.io"
+            data-largesrc="/images/portfolio/hugothemes_huf3bb2470b5aa31b2353f2910854c4e8c_321843_780x500_fill_q75_bgffffff_box_smart1_3.jpg"
+            data-title="Hugo Themes"
+            data-buttontext="SEE SITE"
+          >
+            <img
+              src="/images/portfolio/hugothemes_huf3bb2470b5aa31b2353f2910854c4e8c_321843_395x250_fill_q75_bgffffff_box_smart1_3.jpg"
+              alt="Hugo Themes image"
+            />
+          </a>
+        </li>
+            
+        <li>
+          <p id="description-just-a-design" class="hidden">
+            Commodo non mollit commodo esse. Quis ad Lorem eiusmod ad velit Lorem sint elit. Anim magna duis et duis pariatur eiusmod laboris esse. Sit duis labore sit esse enim laborum nisi sunt magna sint labore tempor. Sit sit sint eu laboris officia et sunt consequat sit excepteur nostrud eu. Fugiat aliqua id et pariatur quis commodo aute aliqua et magna officia eu cillum mollit. Sint culpa excepteur culpa culpa sint est eu dolore culpa duis adipisicing proident.
+          </p>
+          <a
+            href=""
+            data-largesrc="/images/portfolio/design_hu5fa725ac233dae90ee8aba7fdae11879_1058947_780x500_fill_q75_bgffffff_box_smart1_3.jpg"
+            data-title="Just A Design"
+            data-buttontext="SEE SITE"
+          >
+            <img
+              src="/images/portfolio/design_hu5fa725ac233dae90ee8aba7fdae11879_1058947_395x250_fill_q75_bgffffff_box_smart1_3.jpg"
+              alt="Just A Design image"
+            />
+          </a>
+        </li>
+        
+      </ul>
     </div>
   </div>
 </section>
-
-
-
-<section class="section pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-1.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://between2058.github.io/blog/post-10/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-10/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-2.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://between2058.github.io/blog/post-11/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-11/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-3.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/programming-language"
-                  class="text-primary">Programming language</a>
-                
-                <a href="https://between2058.github.io/blog/post-12/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-12/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-3.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://between2058.github.io/blog/post-13/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-13/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-1.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://between2058.github.io/blog/post-4/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-4/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://between2058.github.io/images/post/post-2.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://between2058.github.io/blog/post-5/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By JohnnyChang</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="https://between2058.github.io/blog/post-5/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="col-lg-4">
-  <div class="widgets">
+ 
+<div class="footer container text-center" id="contact">
+  <ul class="footer-icons list-inline">
     
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://between2058.github.io/images/author.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-      <a href="https://between2058.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
+      <li>
+        <a href="https://github.com/tylerjlawson" target="_blank" rel="noreferrer"
+          ><i class="fab fa-github footer-icon fa-3x" aria-label=""></i
+        ></a>
+      </li>
     
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/android-and-gaming/">Android and gaming</a>
-        </li>
-        <li><a
-            href="/categories/go-language/">Go language</a>
-        </li>
-        <li><a
-            href="/categories/html/">HTML</a>
-        </li>
-        <li><a
-            href="/categories/html-css/">HTML css</a>
-        </li>
-        <li><a
-            href="/categories/programming-language/">Programming language</a>
-        </li>
-        <li><a
-            href="/categories/python/">Python</a>
-        </li>
-        <li><a
-            href="/categories/web-design/">Web design</a>
-        </li>
-      </ul>
-    </div>
+      <li>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+          ><i class="fab fa-linkedin footer-icon fa-3x" aria-label=""></i
+        ></a>
+      </li>
     
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/game/">Game</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/html/">HTML</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/new/">New</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/photos/">Photos</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/python/">Python</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/react/">React</a></li>
-      </ul>
-    </div>
+      <li>
+        <a href="mailto:guster@burton.com" target="_blank" rel="noreferrer"
+          ><i class="fas fa-envelope footer-icon fa-3x" aria-label=""></i
+        ></a>
+      </li>
     
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
-        
-        <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
-        
-        <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
-        
-        <li class="list-inline-item"><a href="%20https://github.com/between2058"><i class="ti-github"></i></a></li>
-        
-        <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
-        
-      </ul>
-    </div>
+      <li>
+        <a href="https://medium.com/@gusburton" target="_blank" rel="noreferrer"
+          ><i class="fab fa-medium footer-icon fa-3x" aria-label=""></i
+        ></a>
+      </li>
     
-    <div class="widget">
-      <img src="https://between2058.github.io/images/promotion.png" alt="" class="img-fluid">
-    </div>
+  </ul>
+  <div class="credit">
+    Copyright Burton Guster ©
+    <span id="current-year"></span>
   </div>
 </div>
+<!-- JS Plugins --> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-      
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
 
-      
-      <div class="col-12 mt-5">
-        
-    <ul class="pagination pagination-default">
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<script src="/plugins/text-animation/text-animation.js"></script>
 
+<script src="/plugins/hugrid/hugrid.min.js"></script>
+ <!-- Main Scripts --> 
+<script src="/js/script.min.js"></script>
 
-
-
-<footer class="text-capitalize">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 text-center mb-5">
-        <a href="https://between2058.github.io"><img src="https://between2058.github.io/images/logo.png" alt="JohnnyChang&#39;s Blog"></a>
-      </div>
-               
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Contact Me</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="tel:0939194638"><i
-                class="ti-mobile mr-3 text-primary"></i>0939194638</a></li>
-          
-                     
-          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>Dhaka, Bangladedsh</li>
-          
-                     
-          <li class="mb-3"><a class="text-dark" href="mailto:between2058@gmail.com"><i
-                class="ti-email mr-3 text-primary"></i>between2058@gmail.com</a>
-          
-          </li>
-        </ul>
-      </div>
-      
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Social Contacts</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="#">facebook</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="#">twitter</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="#">instagram</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="%20https://github.com/between2058">github</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="#">linkedin</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Categories</h6>
-        <ul class="list-unstyled">
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/android-and-gaming/">Android and gaming</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/go-language/">Go language</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/html/">HTML</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/html-css/">HTML css</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/programming-language/">Programming language</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/python/">Python</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/web-design/">Web design</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Quick Links</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="https://between2058.github.io/about/">About</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://between2058.github.io/blog/">Post</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://between2058.github.io/contact/">Contact</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-12 border-top py-4 text-center">
-        | copyright © 2021 <a href="https://JohnnyChang.com/hugo-themes/">JohnnyChang</a> All Rights Reserved |
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  var indexURL = "https://between2058.github.io/index.json"
-</script>
-
-<!-- JS Plugins -->
-
-<script src="https://between2058.github.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://between2058.github.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://between2058.github.io/plugins/slick/slick.min.js"></script>
-
-<script src="https://between2058.github.io/plugins/venobox/venobox.min.js"></script>
-
-<script src="https://between2058.github.io/plugins/search/fuse.min.js"></script>
-
-<script src="https://between2058.github.io/plugins/search/mark.js"></script>
-
-<script src="https://between2058.github.io/plugins/search/search.js"></script>
-
-<!-- Main Script -->
-
-<script src="https://between2058.github.io/js/script.min.js"></script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
-<div id="js-cookie-box" class="cookie-box cookie-box-hide">
-	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
-</div>
-<script>
-	(function ($) {
-		const cookieBox = document.getElementById('js-cookie-box');
-		const cookieButton = document.getElementById('js-cookie-button');
-		if (!Cookies.get('cookie-box')) {
-			cookieBox.classList.remove('cookie-box-hide');
-			cookieButton.onclick = function () {
-				Cookies.set('cookie-box', true, {
-					expires:  2 
-				});
-				cookieBox.classList.add('cookie-box-hide');
-			};
-		}
-	})(jQuery);
-</script>
-
-
-<style>
-.cookie-box {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  z-index: 9999;
-  padding: 1rem 2rem;
-  background: rgb(71, 71, 71);
-  transition: all .75s cubic-bezier(.19, 1, .22, 1);
-  color: #fdfdfd;
-}
-
-.cookie-box-hide {
-  display: none;
-}
-</style>
+<script src="/js/hugrid.custom.min.js"></script>
 </body>
 </html>
