@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big Data on Johnny&#39;s blog</title>
+    <link>https://between2058.github.io/tags/big-data/</link>
+    <description>Recent content in Big Data on Johnny&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 27 Feb 2020 23:29:21 +0530</lastBuildDate><atom:link href="https://between2058.github.io/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pandas分析PDF文本證交所股票交易紀錄(資料前處理篇)</title>
+      <link>https://between2058.github.io/blogs/pandas%E5%88%86%E6%9E%90pdf%E6%96%87%E6%9C%AC%E8%AD%89%E4%BA%A4%E6%89%80%E8%82%A1%E7%A5%A8%E4%BA%A4%E6%98%93%E7%B4%80%E9%8C%84%E8%B3%87%E6%96%99%E5%89%8D%E8%99%95%E7%90%86%E7%AF%87/</link>
+      <pubDate>Thu, 27 Feb 2020 23:29:21 +0530</pubDate>
+      
+      <guid>https://between2058.github.io/blogs/pandas%E5%88%86%E6%9E%90pdf%E6%96%87%E6%9C%AC%E8%AD%89%E4%BA%A4%E6%89%80%E8%82%A1%E7%A5%A8%E4%BA%A4%E6%98%93%E7%B4%80%E9%8C%84%E8%B3%87%E6%96%99%E5%89%8D%E8%99%95%E7%90%86%E7%AF%87/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在這個漸漸邁向大數據的時代裡，資料將會成為最珍貴的寶物，為了要快速用程式分析這些大數據，我們不但要將未來的各種事物直接導向數位化，更要學習如何把過去的傳統紙本資料轉化為數位格式。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用python萃取掃描文件中的表格(一)切豆腐篇</title>
+      <link>https://between2058.github.io/blogs/%E4%BD%BF%E7%94%A8python%E8%90%83%E5%8F%96%E6%8E%83%E6%8F%8F%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E4%B8%80%E5%88%87%E8%B1%86%E8%85%90%E7%AF%87/</link>
+      <pubDate>Fri, 21 Feb 2020 23:29:21 +0530</pubDate>
+      
+      <guid>https://between2058.github.io/blogs/%E4%BD%BF%E7%94%A8python%E8%90%83%E5%8F%96%E6%8E%83%E6%8F%8F%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E4%B8%80%E5%88%87%E8%B1%86%E8%85%90%E7%AF%87/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在這個漸漸邁向大數據的時代裡，資料將會成為最珍貴的寶物，為了要快速用程式分析這些大數據，我們不但要將未來的各種事物直接導向數位化，更要學習如何把過去的傳統紙本資料轉化為數位格式。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
