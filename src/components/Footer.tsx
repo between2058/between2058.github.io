@@ -4,7 +4,7 @@ import { ArrowUpRight } from "./Icons";
 export function Footer({ t }: { t: Dictionary }) {
   return (
     <footer className="relative z-10 border-t border-line">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-[var(--gutter)] py-8 font-mono text-[0.72rem] tracking-[0.06em] text-fog-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-[var(--gutter)] py-8 text-[0.8rem] text-fog-3 sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {new Date().getFullYear()} {t.footer.line}
         </p>

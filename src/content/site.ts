@@ -42,12 +42,20 @@ export type Dictionary = {
     contact: string;
     fateflux: string;
     readouts: { k: string; v: string }[];
+    clockLabel: string;
     instrumentLabel: string;
   };
   work: { title: string; lead: string; employer: string; fields: Field[]; discretion: string };
   method: { title: string; lead: string; steps: Step[] };
   projects: { title: string; items: Project[] };
-  trace: { title: string; marks: Mark[]; honorsTitle: string; honors: Honor[] };
+  trace: {
+    title: string;
+    lead: string;
+    scaleLabel: string;
+    marks: Mark[];
+    honorsTitle: string;
+    honors: Honor[];
+  };
   writing: {
     title: string;
     lead: string;
@@ -57,7 +65,7 @@ export type Dictionary = {
     medium: string;
     empty: string;
   };
-  contact: { title: string; body: string; email: string; copy: string; copied: string };
+  contact: { title: string; titleLines: string[]; body: string; email: string; copy: string; copied: string };
   footer: { line: string; source: string };
   notFound: { title: string; body: string; home: string };
 };
@@ -75,11 +83,8 @@ const zh: Dictionary = {
     roles: ["ML Engineer，和碩聯合科技：AI for 3D、CAD、Simulation", "FateFlux.ai 創辦人"],
     contact: "與我聯絡",
     fateflux: "看看 FateFlux",
-    readouts: [
-      { k: "觀測者", v: "between2058" },
-      { k: "狀態", v: "流動中" },
-      { k: "紀元", v: "2026" },
-    ],
+    readouts: [{ k: "觀測者", v: "between2058" }],
+    clockLabel: "時間",
     instrumentLabel: "觀測儀：移動游標會在水面留下漣漪",
   },
   work: {
@@ -164,6 +169,8 @@ const zh: Dictionary = {
   },
   trace: {
     title: "軌跡",
+    lead: "以年為刻度。現在在最右端，還沒結束的線段以虛線延伸。",
+    scaleLabel: "2018 年到現在的軌跡刻度",
     marks: [
       { period: "現在", title: "ML Engineer", place: "和碩聯合科技 Pegatron", note: "AI for Engineering & Digital Twins" },
       { period: "2022 —", title: "碩士", place: "國立臺灣大學 電信工程學研究所", note: "iDSSP Lab，生物科技組。電信所首屆書審面試，正取第 4 名。" },
@@ -189,6 +196,7 @@ const zh: Dictionary = {
   },
   contact: {
     title: "如果你也在拆解什麼，來聊聊。",
+    titleLines: ["如果你也在拆解什麼，", "來聊聊。"],
     body: "合作、工作機會、FateFlux，或者只是想打聲招呼，我會盡量回覆。",
     email: "寄信給我",
     copy: "複製 Email",
@@ -211,11 +219,8 @@ const en: Dictionary = {
     roles: ["ML Engineer at Pegatron: AI for 3D, CAD and simulation", "Founder of FateFlux.ai"],
     contact: "Get in touch",
     fateflux: "See FateFlux",
-    readouts: [
-      { k: "Observer", v: "between2058" },
-      { k: "State", v: "In flux" },
-      { k: "Epoch", v: "2026" },
-    ],
+    readouts: [{ k: "Observer", v: "between2058" }],
+    clockLabel: "Time",
     instrumentLabel: "Observation instrument: moving the pointer leaves ripples on the water",
   },
   work: {
@@ -300,6 +305,8 @@ const en: Dictionary = {
   },
   trace: {
     title: "Trace",
+    lead: "Measured in years. Now sits at the right end; lines that haven't closed trail off dotted.",
+    scaleLabel: "Trace scale from 2018 to now",
     marks: [
       { period: "Now", title: "ML Engineer", place: "Pegatron", note: "AI for Engineering & Digital Twins" },
       { period: "2022 —", title: "M.S.", place: "Graduate Institute of Communication Engineering, National Taiwan University", note: "iDSSP Lab, biotech group. Admitted 4th in the institute's first review-and-interview intake." },
@@ -325,6 +332,7 @@ const en: Dictionary = {
   },
   contact: {
     title: "If you're taking something apart too, let's talk.",
+    titleLines: ["If you're taking something", "apart too, let's talk."],
     body: "Collaboration, roles, FateFlux, or just saying hi. I'll do my best to reply.",
     email: "Email me",
     copy: "Copy email",

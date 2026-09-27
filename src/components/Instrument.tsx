@@ -110,7 +110,23 @@ function MountainScale() {
   );
 }
 
-export function Instrument({ readouts, label }: { readouts: Readout[]; label: string }) {
+function useClock() {
+  const [time, setTime] = useState<string | null>(null);
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Taipei", hour: "2-digit", minute: "2-digit", hour12: false });
+    const tick = () => setTime(fmt.format(new Date()));
+    const first = window.setTimeout(tick, 0);
+    const id = window.setInterval(tick, 15000);
+    return () => {
+      window.clearTimeout(first);
+      window.clearInterval(id);
+    };
+  }, []);
+  return time;
+}
+
+export function Instrument({ readouts, label, clockLabel }: { readouts: Readout[]; label: string; clockLabel: string }) {
+  const time = useClock();
   const wrap = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const [probe, setProbe] = useState<{ theta: number; r: number } | null>(null);
@@ -276,8 +292,8 @@ export function Instrument({ readouts, label }: { readouts: Readout[]; label: st
         <canvas ref={canvas} className="absolute inset-0" aria-hidden="true" />
         <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
           {/* Crosshair */}
-          <line x1={C} y1={C - OUTER - 30} x2={C} y2={C + OUTER + 30} stroke="rgb(223 229 227 / 0.07)" strokeWidth="0.8" />
-          <line x1={C - OUTER - 30} y1={C} x2={C + OUTER + 30} y2={C} stroke="rgb(223 229 227 / 0.07)" strokeWidth="0.8" />
+          <line x1={C} y1={C - OUTER - 20} x2={C} y2={C + OUTER + 20} stroke="rgb(223 229 227 / 0.07)" strokeWidth="0.8" />
+          <line x1={C - OUTER - 20} y1={C} x2={C + OUTER + 20} y2={C} stroke="rgb(223 229 227 / 0.07)" strokeWidth="0.8" />
           <DegreeScale />
           <MountainScale />
           <circle cx={C} cy={C} r={WATER} fill="none" stroke="rgb(223 229 227 / 0.1)" strokeWidth="0.8" />
@@ -299,16 +315,18 @@ export function Instrument({ readouts, label }: { readouts: Readout[]; label: st
         </svg>
       </div>
 
-      <figcaption className="glass absolute -bottom-4 left-0 w-[13.5rem] rounded-[3px] px-4 py-3 font-mono text-[0.68rem] leading-[1.9] tracking-[0.04em] sm:-left-6">
-        <dl className="grid grid-cols-[auto_1fr] gap-x-4">
+      <figcaption className="glass relative mt-6 w-fit min-w-[15rem] rounded-[3px] px-4 py-3 text-[0.72rem] leading-[1.9] tracking-[0.02em] lg:ml-6">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-5">
           {readouts.map((r) => (
             <div key={r.k} className="contents">
               <dt className="text-fog-3">{r.k}</dt>
               <dd className="text-fog-2">{r.v}</dd>
             </div>
           ))}
+          <dt className="text-fog-3">{clockLabel}</dt>
+          <dd className="font-mono tabular-nums text-fog-2">{time ? `${time} UTC+8` : "—"}</dd>
           <dt className="text-fog-3">θ / r</dt>
-          <dd className="tabular-nums text-copper-2" aria-live="off">
+          <dd className="font-mono tabular-nums text-copper-2" aria-live="off">
             {probe ? `${probe.theta.toFixed(1).padStart(5, "0")}° / ${probe.r.toFixed(2)}` : "—"}
           </dd>
         </dl>

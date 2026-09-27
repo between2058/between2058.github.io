@@ -48,7 +48,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-[var(--gutter)]">
         <Link href={`/${lang}`} className="group flex items-center gap-3" aria-label={t.meta.title}>
           <Seal className="h-7 w-7 transition-transform duration-700 ease-out-expo group-hover:rotate-[-6deg]" />
-          <span className="font-mono text-[0.78rem] tracking-[0.08em] text-fog-2 transition-colors group-hover:text-fog">
+          <span className="text-[0.85rem] tracking-[0.02em] text-fog-2 transition-colors group-hover:text-fog">
             between2058
           </span>
         </Link>
@@ -68,7 +68,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
                 href={switchHref}
                 hrefLang={other === "zh" ? "zh-Hant-TW" : "en"}
                 aria-label={t.langSwitch.label}
-                className="font-mono text-[0.78rem] text-fog-2 transition-colors hover:text-copper-2"
+                className="text-[0.82rem] text-fog-2 transition-colors hover:text-copper-2"
               >
                 {t.langSwitch.short}
               </Link>
@@ -81,7 +81,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
             href={switchHref}
             hrefLang={other === "zh" ? "zh-Hant-TW" : "en"}
             aria-label={t.langSwitch.label}
-            className="px-1 py-2 font-mono text-[0.8rem] text-fog-2"
+            className="px-1 py-2 text-[0.85rem] text-fog-2"
           >
             {t.langSwitch.short}
           </Link>

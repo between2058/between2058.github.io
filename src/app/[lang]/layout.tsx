@@ -82,9 +82,23 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="warp" />
             <feGaussianBlur in="warp" stdDeviation="1.4" />
           </filter>
+          <filter id="ink-soak" x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="core" />
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="wash" />
+            <feDisplacementMap in="wash" in2="noise" scale="36" xChannelSelector="G" yChannelSelector="R" result="spread" />
+            <feFlood floodColor="#2f6f69" floodOpacity="0.6" />
+            <feComposite in2="spread" operator="in" result="halo" />
+            <feMerge>
+              <feMergeNode in="halo" />
+              <feMergeNode in="core" />
+            </feMerge>
+          </filter>
         </svg>
         <div className="field" aria-hidden="true" />
-        <div className="fog" aria-hidden="true" />
+        <div className="fog-frame" aria-hidden="true">
+          <div className="fog" />
+        </div>
         <div className="grain" aria-hidden="true" />
         <a
           href="#main"

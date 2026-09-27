@@ -49,7 +49,7 @@ export default async function WritingIndex({ params }: PageProps<"/[lang]/writin
                   {p.date.replaceAll("-", ".")}
                 </time>
                 <span>
-                  <span className="block font-serif text-[1.25rem] font-light leading-[1.6] text-fog transition-colors duration-500 group-hover:text-copper-2">
+                  <span className="phrase block font-serif text-[1.25rem] font-light leading-[1.6] text-fog transition-colors duration-500 group-hover:text-copper-2">
                     {zh ? p.title : p.titleEn}
                   </span>
                   <span className="mt-2 block max-w-[64ch] text-[0.92rem] text-fog-3">{zh ? p.summary : p.summaryEn}</span>

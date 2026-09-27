@@ -6,6 +6,8 @@ import { NameCut } from "@/components/NameCut";
 import { Instrument } from "@/components/Instrument";
 import { FluxDiagram } from "@/components/FluxDiagram";
 import { CopyEmail } from "@/components/CopyEmail";
+import { TraceScale } from "@/components/TraceScale";
+import { WaterLine } from "@/components/WaterLine";
 import { ArrowRight, ArrowUpRight } from "@/components/Icons";
 
 function isExternal(href: string) {
@@ -19,7 +21,7 @@ function Heading({ id, children, lang }: { id: string; children: React.ReactNode
       data-reveal
       className={`text-balance text-fog ${
         lang === "zh"
-          ? "font-serif text-[clamp(1.7rem,3.2vw,2.5rem)] font-light leading-[1.35] tracking-[0.04em]"
+          ? "phrase font-serif text-[clamp(1.7rem,3.2vw,2.5rem)] font-light leading-[1.35] tracking-[0.04em]"
           : "text-[clamp(1.8rem,3.4vw,2.75rem)] font-light leading-[1.15] tracking-[-0.025em]"
       }`}
     >
@@ -65,7 +67,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <section
         data-hero
         aria-labelledby="hero-title"
-        className="relative mx-auto grid min-h-[100svh] max-w-[1440px] grid-cols-1 items-center gap-y-16 px-[var(--gutter)] pb-20 pt-28 lg:grid-cols-12 lg:gap-x-8 lg:pb-16 lg:pt-24"
+        className="relative mx-auto grid min-h-[100svh] max-w-[1440px] grid-cols-1 overflow-x-clip items-center gap-y-16 px-[var(--gutter)] pb-20 pt-28 lg:grid-cols-12 lg:gap-x-8 lg:pb-16 lg:pt-24"
       >
         <span
           aria-hidden="true"
@@ -124,13 +126,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
 
         <div className="relative lg:col-span-5">
-          <Instrument readouts={t.hero.readouts} label={t.hero.instrumentLabel} />
+          <Instrument readouts={t.hero.readouts} label={t.hero.instrumentLabel} clockLabel={t.hero.clockLabel} />
         </div>
       </section>
 
       {/* ——— Work ——— */}
-      <section id="work" aria-labelledby="work-title" className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+      <section id="work" aria-labelledby="work-title" className="relative overflow-x-clip mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
+        <div aria-hidden="true" className="pool left-[40%] top-[10%]" style={{ "--a": 0.13 } as React.CSSProperties} />
+        <div className="relative grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Heading id="work" lang={lang}>
               {t.work.title}
@@ -141,10 +144,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </div>
 
           <div className="lg:col-span-7 lg:col-start-6">
-            <p data-reveal className="font-mono text-[0.72rem] tracking-[0.08em] text-fog-3">
-              {t.work.employer}
-            </p>
-            <dl className="mt-5 border-t border-line-2">
+            <dl className="border-t border-line-2">
               {t.work.fields.map((f, i) => (
                 <div
                   key={f.name}
@@ -164,7 +164,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </div>
               ))}
             </dl>
-            <p data-reveal className="mt-6 text-[0.85rem] text-fog-3">
+            <p data-reveal className="mt-6 text-[0.9rem] text-fog-2">
+              {t.work.employer}
+            </p>
+            <p data-reveal className="mt-1 text-[0.85rem] text-fog-3">
               {t.work.discretion}
             </p>
           </div>
@@ -205,7 +208,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   ) : (
                     <span
                       className={`font-serif text-[7.5rem] font-extralight leading-none ${
-                        i === 0 ? "ink-bleed text-fog/60" : "text-fog/80"
+                        i === 0 ? "ink-soak text-fog/75" : "text-fog/80"
                       }`}
                     >
                       {s.han}
@@ -239,20 +242,22 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         >
           <span
             aria-hidden="true"
-            className="ink-bleed pointer-events-none absolute right-0 top-4 select-none font-serif text-[clamp(10rem,22vw,18rem)] font-extralight leading-none text-teal-2 opacity-[0.16]"
+            className="ink-soak pointer-events-none absolute right-0 top-4 select-none font-serif text-[clamp(10rem,22vw,18rem)] font-extralight leading-none text-teal-2 opacity-[0.22]"
           >
             {fateflux.han}
           </span>
           <div className="relative lg:col-span-6">
-            <p className="font-mono text-[0.72rem] tracking-[0.08em] text-fog-3">{fateflux.period}</p>
-            <h3 id="p-fateflux" className="mt-3 text-[clamp(2.2rem,4.5vw,3.5rem)] font-light leading-none tracking-[-0.035em] text-fog">
+            <h3 id="p-fateflux" className="text-[clamp(2.2rem,4.5vw,3.5rem)] font-light leading-none tracking-[-0.035em] text-fog">
               {fateflux.title}
             </h3>
+            <p className="mt-4 text-[0.85rem] text-fog-3">
+              {fateflux.period} · {zh ? "創辦人" : "Founder"}
+            </p>
             <p className="mt-8 max-w-[40ch] font-serif text-[1.15rem] font-light leading-[1.85] text-fog">
               {fateflux.summary}
             </p>
             <p className="mt-6 max-w-[56ch] text-fog-2">{fateflux.detail}</p>
-            <p className="mt-6 font-mono text-[0.72rem] tracking-[0.06em] text-fog-3">{fateflux.tags.join("  /  ")}</p>
+            <p className="mt-6 text-[0.82rem] text-fog-3">{fateflux.tags.join(" · ")}</p>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
               {fateflux.links.map((l) => (
                 <TextLink key={l.href} href={l.href}>
@@ -283,15 +288,15 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </span>
               </div>
               <div className="lg:col-span-4">
-                <p className="font-mono text-[0.72rem] tracking-[0.08em] text-fog-3">{p.period}</p>
-                <h3 id={`p-${p.id}`} className={`mt-2 text-fog ${zh ? "font-serif text-[1.4rem] font-light leading-[1.5]" : "text-[1.5rem] font-light leading-[1.25] tracking-[-0.015em]"}`}>
+                <h3 id={`p-${p.id}`} className={`text-fog ${zh ? "phrase font-serif text-[1.4rem] font-light leading-[1.5]" : "text-[1.5rem] font-light leading-[1.25] tracking-[-0.015em]"}`}>
                   {p.title}
                 </h3>
+                <p className="mt-2 text-[0.85rem] text-fog-3">{p.period}</p>
               </div>
               <div className="lg:col-span-6 lg:col-start-7">
                 <p className="text-fog">{p.summary}</p>
                 <p className="mt-3 text-[0.92rem] text-fog-2">{p.detail}</p>
-                <p className="mt-4 font-mono text-[0.72rem] tracking-[0.06em] text-fog-3">{p.tags.join("  /  ")}</p>
+                <p className="mt-4 text-[0.82rem] text-fog-3">{p.tags.join(" · ")}</p>
                 <div className="mt-5 flex flex-wrap gap-x-7 gap-y-3 text-[0.92rem]">
                   {p.links.map((l) => (
                     <TextLink key={l.href} href={l.href}>
@@ -305,49 +310,48 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
-      {/* ——— Trace: a graduated scale ——— */}
-      <section id="trace" aria-labelledby="trace-title" className="relative border-t border-line">
-        <div className="mx-auto grid max-w-[1440px] gap-16 px-[var(--gutter)] py-28 sm:py-36 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+      {/* ——— Trace: a ruler measured in years ——— */}
+      <WaterLine />
+      <section id="trace" aria-labelledby="trace-title" className="relative overflow-x-clip">
+        <div aria-hidden="true" className="pool -right-[10%] top-[30%]" style={{ "--w": "38rem", "--a": 0.12 } as React.CSSProperties} />
+        <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
+          <div className="max-w-[46ch]">
             <Heading id="trace" lang={lang}>
               {t.trace.title}
             </Heading>
+            <p data-reveal style={{ "--i": 1 } as React.CSSProperties} className="mt-6 text-fog-2">
+              {t.trace.lead}
+            </p>
           </div>
 
-          <div className="lg:col-span-7 lg:col-start-6">
-            <ol className="relative pl-10">
-              <span
-                aria-hidden="true"
-                className="absolute bottom-0 left-0 top-2 w-3"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to bottom, rgb(223 229 227 / 0.22) 1px, transparent 1px)",
-                  backgroundSize: "100% 8px",
-                  maskImage: "linear-gradient(to bottom, #000 80%, transparent)",
-                }}
-              />
-              <span aria-hidden="true" className="absolute bottom-0 left-0 top-2 w-px bg-line-2" />
-              {t.trace.marks.map((m, i) => (
-                <li key={m.place} data-reveal style={{ "--i": i } as React.CSSProperties} className={`relative ${i ? "mt-14" : ""}`}>
-                  <span
-                    aria-hidden="true"
-                    className={`absolute -left-10 top-[0.8em] h-px w-6 ${i === 0 ? "bg-copper-2" : "bg-fog-2"}`}
-                  />
-                  <p className={`font-mono text-[0.72rem] tracking-[0.08em] ${i === 0 ? "text-copper-2" : "text-fog-3"}`}>{m.period}</p>
-                  <h3 className="mt-2 text-[1.15rem] text-fog">
-                    {m.title}
-                    <span className="text-fog-3"> · </span>
-                    <span className="text-fog-2">{m.place}</span>
-                  </h3>
-                  {m.note && <p className="mt-2 max-w-[56ch] text-[0.92rem] text-fog-3">{m.note}</p>}
-                </li>
-              ))}
-            </ol>
+          <div data-reveal className="mt-16">
+            <TraceScale lang={lang} label={t.trace.scaleLabel} />
+          </div>
 
-            <h3 data-reveal className={`mt-24 text-fog ${zh ? "font-serif text-[1.25rem] tracking-[0.12em]" : "text-[1.25rem] font-light"}`}>
+          <ol className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
+            {t.trace.marks.map((m, i) => (
+              <li
+                key={m.place}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+                className={`border-t pt-5 ${i === 0 ? "border-copper" : "border-line-2"}`}
+              >
+                <h3 className="text-[1.1rem] text-fog">
+                  {m.title}
+                  <span className="text-fog-3"> · </span>
+                  <span className="text-fog-2">{m.place}</span>
+                </h3>
+                <p className={`mt-1 font-mono text-[0.72rem] tabular-nums tracking-[0.04em] ${i === 0 ? "text-copper-2" : "text-fog-3"}`}>{m.period}</p>
+                {m.note && <p className="mt-3 max-w-[48ch] text-[0.9rem] text-fog-3">{m.note}</p>}
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-24">
+            <h3 data-reveal className={`text-fog ${zh ? "font-serif text-[1.25rem] tracking-[0.12em]" : "text-[1.25rem] font-light"}`}>
               {t.trace.honorsTitle}
             </h3>
-            <ul className="mt-6 border-t border-line">
+            <ul className="mt-6 grid border-t border-line md:grid-cols-2 md:gap-x-12">
               {t.trace.honors.map((h, i) => (
                 <li
                   key={h.title}
@@ -372,8 +376,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* ——— Writing ——— */}
-      <section id="writing" aria-labelledby="writing-title" className="relative border-t border-line">
-        <div className="mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
+      <WaterLine />
+      <section id="writing" aria-labelledby="writing-title" className="relative overflow-x-clip">
+        <div aria-hidden="true" className="pool left-[-8%] top-[20%]" style={{ "--w": "34rem", "--a": 0.12 } as React.CSSProperties} />
+        <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-[46ch]">
               <Heading id="writing" lang={lang}>
@@ -397,7 +403,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     {p.date.replaceAll("-", ".")}
                   </time>
                   <span>
-                    <span className="block font-serif text-[1.2rem] font-light leading-[1.6] text-fog transition-colors duration-500 group-hover:text-copper-2">
+                    <span className="phrase block font-serif text-[1.2rem] font-light leading-[1.6] text-fog transition-colors duration-500 group-hover:text-copper-2">
                       {zh ? p.title : p.titleEn}
                     </span>
                     <span className="mt-2 block max-w-[64ch] text-[0.92rem] text-fog-3">{zh ? p.summary : p.summaryEn}</span>
@@ -411,34 +417,30 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* ——— Contact: the statement and its reflection on water ——— */}
-      <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
+      <WaterLine />
+      <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-[var(--gutter)] pb-24 pt-32 sm:pt-44">
-          <div className="relative">
-            <h2
-              id="contact-title"
-              className={`text-balance text-fog ${
-                zh
-                  ? "max-w-[12em] font-serif text-[clamp(2rem,5vw,3.75rem)] font-extralight leading-[1.4] tracking-[0.04em]"
-                  : "max-w-[14em] text-[clamp(2.2rem,5.4vw,4.25rem)] font-extralight leading-[1.08] tracking-[-0.035em]"
-              }`}
-            >
-              {t.contact.title}
+          <div
+            className={`relative ${
+              zh
+                ? "font-serif text-[clamp(1.75rem,5vw,3.75rem)] font-extralight leading-[1.4] tracking-[0.04em]"
+                : "text-[clamp(1.55rem,5.4vw,4.25rem)] font-extralight leading-[1.08] tracking-[-0.035em]"
+            }`}
+          >
+            <h2 id="contact-title" className="text-fog">
+              {t.contact.titleLines.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </h2>
-            <div
-              aria-hidden="true"
-              className={`pointer-events-none mt-1 h-[1.15em] select-none overflow-hidden ${
-                zh ? "text-[clamp(2rem,5vw,3.75rem)] leading-[1.4]" : "text-[clamp(2.2rem,5.4vw,4.25rem)] leading-[1.08]"
-              }`}
-            >
-              <p
-                className={`ink-bleed -scale-y-100 text-balance text-teal-3 opacity-30 blur-[1.2px] [mask-image:linear-gradient(to_bottom,transparent_55%,rgba(0,0,0,0.9))] ${
-                  zh
-                    ? "max-w-[12em] font-serif font-extralight tracking-[0.04em]"
-                    : "max-w-[14em] font-extralight tracking-[-0.035em]"
-                }`}
+            {/* Reflection: the line nearest the water, mirrored, strongest at the waterline. */}
+            <div aria-hidden="true" className="pointer-events-none mt-[0.08em] h-[0.9em] select-none overflow-hidden">
+              <span
+                className="ink-bleed block -scale-y-100 whitespace-nowrap text-teal-3 opacity-40 [mask-image:linear-gradient(to_bottom,transparent_20%,#000)]"
               >
-                {t.contact.title}
-              </p>
+                {t.contact.titleLines[t.contact.titleLines.length - 1]}
+              </span>
             </div>
           </div>
 

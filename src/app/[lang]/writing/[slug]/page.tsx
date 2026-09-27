@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/writing/[s
   if (!isLocale(lang) || !post) return {};
   const zh = lang === "zh";
   return {
-    title: zh ? post.title : post.titleEn,
+    title: zh ? post.title.replaceAll("\u200b", "") : post.titleEn,
     description: zh ? post.summary : post.summaryEn,
     alternates: {
       canonical: `/zh/writing/${slug}`,
@@ -48,10 +48,7 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
       </Link>
 
       <header className="mt-12 border-b border-line-2 pb-10">
-        <time dateTime={post.date} className="font-mono text-[0.72rem] tracking-[0.08em] text-fog-3">
-          {post.date.replaceAll("-", ".")}
-        </time>
-        <h1 className="mt-4 text-balance font-serif text-[clamp(1.7rem,3.6vw,2.4rem)] font-light leading-[1.5] tracking-[0.02em] text-fog">
+        <h1 className="phrase text-balance font-serif text-[clamp(1.7rem,3.6vw,2.4rem)] font-light leading-[1.5] tracking-[0.02em] text-fog">
           {post.title}
         </h1>
         {!zh && (
@@ -60,6 +57,9 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
           </p>
         )}
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.85rem] text-fog-3" lang={zh ? "zh-Hant-TW" : "en"}>
+          <time dateTime={post.date} className="font-mono text-[0.75rem] tabular-nums">
+            {post.date.replaceAll("-", ".")}
+          </time>
           {t.writing.langNote && <span>{t.writing.langNote}</span>}
           {post.medium && (
             <a

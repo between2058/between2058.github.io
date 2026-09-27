@@ -16,7 +16,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: "twse-pdf",
-    title: "pandas 分析 PDF 文本：證交所股票交易紀錄（資料前處理篇）",
+    title: "pandas 分析 PDF 文本：​證交所股票交易紀錄​（資料前處理篇）",
     titleEn: "Analyzing TWSE trade records from PDF with pandas: preprocessing",
     date: "2020-02-27",
     summary: "將近 600 人、約 3000 頁的臺灣證交所交易紀錄表，整理成 pandas DataFrame，方便後續分析。",
@@ -26,7 +26,7 @@ export const posts: Post[] = [
   },
   {
     slug: "table-extraction",
-    title: "使用 Python 萃取掃描文件中的表格（一）切豆腐篇",
+    title: "使用 Python 萃取​掃描文件中的表格​（一）切豆腐篇",
     titleEn: "Extracting tables from scanned documents with Python, part 1: cutting the grid",
     date: "2020-02-21",
     summary: "945 頁的掃描交易紀錄，用 OpenCV 霍夫轉換找出表格線、切成一格一格，再交給 Tesseract 辨識。",
