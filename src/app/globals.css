@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/* 癸水 × 破軍 — ink, fog, deep teal, a thread of copper, a seal of dark red. */
+@theme {
+  --color-ink: #0a0e0e;
+  --color-ink-2: #0f1515;
+  --color-ink-3: #152020;
+  --color-fog: #dfe5e3;
+  --color-fog-2: #aebab7;
+  --color-fog-3: #7e8f8b;
+  --color-teal: #1c4a47;
+  --color-teal-2: #2f6f69;
+  --color-teal-3: #6fa39c;
+  --color-copper: #c07c47;
+  --color-copper-2: #e0a472;
+  --color-seal: #8a2f28;
+  --color-line: rgb(223 229 227 / 0.09);
+  --color-line-2: rgb(223 229 227 / 0.16);
+
+  --font-sans: var(--font-geist), var(--font-noto-sans-tc), "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-serif: var(--font-noto-serif-tc), "Songti TC", "PMingLiU", serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --grid: 72px;
+}
+
+html {
+  background: var(--color-ink);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fog);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:lang(zh) body,
+body:lang(zh) {
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-copper-2);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-teal-2) var(--color-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal);
+  border: 3px solid var(--color-ink);
+  border-radius: 10px;
+}
+
+input,
+textarea {
+  caret-color: var(--color-copper-2);
+}
+
+/* The observation field: a hairline grid that fades toward the edges, with drifting fog. */
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: var(--grid) var(--grid);
+  background-position: calc(var(--gutter) - 1px) -1px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 35%, #000 30%, transparent 85%);
+  opacity: 0.55;
+}
+
+.fog {
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 72% 28%, rgb(47 111 105 / 0.22), transparent 70%),
+    radial-gradient(30% 26% at 18% 78%, rgb(28 74 71 / 0.28), transparent 70%),
+    radial-gradient(22% 18% at 88% 86%, rgb(192 124 71 / 0.06), transparent 70%);
+  filter: blur(40px);
+  animation: fog-drift 38s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) scale(1.06);
+  }
+}
+
+/* Film grain: ink on wet paper. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ink bleed behind large Han marks. */
+.ink-bleed {
+  filter: url(#ink-bleed);
+}
+
+/* Translucent glass, used only for instrument readouts and the header. */
+.glass {
+  background: rgb(15 21 21 / 0.55);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--color-line-2);
+}
+
+/* Links in running text. */
+.prose-link {
+  color: var(--color-fog);
+  text-decoration: underline;
+  text-decoration-color: rgb(192 124 71 / 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
+}
+.prose-link:hover {
+  color: var(--color-copper-2);
+  text-decoration-color: var(--color-copper-2);
+}
+
+/* The 破 cut: the name split along one diagonal, recomposing into register. */
+.cut {
+  position: relative;
+  display: inline-block;
+  --cut-l: 62%;
+  --cut-r: 38%;
+}
+.cut__a,
+.cut__b {
+  display: block;
+  transition: transform 1.6s var(--ease-out-expo), opacity 1.2s var(--ease-out-expo);
+  will-change: transform;
+}
+.cut__a {
+  clip-path: polygon(0 0, 100% 0, 100% var(--cut-r), 0 var(--cut-l));
+  transform: translate3d(calc(var(--cut-x, 0) * -1px), 0, 0);
+}
+.cut__b {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 var(--cut-l), 100% var(--cut-r), 100% 100%, 0 100%);
+  transform: translate3d(calc(var(--cut-x, 0) * 1px), 0, 0);
+  color: var(--color-fog-2);
+}
+.cut__line {
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  top: calc((var(--cut-l) + var(--cut-r)) / 2);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-copper) 18%, var(--color-copper-2) 62%, transparent);
+  transform-origin: center;
+  transform: rotate(var(--cut-angle, -8deg)) scaleX(var(--cut-draw, 1));
+  opacity: var(--cut-line-opacity, 0.7);
+  transition: transform 1.4s var(--ease-out-expo), opacity 1s var(--ease-out-expo);
+}
+.cut[data-state="split"] {
+  --cut-x: 18;
+  --cut-draw: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    animation: none;
+  }
+  .cut__a,
+  .cut__b,
+  .cut__line {
+    transition: none;
+  }
+}
+
+/* Reveal: content is visible by default; motion only refines it once JS confirms support. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  filter: blur(6px);
+  transition:
+    opacity 1.2s var(--ease-out-expo),
+    transform 1.2s var(--ease-out-expo),
+    filter 1.2s var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* Long-form reading (writing pages). */
+.article {
+  font-size: 1.0625rem;
+  line-height: 1.95;
+  color: var(--color-fog-2);
+}
+.article > * + * {
+  margin-top: 1.25em;
+}
+.article h1,
+.article h2,
+.article h3,
+.article h4 {
+  font-family: var(--font-serif);
+  color: var(--color-fog);
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 2.4em;
+  margin-bottom: -0.4em;
+  text-wrap: balance;
+}
+.article h1 {
+  font-size: 1.6rem;
+}
+.article h2 {
+  font-size: 1.4rem;
+}
+.article h3 {
+  font-size: 1.2rem;
+}
+.article h4 {
+  font-size: 1.05rem;
+}
+.article strong {
+  color: var(--color-fog);
+  font-weight: 600;
+}
+.article a {
+  color: var(--color-fog);
+  text-decoration: underline;
+  text-decoration-color: rgb(192 124 71 / 0.55);
+  text-underline-offset: 0.3em;
+}
+.article blockquote {
+  border-left: 1px solid var(--color-teal-2);
+  padding: 0.2em 0 0.2em 1.2em;
+  color: var(--color-fog-3);
+  font-family: var(--font-serif);
+}
+.article ol,
+.article ul {
+  padding-left: 1.4em;
+}
+.article ol {
+  list-style: decimal;
+}
+.article ul {
+  list-style: disc;
+}
+.article li + li {
+  margin-top: 0.35em;
+}
+.article li::marker {
+  color: var(--color-copper);
+}
+.article img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line-2);
+  border-radius: 2px;
+  background: #fff;
+}
+.article code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+.article :not(pre) > code {
+  background: var(--color-ink-3);
+  padding: 0.12em 0.4em;
+  border-radius: 3px;
+}
+.article .code {
+  margin-left: calc(var(--gutter) * -0.25);
+  margin-right: calc(var(--gutter) * -0.25);
+}
+.article pre {
+  overflow-x: auto;
+  padding: 1.1rem 1.25rem;
+  background: var(--color-ink-2);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  tab-size: 4;
+}
+.article pre .ln {
+  display: block;
+  white-space: pre;
+}
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.article th,
+.article td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
