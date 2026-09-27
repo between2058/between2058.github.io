@@ -216,7 +216,7 @@ textarea {
   }
 }
 
-/* Translucent glass, used only for instrument readouts and the header. */
+/* Translucent glass: instrument readouts, the FateFlux diagram panel, the mobile menu. */
 .glass {
   background: rgb(15 21 21 / 0.55);
   backdrop-filter: blur(14px) saturate(1.2);

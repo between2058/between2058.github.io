@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T19:47:41+00:00",
+  "title": "Design System: between2058",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(15.9% 0.006 196.5)",
+        "tonalRamp": [
+          "#080c0c",
+          "#212525",
+          "#3c4141",
+          "#5a5f5f",
+          "#797e7e",
+          "#9aa0a0",
+          "#c0c5c5",
+          "#eaf0f0"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink Deep",
+        "canonical": "oklch(18.9% 0.009 196.4)",
+        "tonalRamp": [
+          "#070c0c",
+          "#1f2525",
+          "#3a4141",
+          "#585f5f",
+          "#777f7f",
+          "#98a0a0",
+          "#bec6c6",
+          "#e8f0f0"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink Wet",
+        "canonical": "oklch(23.3% 0.016 196.1)",
+        "tonalRamp": [
+          "#040d0d",
+          "#1b2626",
+          "#364242",
+          "#546060",
+          "#738080",
+          "#94a2a1",
+          "#b9c7c7",
+          "#e3f2f2"
+        ]
+      },
+      "fog": {
+        "role": "neutral",
+        "displayName": "Fog",
+        "canonical": "oklch(91.7% 0.007 174.4)",
+        "tonalRamp": [
+          "#080c0b",
+          "#212524",
+          "#3c413f",
+          "#5a5f5d",
+          "#797f7d",
+          "#9aa09e",
+          "#c0c6c4",
+          "#eaf0ee"
+        ]
+      },
+      "fog-2": {
+        "role": "neutral",
+        "displayName": "Fog Mid",
+        "canonical": "oklch(77.9% 0.014 179.3)",
+        "tonalRamp": [
+          "#050d0b",
+          "#1d2624",
+          "#384240",
+          "#56605e",
+          "#75807d",
+          "#96a19e",
+          "#bbc7c4",
+          "#e5f2ef"
+        ]
+      },
+      "fog-3": {
+        "role": "neutral",
+        "displayName": "Fog Far",
+        "canonical": "oklch(63.5% 0.020 179.9)",
+        "tonalRamp": [
+          "#030e0b",
+          "#192724",
+          "#344340",
+          "#52625e",
+          "#71817e",
+          "#91a39f",
+          "#b7c9c4",
+          "#e1f3ef"
+        ]
+      },
+      "teal": {
+        "role": "secondary",
+        "displayName": "Deep Tide Teal",
+        "canonical": "oklch(37.6% 0.050 189.4)",
+        "tonalRamp": [
+          "#000f0d",
+          "#012b28",
+          "#1a4845",
+          "#3a6764",
+          "#5a8783",
+          "#7aa9a5",
+          "#9fcfcb",
+          "#c9faf5"
+        ]
+      },
+      "teal-2": {
+        "role": "secondary",
+        "displayName": "Moving Water Teal",
+        "canonical": "oklch(49.8% 0.066 187.0)",
+        "tonalRamp": [
+          "#000f0d",
+          "#022b28",
+          "#014a45",
+          "#296a64",
+          "#4b8a84",
+          "#6daca5",
+          "#92d3cb",
+          "#bcfef6"
+        ]
+      },
+      "teal-3": {
+        "role": "secondary",
+        "displayName": "Surface Teal",
+        "canonical": "oklch(67.7% 0.056 185.4)",
+        "tonalRamp": [
+          "#000f0d",
+          "#022b27",
+          "#134944",
+          "#356862",
+          "#558882",
+          "#76aaa3",
+          "#9bd1c9",
+          "#c5fbf4"
+        ]
+      },
+      "copper": {
+        "role": "primary",
+        "displayName": "Copper Thread",
+        "canonical": "oklch(64.7% 0.109 57.2)",
+        "tonalRamp": [
+          "#160700",
+          "#3a1a00",
+          "#623100",
+          "#8a4b0e",
+          "#ad6b35",
+          "#d28c57",
+          "#fab27c",
+          "#ffeadc"
+        ]
+      },
+      "copper-2": {
+        "role": "primary",
+        "displayName": "Lit Copper",
+        "canonical": "oklch(76.4% 0.097 60.4)",
+        "tonalRamp": [
+          "#150700",
+          "#391c00",
+          "#5f3302",
+          "#854f1b",
+          "#a76f3d",
+          "#cb905e",
+          "#f3b683",
+          "#ffeada"
+        ]
+      },
+      "seal": {
+        "role": "tertiary",
+        "displayName": "Seal Red",
+        "canonical": "oklch(43.8% 0.126 27.8)",
+        "tonalRamp": [
+          "#1f0000",
+          "#4b0002",
+          "#741915",
+          "#983c33",
+          "#bc5c52",
+          "#e27e72",
+          "#feaba0",
+          "#fee9e6"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(223 229 227 / 0.09)"
+      },
+      "line-2": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "rgb(223 229 227 / 0.16)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero only, carried by the Name Cut."
+      },
+      "display-han": {
+        "displayName": "Display Han",
+        "purpose": "Method glyphs and atmospheric Han marks; aria-hidden, faint, always processed by ink-bleed, ink-soak or the cut. Scales to clamp(18rem, 52vh, 34rem) for the hero 癸."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Latin section headings."
+      },
+      "headline-zh": {
+        "displayName": "Headline zh",
+        "purpose": "Chinese section headings in thin Ming, phrase-broken."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Work fields, method terms, project titles (Latin)."
+      },
+      "title-zh": {
+        "displayName": "Title zh",
+        "purpose": "Post and project titles in Chinese."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Section copy at 32–56ch; zh line-height 1.85 with 0.02em tracking."
+      },
+      "body-article": {
+        "displayName": "Body Article",
+        "purpose": "Long-form writing in a 760px column, fog-2."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata, periods, dot-joined tags, nav."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Measurements only: degrees, clock, years, dates."
+      }
+    },
+    "shadows": [],
+    "materials": [
+      {
+        "name": "glass",
+        "value": "background: rgb(15 21 21 / 0.55); backdrop-filter: blur(14px) saturate(1.2); border: 1px solid rgb(223 229 227 / 0.16)",
+        "purpose": "Instrument readouts, the FateFlux diagram, the mobile menu."
+      },
+      {
+        "name": "field-grid",
+        "value": "1px line hairlines at a 72px pitch, registered to the gutter, masked radial-gradient(ellipse 90% 75% at 50% 35%, #000 30%, transparent 85%), opacity 0.55",
+        "purpose": "The fixed observation grid behind every page."
+      },
+      {
+        "name": "fog",
+        "value": "three radial washes (teal-2 22%, teal 28%, copper 6%) blurred 40px",
+        "purpose": "Fixed atmospheric fog behind content."
+      },
+      {
+        "name": "pool",
+        "value": "radial-gradient(closest-side, rgb(47 111 105 / var(--a, 0.3)), transparent 85%) blurred 30px, 1.6 aspect",
+        "purpose": "Local mist inside a section."
+      },
+      {
+        "name": "grain",
+        "value": "fractal-noise SVG, opacity 0.06, mix-blend-mode overlay, z-index 60",
+        "purpose": "Film grain: ink on wet paper, over everything."
+      },
+      {
+        "name": "ink-bleed",
+        "value": "SVG filter: feTurbulence 0.018 x3 octaves, displacement 14, blur 1.4",
+        "purpose": "Warped wash for the hero 癸 and the contact reflection."
+      },
+      {
+        "name": "ink-soak",
+        "value": "SVG filter: crisp displaced core (scale 5) over a teal-2 halo (flood 0.6) spread by displacement 36",
+        "purpose": "Ink soaking into wet paper: the 觀 method glyph and the FateFlux 流 mark."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing: every state change, arrival and cut."
+      },
+      {
+        "name": "state",
+        "value": "300–500ms",
+        "purpose": "Hover colour and arrow slides."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity/translateY 14px/blur 6px over 1.2s, 90ms stagger",
+        "purpose": "Section content arriving; only after the js class is set."
+      },
+      {
+        "name": "cut-recompose",
+        "value": "transform 1.6s, line 1.4s, 350ms delay",
+        "purpose": "The name recomposing into register on load."
+      },
+      {
+        "name": "drift",
+        "value": "fog 38s, pool 26s ease-in-out alternate; tide 34s linear",
+        "purpose": "Ambient atmosphere; never stops except under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animations and transitions off; content shown",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action per page (Contact): fog fill that drains to transparent on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#contact\">Contact <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8h10M9.5 4.5L13 8l-3.5 3.5\"/></svg></a>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:12px; padding:12px 24px; background:var(--color-fog, #dfe5e3); color:var(--color-ink, #0a0e0e); border:1px solid rgb(223 229 227 / 0.7); border-radius:2px; font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); font-size:0.92rem; font-weight:500; text-decoration:none; transition:background-color 0.5s, color 0.5s; } .ds-btn-primary svg { width:16px; height:16px; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background:transparent; color:var(--color-fog, #dfe5e3); } .ds-btn-primary:hover svg { transform:translateX(4px); } .ds-btn-primary:focus-visible { outline:1px solid var(--color-copper-2, #e0a472); outline-offset:4px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Every secondary action: fog-2 text on a thin copper underline; external links lift a diagonal arrow.",
+      "html": "<a class=\"ds-text-link\" href=\"https://fateflux.ai\"><span>FateFlux</span><svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 11L11 5M6 5h5v5\"/></svg></a>",
+      "css": ".ds-text-link { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); font-size:1rem; color:var(--color-fog-2, #aebab7); text-decoration:underline; text-decoration-color:rgb(192 124 71 / 0.5); text-decoration-thickness:1px; text-underline-offset:0.35em; transition:color 0.3s, text-decoration-color 0.3s; } .ds-text-link svg { transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-text-link:hover { color:var(--color-copper-2, #e0a472); text-decoration-color:var(--color-copper-2, #e0a472); } .ds-text-link:hover svg { transform:translate(2px,-2px); } .ds-text-link:focus-visible { outline:1px solid var(--color-copper-2, #e0a472); outline-offset:4px; border-radius:2px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed header: seal and handle on the left, fog-3 section links and the language switch on the right.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><svg viewBox=\"0 0 32 32\" width=\"28\" height=\"28\" aria-hidden=\"true\"><rect x=\"1\" y=\"1\" width=\"30\" height=\"30\" rx=\"2.5\" fill=\"#8a2f28\"/><text x=\"16\" y=\"22.5\" text-anchor=\"middle\" font-family=\"Noto Serif TC, serif\" font-weight=\"500\" font-size=\"19\" fill=\"#efe6dc\">張</text><path d=\"M1 21 L31 11\" stroke=\"#0a0e0e\" stroke-width=\"1.1\"/></svg><span>between2058</span></a><ul><li><a href=\"#work\">Work</a></li><li><a href=\"#method\">Method</a></li><li><a href=\"#projects\">Projects</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"ds-nav-div\" aria-hidden=\"true\"></li><li><a class=\"ds-nav-lang\" href=\"#\">中</a></li></ul></header>",
+      "css": ".ds-nav { display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 24px; background:rgb(10 14 14 / 0.7); backdrop-filter:blur(12px); border-bottom:1px solid rgb(223 229 227 / 0.09); font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); } .ds-nav-brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-size:0.85rem; letter-spacing:0.02em; color:var(--color-fog-2, #aebab7); } .ds-nav-brand svg { transition:transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-brand:hover svg { transform:rotate(-6deg); } .ds-nav-brand:hover { color:var(--color-fog, #dfe5e3); } .ds-nav ul { display:flex; align-items:center; gap:28px; list-style:none; margin:0; padding:0; font-size:0.84rem; } .ds-nav ul a { color:var(--color-fog-3, #7e8f8b); text-decoration:none; transition:color 0.3s; } .ds-nav ul a:hover { color:var(--color-fog, #dfe5e3); } .ds-nav-div { width:1px; height:12px; background:rgb(223 229 227 / 0.16); } .ds-nav ul a.ds-nav-lang { color:var(--color-fog-2, #aebab7); font-size:0.82rem; } .ds-nav ul a.ds-nav-lang:hover { color:var(--color-copper-2, #e0a472); } .ds-nav a:focus-visible { outline:1px solid var(--color-copper-2, #e0a472); outline-offset:4px; border-radius:2px; }"
+    },
+    {
+      "name": "Glass Readout",
+      "kind": "card",
+      "refersTo": "glass-readout",
+      "description": "The instrument readout: translucent glass holding labelled measurements; mono only for numbers.",
+      "html": "<dl class=\"ds-readout\"><dt>Observer</dt><dd>between2058</dd><dt>Local time</dt><dd class=\"ds-num\">03:41 UTC+8</dd><dt>θ / r</dt><dd class=\"ds-num ds-live\">042.5° / 0.61</dd></dl>",
+      "css": ".ds-readout { display:grid; grid-template-columns:auto 1fr; column-gap:20px; width:fit-content; min-width:15rem; margin:0; padding:12px 16px; background:rgb(15 21 21 / 0.55); backdrop-filter:blur(14px) saturate(1.2); border:1px solid rgb(223 229 227 / 0.16); border-radius:3px; font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); font-size:0.72rem; line-height:1.9; letter-spacing:0.02em; } .ds-readout dt { color:var(--color-fog-3, #7e8f8b); } .ds-readout dd { margin:0; color:var(--color-fog-2, #aebab7); } .ds-readout .ds-num { font-family:var(--font-mono, \"Geist Mono\", ui-monospace, monospace); font-variant-numeric:tabular-nums; } .ds-readout .ds-live { color:var(--color-copper-2, #e0a472); }"
+    },
+    {
+      "name": "Post Row",
+      "kind": "card",
+      "refersTo": "post-row",
+      "description": "Hairline-ruled list row used instead of cards: mono date, serif title, fog-3 summary, sliding arrow.",
+      "html": "<a class=\"ds-row\" href=\"#\"><time>2020.02.21</time><span><span class=\"ds-row-title\">使用python萃取掃描文件中的表格</span><span class=\"ds-row-sum\">Extracting tables from scanned documents with Python.</span></span><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8h10M9.5 4.5L13 8l-3.5 3.5\"/></svg></a>",
+      "css": ".ds-row { display:grid; grid-template-columns:8rem 1fr auto; align-items:baseline; gap:32px; padding:32px 16px; border-top:1px solid rgb(223 229 227 / 0.16); border-bottom:1px solid rgb(223 229 227 / 0.09); color:var(--color-fog, #dfe5e3); text-decoration:none; transition:background-color 0.5s; } .ds-row time { font-family:var(--font-mono, \"Geist Mono\", ui-monospace, monospace); font-size:0.72rem; letter-spacing:0.08em; color:var(--color-fog-3, #7e8f8b); } .ds-row-title { display:block; font-family:var(--font-serif, \"Noto Serif TC\", serif); font-size:1.2rem; font-weight:300; line-height:1.6; word-break:keep-all; transition:color 0.5s; } .ds-row-sum { display:block; margin-top:8px; font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); font-size:0.92rem; color:var(--color-fog-3, #7e8f8b); } .ds-row svg { color:var(--color-fog-3, #7e8f8b); transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s; } .ds-row:hover { background:rgb(15 21 21 / 0.6); } .ds-row:hover .ds-row-title, .ds-row:hover svg { color:var(--color-copper-2, #e0a472); } .ds-row:hover svg { transform:translateX(4px); } .ds-row:focus-visible { outline:1px solid var(--color-copper-2, #e0a472); outline-offset:4px; }"
+    },
+    {
+      "name": "Name Cut",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Signature 破 cut: a light display name split along one diagonal with a copper thread; halves drift on hover and settle back into register.",
+      "html": "<span class=\"ds-cut\"><span class=\"ds-cut-a\">Johnny Chang</span><span class=\"ds-cut-b\" aria-hidden=\"true\">Johnny Chang</span><span class=\"ds-cut-line\" aria-hidden=\"true\"></span></span>",
+      "css": ".ds-cut { position:relative; display:inline-block; font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); font-size:4rem; font-weight:300; line-height:1.02; letter-spacing:-0.04em; color:var(--color-fog, #dfe5e3); --x:0; } .ds-cut-a, .ds-cut-b { display:block; transition:transform 1.6s cubic-bezier(0.16, 1, 0.3, 1); } .ds-cut-a { clip-path:polygon(0 0,100% 0,100% 30%,0 74%); transform:translateX(calc(var(--x) * -1px)); } .ds-cut-b { position:absolute; inset:0; clip-path:polygon(0 74%,100% 30%,100% 100%,0 100%); color:var(--color-fog-2, #aebab7); transform:translateX(calc(var(--x) * 1px)); } .ds-cut-line { position:absolute; left:-3%; right:-3%; top:52%; height:1px; background:linear-gradient(to right, transparent, #c07c47 18%, #e0a472 62%, transparent); transform:rotate(-8deg); opacity:0.7; } .ds-cut:hover { --x:6; }"
+    },
+    {
+      "name": "Waterline",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Section boundary: one uneven teal hairline drifting sideways like a tide, masked at both ends.",
+      "html": "<div class=\"ds-waterline\" aria-hidden=\"true\"><svg viewBox=\"0 0 2400 14\" preserveAspectRatio=\"none\"><path d=\"M0 7 L200 8.9 L400 5.4 L600 7 L800 8.6 L1000 5.1 L1200 7 L1400 8.9 L1600 5.4 L1800 7 L2000 8.6 L2200 5.1 L2400 7\" fill=\"none\" stroke=\"rgb(111 163 156 / 0.35)\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/></svg></div>",
+      "css": ".ds-waterline { position:relative; height:14px; overflow:hidden; -webkit-mask-image:linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image:linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); } .ds-waterline svg { position:absolute; inset:0 auto 0 0; width:200%; height:100%; animation:ds-tide 34s linear infinite; } @keyframes ds-tide { to { transform:translateX(-50%); } } @media (prefers-reduced-motion: reduce) { .ds-waterline svg { animation:none; } }"
+    },
+    {
+      "name": "Work Field Row",
+      "kind": "card",
+      "refersTo": "",
+      "description": "Definition-list row with a crosshair registration mark at its corner; the term turns copper on hover.",
+      "html": "<dl class=\"ds-field\"><div class=\"ds-field-row\"><span class=\"ds-field-mark\" aria-hidden=\"true\"><svg viewBox=\"0 0 9 9\"><path d=\"M4.5 0v9M0 4.5h9\" stroke=\"currentColor\" stroke-width=\"0.8\"/></svg></span><dt>AI for 3D</dt><dd>Geometry understanding and generation for engineering.</dd></div></dl>",
+      "css": ".ds-field { margin:0; border-top:1px solid rgb(223 229 227 / 0.16); font-family:var(--font-sans, Geist, \"Noto Sans TC\", sans-serif); } .ds-field-row { position:relative; display:grid; grid-template-columns:14rem 1fr; gap:32px; padding:28px 0; border-bottom:1px solid rgb(223 229 227 / 0.09); } .ds-field-mark { position:absolute; left:-5px; top:-5px; width:9px; height:9px; color:var(--color-fog-3, #7e8f8b); } .ds-field-mark svg { width:100%; height:100%; display:block; } .ds-field dt { font-size:1.35rem; font-weight:300; letter-spacing:-0.01em; color:var(--color-fog, #dfe5e3); transition:color 0.5s; } .ds-field dd { margin:0; align-self:center; color:var(--color-fog-2, #aebab7); } .ds-field-row:hover dt { color:var(--color-copper-2, #e0a472); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Observation Instrument",
+    "overview": "The site is an instrument that observes a person, not a résumé that lists one. It sits on wet, cold ink (癸水: fog, still water, reflection) and is cut through by a single decisive gesture (破軍: the diagonal that splits the name, the 破 mark, the cut through the seal). Everything is measured: a hairline observation grid fades toward the edges, a graduated ring carries the 24 mountains of an Eastern compass with only 癸 named, a trace is drawn as a ruler in years. The mood is calm, precise, a little distant; restrained cyberpunk carried by Eastern materials rather than neon.\n\nDensity is low and the page breathes. Type is light and thin (Geist 300 for Latin, Noto Serif TC 200–300 for Chinese display) set in fog on ink, and structure comes from 1px hairlines rather than filled containers. Atmosphere is layered, never loud: drifting fog, local mist pools, film grain, an ink-bleed turbulence filter behind large Han marks, a tide-line between sections. Colour is almost entirely neutral; copper is the one live signal and dark red exists only as the seal.\n\nConfirmed rejections (owner-pinned in PRODUCT.md): gaudy neon, anime feel, full-bleed fortune-telling symbols, overly complex 3D, a templated-résumé look, a cold corporate look. The dev-portfolio default (gradient hero, skill chips, card grid, timeline) is refused by construction: tags are dot-joined text, work is a hairline definition list, the timeline is a scale.",
+    "keyCharacteristics": [
+      "Ink ground (#0a0e0e) with fog type; dark scheme only.",
+      "Hairline structure: 1px rules at 9% and 16% fog, a 72px observation grid.",
+      "Copper as the single live signal; dark red only as the seal.",
+      "Extremely faint, very large Han marks, always processed (ink-bleed, ink-soak, or the cut).",
+      "Slow exponential ease-out motion, long ambient drifts, nothing bouncy; all of it stops under reduced motion.",
+      "Mono type reserved for measurements: clock, angles, years, dates."
+    ],
+    "rules": [
+      {
+        "name": "The Single Signal Rule",
+        "body": "Copper marks what is live, current or under the pointer, and nothing else. It is a line, a dot, an underline or a hover state; it is never a fill, a background or a large area.",
+        "section": "colors"
+      },
+      {
+        "name": "The Seal Rule",
+        "body": "Dark red appears once per page, as the seal. It never tints text, borders or states.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fog Floor Rule",
+        "body": "No text below fog-3 on ink. Fainter fog values are for atmosphere (Han marks, grid, tick marks) only, and those are `aria-hidden`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Is Measurement Rule",
+        "body": "Geist Mono sets numbers that measure something (angles, time, years, dates). Words never go in mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Phrase Break Rule",
+        "body": "Chinese headings and titles use keep-all phrase breaking and break between phrases, never inside a word; long lines are split at commas by hand where it matters (the hero thesis).",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Every heading has a Latin and a Chinese setting; Chinese headings switch to the serif, Latin stays in Geist. Neither is a translation of the other's typography.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weather, Not Shadow Rule",
+        "body": "Depth comes from fog, blur and tone (ink to ink-2), never from drop shadows or lifted cards.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Glass Is for Readouts Rule",
+        "body": "Translucent glass (55% ink-2, 14px blur, saturate 1.2, 1px line-2 border) holds instrument readouts, the FateFlux diagram and the mobile menu. Content blocks are never glass cards.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the ground ink and the type fog; tint neutrals toward teal, never toward grey-blue or warm.",
+      "Do build structure from 1px hairlines (line at 9%, line-2 at 16%) and horizontal rules around lists.",
+      "Do reserve copper for what is live: the current item, the pointer, the hover, the cut.",
+      "Do process every large Han mark (ink-bleed, ink-soak or the cut) and keep it faint and `aria-hidden`.",
+      "Do move slowly on cubic-bezier(0.16, 1, 0.3, 1): 300–500ms for state, 1.2–1.6s for arrivals, 26–38s for ambient drift, and stop all of it under reduced motion.",
+      "Do keep content visible without JavaScript; reveal motion is a refinement added only after the `js` class is set.",
+      "Do set dates, times, angles and years in Geist Mono with tabular numerals."
+    ],
+    "donts": [
+      "Don't use gaudy neon, anime styling, full-bleed fortune-telling symbols or complex 3D (owner-pinned).",
+      "Don't use drop shadows, filled cards, gradient heroes, skill chips or a vertical timeline.",
+      "Don't use seal red for anything but the seal, or copper as a fill or background.",
+      "Don't set body text below fog-3 or use mono for words.",
+      "Don't use bouncy, elastic or spring easing.",
+      "Don't put glass on ordinary content blocks; glass is for readouts, diagrams and the mobile menu."
+    ]
+  }
+}
