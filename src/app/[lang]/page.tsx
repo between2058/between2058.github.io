@@ -132,7 +132,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       {/* ——— Work ——— */}
       <section id="work" aria-labelledby="work-title" className="relative overflow-x-clip mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
-        <div aria-hidden="true" className="pool left-[40%] top-[10%]" style={{ "--a": 0.13 } as React.CSSProperties} />
+        <div aria-hidden="true" className="pool left-[40%] top-[10%]" style={{ "--a": 0.3 } as React.CSSProperties} />
         <div className="relative grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Heading id="work" lang={lang}>
@@ -313,7 +313,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* ——— Trace: a ruler measured in years ——— */}
       <WaterLine />
       <section id="trace" aria-labelledby="trace-title" className="relative overflow-x-clip">
-        <div aria-hidden="true" className="pool -right-[10%] top-[30%]" style={{ "--w": "38rem", "--a": 0.12 } as React.CSSProperties} />
+        <div aria-hidden="true" className="pool -right-[10%] top-[30%]" style={{ "--w": "38rem", "--a": 0.26 } as React.CSSProperties} />
         <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="max-w-[46ch]">
             <Heading id="trace" lang={lang}>
@@ -378,7 +378,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* ——— Writing ——— */}
       <WaterLine />
       <section id="writing" aria-labelledby="writing-title" className="relative overflow-x-clip">
-        <div aria-hidden="true" className="pool left-[-8%] top-[20%]" style={{ "--w": "34rem", "--a": 0.12 } as React.CSSProperties} />
+        <div aria-hidden="true" className="pool left-[-8%] top-[20%]" style={{ "--w": "34rem", "--a": 0.28 } as React.CSSProperties} />
         <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-[46ch]">

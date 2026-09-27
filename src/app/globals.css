@@ -181,7 +181,7 @@ textarea {
   width: var(--w, 46rem);
   aspect-ratio: 1.6;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(47 111 105 / var(--a, 0.16)), transparent);
+  background: radial-gradient(closest-side, rgb(47 111 105 / var(--a, 0.3)), transparent 85%);
   filter: blur(30px);
   animation: pool-drift 26s ease-in-out infinite alternate;
 }

@@ -86,7 +86,7 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
           <div key={y} className="absolute top-0" style={{ left: pct(y) }}>
             <span className="absolute left-0 top-0 h-3 w-px bg-fog-3" />
             <span
-              className={`absolute left-0 top-4 -translate-x-1/2 font-mono text-[0.68rem] tabular-nums text-fog-3 ${
+              className={`absolute left-0 top-4 font-mono ${y === START ? "" : "-translate-x-1/2"} text-[0.68rem] tabular-nums text-fog-3 ${
                 (y - START) % 2 ? "hidden sm:block" : ""
               }`}
             >
