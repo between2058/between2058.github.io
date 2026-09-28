@@ -98,18 +98,6 @@ textarea {
   caret-color: var(--color-shu-2);
 }
 
-/* 青海波: overlapping concentric arcs, the textile pattern of calm water. */
-.seigaiha {
-  --s: 56px;
-  --c: rgb(126 170 208 / 0.14);
-  background-color: transparent;
-  background-image:
-    radial-gradient(circle at 50% 100%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%),
-    radial-gradient(circle at 0% 50%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%),
-    radial-gradient(circle at 100% 50%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%);
-  background-size: var(--s) calc(var(--s) / 2);
-}
-
 /* Chinese headings break between phrases, never inside a word. */
 .phrase {
   word-break: keep-all;

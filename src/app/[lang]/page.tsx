@@ -10,6 +10,7 @@ import { CopyEmail } from "@/components/CopyEmail";
 import { TraceScale } from "@/components/TraceScale";
 import { Passage } from "@/components/Passage";
 import { BreathRibbon } from "@/components/BreathRibbon";
+import { SeigaihaField } from "@/components/Seigaiha";
 import { ArrowRight, ArrowUpRight } from "@/components/Icons";
 
 function isExternal(href: string) {
@@ -96,11 +97,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   Johnny Chang
                 </span>
                 <BreathRibbon
-                  path={[[8, 44], [140, 58], [300, 50], [450, 30], [560, 34]]}
-                  width={600}
-                  height={80}
-                  maxW={17}
-                  className="mt-1 h-[2.8rem] w-[min(100%,34rem)] sm:h-[3.6rem]"
+                  path={[[6, 120], [150, 154], [320, 146], [460, 110], [540, 124]]}
+                  className="-mt-1 block h-auto w-[min(92%,30rem)]"
                 />
               </h1>
 
@@ -191,15 +189,15 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
-      <Passage kind="waves" seed={2} />
+      <Passage kind="waves" seed={2} into="seigaiha" />
       {/* ——— Method: observe, deconstruct, recompose ——— */}
       <section
         id="method"
         aria-labelledby="method-title"
         className="relative bg-ink-2"
       >
-        <div aria-hidden="true" className="seigaiha pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
-        <div className="mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
+        <SeigaihaField id="seigaiha-method" ground="#0f1d2f" className="pointer-events-none absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
+        <div className="relative z-10 mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="max-w-[46ch]">
             <Heading id="method" lang={lang}>
               {t.method.title}
@@ -439,11 +437,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               ))}
             </h2>
             <BreathRibbon
-              path={[[10, 30], [160, 48], [330, 44], [470, 22], [590, 30]]}
-              width={600}
-              height={70}
-              maxW={15}
-              className="mt-4 h-[2.6rem] w-[min(100%,30rem)]"
+              path={[[6, 116], [160, 150], [330, 142], [470, 106], [540, 120]]}
+              className="mt-2 block h-auto w-[min(88%,26rem)]"
             />
           </div>
 

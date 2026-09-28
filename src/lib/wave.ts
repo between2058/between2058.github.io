@@ -118,12 +118,12 @@ export function wavePaths(spec: WaveSpec) {
     const u = Math.min(0.96, Math.max(0.2, 0.2 + (i / (spec.claws - 1)) * 0.74 + jitter));
     const frame = frameAt(spec, u);
     const swell = 0.45 + 0.55 * Math.sin(Math.PI * Math.min(1, u * 1.12));
-    const len = spec.clawLen * swell * (0.55 + rand() * 0.85);
+    const len = spec.clawLen * swell * (0.7 + rand() * 0.6);
     claws.push(talon(frame.p, frame.n, frame.t, len, rand));
     // A shorter rank behind, offset half a step, reads as foam piling up.
-    if (rand() < 0.7) {
-      const f2 = frameAt(spec, Math.min(0.97, u + 0.35 / spec.claws));
-      rearClaws.push(talon(f2.p, f2.n, f2.t, len * (0.45 + rand() * 0.25), rand));
+    if (rand() < 0.55) {
+      const f2 = frameAt(spec, Math.min(0.97, u + 0.5 / spec.claws));
+      rearClaws.push(talon(f2.p, f2.n, f2.t, len * (0.5 + rand() * 0.2), rand));
     }
   }
 
@@ -154,34 +154,48 @@ function frameAt(spec: WaveSpec, u: number) {
   return { p, n: [nx / nl, ny / nl] as Pt, t: [tx, ty] as Pt };
 }
 
+/** Offset a centreline into a closed outline (left edge out, right edge back). Never self-intersects
+ *  as long as the width stays under the local radius of curvature, which the callers ensure. */
+function outline(center: Pt[], widthAt: (u: number) => number) {
+  const L: Pt[] = [];
+  const R: Pt[] = [];
+  center.forEach((p, i) => {
+    const a = center[Math.max(0, i - 1)];
+    const b = center[Math.min(center.length - 1, i + 1)];
+    let nx = -(b[1] - a[1]);
+    let ny = b[0] - a[0];
+    const l = Math.hypot(nx, ny) || 1;
+    nx /= l;
+    ny /= l;
+    const w = widthAt(i / (center.length - 1));
+    L.push([p[0] + nx * w, p[1] + ny * w]);
+    R.push([p[0] - nx * w, p[1] - ny * w]);
+  });
+  return `${smoothPath(L)} ${smoothPath([...R].reverse(), false)} Z`;
+}
+
 /**
- * A talon of foam: a stem leaves the lip along the normal and bends forward with the wave;
- * near its end it forks into two or three hooked tines that grab back toward the water.
+ * A talon of foam: one claw whose heading turns steadily from outward, to forward with the wave,
+ * to back toward the water, so it hooks like a finger. Built from a centreline, so it never knots.
  */
 function talon(p: Pt, n: Pt, t: Pt, len: number, rand: () => number) {
-  const at = (s: number, fwd: number): Pt => [p[0] + n[0] * s + t[0] * fwd, p[1] + n[1] * s + t[1] * fwd];
-  const w = len * 0.15;
-  const bend = 0.55 + rand() * 0.35;
-  const fork = at(len * 0.62, len * bend * 0.55);
-  let d = `M${f(p[0] - t[0] * w)} ${f(p[1] - t[1] * w)}`;
-  const c1 = at(len * 0.4, -w * 0.4);
-  d += ` Q${f(c1[0])} ${f(c1[1])} ${f(fork[0] - t[0] * w * 0.5)} ${f(fork[1] - t[1] * w * 0.5)}`;
-  const tines = 2 + (rand() < 0.45 ? 1 : 0);
-  for (let k = 0; k < tines; k++) {
-    // Each tine: out and forward, then a hook curling back toward the lip.
-    const spread = (k - (tines - 1) / 2) * 0.55;
-    const tl = len * (0.42 + rand() * 0.22) * (k === tines - 1 ? 0.8 : 1);
-    const dir: Pt = [n[0] * (0.55 - spread * 0.4) + t[0] * (0.85 + spread), n[1] * (0.55 - spread * 0.4) + t[1] * (0.85 + spread)];
-    const tip: Pt = [fork[0] + dir[0] * tl, fork[1] + dir[1] * tl];
-    const hook: Pt = [tip[0] - n[0] * tl * 0.62 + t[0] * tl * 0.02, tip[1] - n[1] * tl * 0.62 + t[1] * tl * 0.02];
-    const inner: Pt = [fork[0] + dir[0] * tl * 0.55 - n[0] * tl * 0.08, fork[1] + dir[1] * tl * 0.55 - n[1] * tl * 0.08];
-    d += ` Q${f(fork[0] + dir[0] * tl * 0.6 + n[0] * tl * 0.12)} ${f(fork[1] + dir[1] * tl * 0.6 + n[1] * tl * 0.12)} ${f(tip[0])} ${f(tip[1])}`;
-    d += ` C${f(tip[0] + t[0] * tl * 0.32)} ${f(tip[1] + t[1] * tl * 0.32)} ${f(hook[0] + t[0] * tl * 0.34)} ${f(hook[1] + t[1] * tl * 0.34)} ${f(hook[0])} ${f(hook[1])}`;
-    d += ` Q${f(inner[0])} ${f(inner[1])} ${f(fork[0] + t[0] * w * 0.3 * k)} ${f(fork[1] + t[1] * w * 0.3 * k)}`;
+  const steps = 22;
+  const turn = (150 + rand() * 40) * (Math.PI / 180);
+  const pts: Pt[] = [p];
+  let x = p[0];
+  let y = p[1];
+  for (let i = 1; i <= steps; i++) {
+    const s = i / steps;
+    const beta = turn * Math.pow(s, 1.5);
+    const dx = n[0] * Math.cos(beta) + t[0] * Math.sin(beta);
+    const dy = n[1] * Math.cos(beta) + t[1] * Math.sin(beta);
+    const ds = (len / steps) * (1.15 - s * 0.45);
+    x += dx * ds;
+    y += dy * ds;
+    pts.push([x, y]);
   }
-  const c2 = at(len * 0.35, w * 1.4);
-  d += ` Q${f(c2[0])} ${f(c2[1])} ${f(p[0] + t[0] * w)} ${f(p[1] + t[1] * w)} Z`;
-  return d;
+  const w0 = len * 0.16;
+  return outline(pts, (u) => w0 * Math.pow(1 - u, 0.85) + 0.4);
 }
 
 /** Ink-wash mountain ridge: a jagged but soft skyline across the width. */
@@ -198,96 +212,155 @@ export function ridge(seed: number, y: number, amp: number, width: number, botto
 }
 
 /**
- * A 寫意 mountain range: a filled silhouette plus the brush strokes that give it form,
- * short texture strokes (皴) dropping down each slope.
+ * A 寫意 mountain range as a height field across [x0, x0 + width]: peaks are soft bumps
+ * that taper to the baseline at both ends, so the contour never loops or steps.
+ * Texture strokes (皴) are filled, tapered brush marks dropping down the slopes.
  */
 export function mountains(seed: number, x0: number, width: number, y: number, amp: number) {
   const rand = rng(seed);
-  const peaks = 3 + Math.floor(rand() * 3);
-  const pts: Pt[] = [[x0, y]];
-  for (let i = 0; i < peaks; i++) {
-    const px = x0 + ((i + 0.5 + (rand() - 0.5) * 0.5) / peaks) * width;
-    const h = amp * (0.45 + rand() * 0.55);
-    pts.push([px - width / peaks / 2.6, y - h * 0.45], [px, y - h], [px + width / peaks / 3, y - h * 0.5]);
-  }
-  pts.push([x0 + width, y]);
-  const outline = smoothPath(pts);
-  const fill = `${outline} L${f(x0 + width)} ${f(y + 40)} L${f(x0)} ${f(y + 40)} Z`;
-  const strokes: string[] = [];
-  for (let i = 1; i < pts.length - 1; i++) {
-    const [px, py] = pts[i];
-    const n = 2 + Math.floor(rand() * 3);
-    for (let k = 0; k < n; k++) {
-      const sx = px + (rand() - 0.3) * 24;
-      const sy = py + 10 + k * (8 + rand() * 10);
-      const len = 14 + rand() * 26;
-      const lean = (rand() < 0.5 ? -1 : 1) * (0.4 + rand() * 0.5);
-      strokes.push(`M${f(sx)} ${f(sy)} q${f(lean * len * 0.3)} ${f(len * 0.5)} ${f(lean * len * 0.5)} ${f(len)}`);
+  const peaks = Array.from({ length: 3 + Math.floor(rand() * 3) }, () => ({
+    at: 0.12 + rand() * 0.76,
+    h: amp * (0.45 + rand() * 0.55),
+    w: 0.07 + rand() * 0.09,
+  }));
+  const height = (u: number) => {
+    const env = Math.sin(Math.PI * u) ** 0.6;
+    let h = 0;
+    for (const p of peaks) {
+      const d = (u - p.at) / p.w;
+      h = Math.max(h, p.h * Math.exp(-d * d) * (1 - 0.12 * Math.abs(Math.sin(d * 2.3))));
     }
+    return h * env;
+  };
+  const N = 80;
+  const pts: Pt[] = [];
+  for (let i = 0; i <= N; i++) {
+    const u = i / N;
+    pts.push([x0 + u * width, y - height(u)]);
   }
-  return { fill, outline, strokes };
+  const line = smoothPath(pts);
+  const fill = `${line} L${f(x0 + width)} ${f(y + 2)} L${f(x0)} ${f(y + 2)} Z`;
+  const strokes: string[] = [];
+  for (const p of peaks) {
+    const px = x0 + p.at * width;
+    const n = 3 + Math.floor(rand() * 3);
+    for (let k = 0; k < n; k++) {
+      const side = k % 2 ? 1 : -1;
+      const u = p.at + side * (0.01 + rand() * p.w * 0.9);
+      const sx = x0 + u * width;
+      const sy = y - height(u) + 6 + rand() * 10;
+      const len = 16 + rand() * 30;
+      const wgt = 1.2 + rand() * 2.2;
+      const lean = side * (0.25 + rand() * 0.35);
+      const ex = sx + lean * len;
+      const ey = sy + len;
+      const cx = sx + lean * len * 0.2 + wgt * 2;
+      const cy = sy + len * 0.5;
+      // A tapered mark: thick near the ridge, pointed at the bottom.
+      strokes.push(
+        `M${f(sx - wgt)} ${f(sy)} Q${f(cx - wgt)} ${f(cy)} ${f(ex)} ${f(ey)} Q${f(cx + wgt * 0.4)} ${f(cy)} ${f(sx + wgt)} ${f(sy)} Z`,
+      );
+    }
+    void px;
+  }
+  return { fill, outline: line, strokes };
 }
 
-/** すやり霞: a horizontal mist band made of capsules, the way woodblock prints draw cloud. */
+/**
+ * すやり霞: horizontal mist bands in steps, each band ending in doubled lobes,
+ * the way woodblock prints draw cloud.
+ */
 export function mistBand(seed: number, x: number, y: number, width: number, h: number) {
   const rand = rng(seed);
   let d = "";
   let cx = x;
   let row = 0;
   while (cx < x + width) {
-    const w = width * (0.18 + rand() * 0.22);
-    const yy = y + (row % 2) * h * 0.55;
-    const r = h / 2;
-    d += `M${f(cx + r)} ${f(yy)} H${f(cx + w - r)} A${f(r)} ${f(r)} 0 0 1 ${f(cx + w - r)} ${f(yy + h)} H${f(cx + r)} A${f(r)} ${f(r)} 0 0 1 ${f(cx + r)} ${f(yy)} Z `;
-    cx += w * (0.7 + rand() * 0.25);
+    const hh = h * (0.75 + rand() * 0.5);
+    const w = Math.max(hh * 3, width * (0.14 + rand() * 0.2));
+    const yy = y + ((row % 3) - 1) * h * 0.42;
+    const r = hh / 4;
+    const x1 = cx + r;
+    const x2 = cx + w - r;
+    d += `M${f(x1)} ${f(yy)} H${f(x2)} A${f(r)} ${f(r)} 0 0 1 ${f(x2)} ${f(yy + hh / 2)} A${f(r)} ${f(r)} 0 0 1 ${f(x2)} ${f(
+      yy + hh,
+    )} H${f(x1)} A${f(r)} ${f(r)} 0 0 1 ${f(x1)} ${f(yy + hh / 2)} A${f(r)} ${f(r)} 0 0 1 ${f(x1)} ${f(yy)} Z `;
+    cx += w * (0.62 + rand() * 0.3);
     row++;
   }
   return d;
 }
 
-/**
- * The Water-Breathing ribbon: a tapering band of water along a curve, with a pale core,
- * a foam line, and a curl at the tail. Returns filled outlines, all authored geometry.
- */
-export function ribbon(pts: Pt[], maxW: number) {
-  const dense: Pt[] = [];
+/** Dense points along a Catmull-Rom curve through pts. */
+function catmull(pts: Pt[], per = 16): Pt[] {
+  const out: Pt[] = [];
   for (let i = 0; i < pts.length - 1; i++) {
-    for (let s = 0; s < 12; s++) {
-      const u = s / 12;
-      dense.push([pts[i][0] + (pts[i + 1][0] - pts[i][0]) * u, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * u]);
+    const p0 = pts[i - 1] ?? pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] ?? p2;
+    for (let s = 0; s < per; s++) {
+      const u = s / per;
+      const u2 = u * u;
+      const u3 = u2 * u;
+      out.push([
+        0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * u + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * u2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * u3),
+        0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * u + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * u2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * u3),
+      ]);
     }
   }
-  dense.push(pts[pts.length - 1]);
-  const edge = (wFn: (u: number) => number) => {
-    const L: Pt[] = [];
-    const R: Pt[] = [];
-    dense.forEach((p, i) => {
-      const a = dense[Math.max(0, i - 1)];
-      const b = dense[Math.min(dense.length - 1, i + 1)];
-      let nx = -(b[1] - a[1]);
-      let ny = b[0] - a[0];
+  out.push(pts[pts.length - 1]);
+  return out;
+}
+
+/**
+ * The Water-Breathing ribbon: a surging band of water along a curve that rolls into a curl
+ * at its tail. Body, pale core and foam stripes share one centreline; all filled geometry.
+ */
+export function ribbon(pts: Pt[], maxW: number) {
+  const path = catmull(pts);
+  // Continue into a curl: keep the heading, turning ~300° with a shrinking radius.
+  const a = path[path.length - 2];
+  const b = path[path.length - 1];
+  let heading = Math.atan2(b[1] - a[1], b[0] - a[0]);
+  const dir = -1; // curl upward (counter-clockwise on screen)
+  let [x, y] = b;
+  const curlSteps = 40;
+  const radius0 = maxW * 1.2;
+  for (let i = 1; i <= curlSteps; i++) {
+    const s = i / curlSteps;
+    const r = radius0 * (1 - s * 0.7);
+    const dTheta = (Math.PI * 1.75) / curlSteps;
+    heading += dir * dTheta;
+    x += Math.cos(heading) * r * dTheta;
+    y += Math.sin(heading) * r * dTheta;
+    path.push([x, y]);
+  }
+  const main = path.length - curlSteps;
+  const widthAt = (u: number) => {
+    const i = u * (path.length - 1);
+    if (i <= main) {
+      const v = i / main;
+      return maxW * Math.min(1, Math.pow(v / 0.35, 0.7)) * (1 - 0.35 * Math.max(0, v - 0.6) / 0.4);
+    }
+    const c = (i - main) / curlSteps;
+    return maxW * 0.65 * (1 - c) + 0.6;
+  };
+  const body = outline(path, widthAt);
+  const core = outline(path, (u) => widthAt(u) * 0.42);
+  const stripe = (k: number) => {
+    const pts2: Pt[] = path.map((p, i) => {
+      const q = path[Math.min(path.length - 1, i + 1)];
+      const o = path[Math.max(0, i - 1)];
+      let nx = -(q[1] - o[1]);
+      let ny = q[0] - o[0];
       const l = Math.hypot(nx, ny) || 1;
       nx /= l;
       ny /= l;
-      const w = wFn(i / (dense.length - 1));
-      L.push([p[0] + nx * w, p[1] + ny * w]);
-      R.push([p[0] - nx * w * 0.6, p[1] - ny * w * 0.6]);
+      const w = widthAt(i / (path.length - 1)) * k;
+      return [p[0] + nx * w, p[1] + ny * w];
     });
-    return `${smoothPath(L)} ${smoothPath([...R].reverse(), false)} Z`;
+    return smoothPath(pts2.slice(Math.round(path.length * 0.08)));
   };
-  const taper = (u: number) => Math.pow(Math.sin(Math.PI * Math.min(1, u * 1.04)), 0.7);
-  const body = edge((u) => maxW * taper(u));
-  const core = edge((u) => maxW * 0.38 * taper(u));
-  const line = smoothPath(dense);
-  const end = dense[dense.length - 1];
-  const prev = dense[dense.length - 4];
-  const dir = end[0] >= prev[0] ? 1 : -1;
-  let curl = "";
-  for (let a = 0; a <= Math.PI * 3; a += 0.15) {
-    const r = maxW * 1.1 * (1 - a / (Math.PI * 3.4));
-    const px = end[0] + Math.cos(dir * a - Math.PI / 2) * r * dir;
-    const py = end[1] - maxW * 1.1 + Math.sin(dir * a - Math.PI / 2) * r + maxW * 1.1;
-    curl += `${a === 0 ? "M" : "L"}${f(px)} ${f(py)} `;
-  }
-  return { body, core, line, curl };
+  return { body, core, stripes: [stripe(0.62), stripe(-0.55)] };
 }

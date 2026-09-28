@@ -24,6 +24,6 @@ FIRST VIEWPORT: Full-bleed night sea. Right 60%: the great wave rising from lowe
 
 FORM: owner-pinned brief (beats the roll); seed key e943388a carried from the first round.
 
-Signature interaction: Water-Breathing stroke — pointer and touch sweeps leave a tapering blue-and-foam water ribbon with a curl at its tail; one stroke sweeps under the name on load. The wave breathes slowly (swell) and its claws shimmer. Motion: long exponential ease-out; nothing bouncy; all motion stops under reduced motion.
+Signature interaction: Water-Breathing stroke — pointer and touch sweeps leave a tapering blue-and-foam water ribbon with a curl at its tail. Its static counterpart, a painted surging ribbon rolling into a curl, sits under the name and returns under the contact heading. The wave breathes slowly (swell) and its claws shimmer. Motion: long exponential ease-out; nothing bouncy; all motion stops under reduced motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
