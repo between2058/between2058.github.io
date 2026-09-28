@@ -49,12 +49,12 @@ export default async function WritingIndex({ params }: PageProps<"/[lang]/writin
                   {p.date.replaceAll("-", ".")}
                 </time>
                 <span>
-                  <span className="phrase block font-kai text-[1.3rem] leading-[1.6] text-foam transition-colors duration-500 group-hover:text-shu-2">
+                  <span className="phrase block font-kai text-[1.3rem] leading-[1.6] text-foam transition-colors duration-500 group-hover:text-wave-3">
                     {zh ? p.title : p.titleEn}
                   </span>
                   <span className="mt-2 block max-w-[64ch] text-[0.92rem] text-foam-3">{zh ? p.summary : p.summaryEn}</span>
                 </span>
-                <ArrowRight className="hidden h-4 w-4 text-foam-3 transition-transform duration-500 ease-out-expo group-hover:translate-x-1 group-hover:text-shu-2 sm:block" />
+                <ArrowRight className="hidden h-4 w-4 text-foam-3 transition-transform duration-500 ease-out-expo group-hover:translate-x-1 group-hover:text-wave-3 sm:block" />
               </Link>
             </li>
           ))}

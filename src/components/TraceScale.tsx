@@ -6,7 +6,7 @@ type Span = {
   to: number | null; // null = still open
   row: number;
   label: string;
-  tone: "shu" | "foam" | "wave";
+  tone: "foam" | "wave";
 };
 
 const START = 2018;
@@ -38,7 +38,7 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         {spans.map((s) => {
           const left = pct(s.from);
           const width = `calc(${pct(s.to ?? end)} - ${left})`;
-          const color = s.tone === "shu" ? "bg-shu-2" : s.tone === "wave" ? "bg-wave-3" : "bg-foam-2";
+          const color = s.tone === "wave" ? "bg-wave-3" : "bg-foam-2";
           return (
             <div key={s.key} className="absolute" style={{ left, width, top: `${s.row * 2.6}rem` }}>
               <p className="truncate pb-1.5 text-[0.8rem] text-foam-2">{s.label}</p>
@@ -68,8 +68,8 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         ))}
         {/* Now */}
         <div className="absolute bottom-0 right-0 top-0 flex flex-col items-end">
-          <p className="pb-1.5 text-[0.8rem] text-shu-2">{zh ? "和碩 · 現在" : "Pegatron · now"}</p>
-          <span className="w-px flex-1 bg-shu" />
+          <p className="pb-1.5 text-[0.8rem] text-foam">{zh ? "和碩 · 現在" : "Pegatron · now"}</p>
+          <span className="w-px flex-1 bg-foam-2" />
         </div>
       </div>
 

@@ -8,7 +8,8 @@ import { Seal } from "@/components/Seal";
 import { FluxDiagram } from "@/components/FluxDiagram";
 import { CopyEmail } from "@/components/CopyEmail";
 import { TraceScale } from "@/components/TraceScale";
-import { WaterLine } from "@/components/WaterLine";
+import { Passage } from "@/components/Passage";
+import { BreathRibbon } from "@/components/BreathRibbon";
 import { ArrowRight, ArrowUpRight } from "@/components/Icons";
 
 function isExternal(href: string) {
@@ -43,7 +44,7 @@ function TextLink({ href, children, className = "" }: { href: string; children: 
       )}
     </>
   );
-  const cls = `group inline-flex items-center gap-1.5 text-foam-2 underline decoration-shu/50 decoration-1 underline-offset-[0.35em] transition-colors duration-300 hover:text-shu-2 hover:decoration-shu-2 ${className}`;
+  const cls = `group inline-flex items-center gap-1.5 text-foam-2 underline decoration-wave-3/60 decoration-1 underline-offset-[0.35em] transition-colors duration-300 hover:text-foam hover:decoration-foam ${className}`;
   return external ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
       {inner}
@@ -65,7 +66,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <>
       {/* ——— First viewport: the night sea ——— */}
-      <section data-hero aria-labelledby="hero-title" className="relative min-h-[100svh] overflow-hidden">
+      <section data-hero aria-labelledby="hero-title" className="relative min-h-[100svh] touch-pan-y overflow-hidden">
         <GreatWave className="absolute inset-x-0 top-0 h-[64svh] w-full lg:inset-0 lg:h-full" />
         {/* Keep the words legible over water: ink rises from the left on desktop, from below on phones. */}
         <div
@@ -94,10 +95,17 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 >
                   Johnny Chang
                 </span>
+                <BreathRibbon
+                  path={[[8, 44], [140, 58], [300, 50], [450, 30], [560, 34]]}
+                  width={600}
+                  height={80}
+                  maxW={17}
+                  className="mt-1 h-[2.8rem] w-[min(100%,34rem)] sm:h-[3.6rem]"
+                />
               </h1>
 
               <p
-                className={`mt-9 max-w-[30ch] text-balance text-foam ${
+                className={`mt-5 max-w-[30ch] text-balance text-foam ${
                   zh
                     ? "phrase font-kai text-[clamp(1.25rem,2.1vw,1.6rem)] leading-[1.7] tracking-[0.04em]"
                     : "font-mincho text-[clamp(1.2rem,2vw,1.5rem)] font-medium leading-[1.45]"
@@ -166,7 +174,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       <path d="M4.5 0v9M0 4.5h9" stroke="currentColor" strokeWidth="0.8" />
                     </svg>
                   </span>
-                  <dt className="font-mincho text-[1.4rem] font-bold text-foam transition-colors duration-500 group-hover:text-shu-2">
+                  <dt className="font-mincho text-[1.4rem] font-bold text-foam transition-colors duration-500 group-hover:text-wave-3">
                     {f.name}
                   </dt>
                   <dd className="self-center text-foam-2">{f.note}</dd>
@@ -183,11 +191,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
+      <Passage kind="waves" seed={2} />
       {/* ——— Method: observe, deconstruct, recompose ——— */}
       <section
         id="method"
         aria-labelledby="method-title"
-        className="relative border-y border-line bg-ink-2"
+        className="relative bg-ink-2"
       >
         <div aria-hidden="true" className="seigaiha pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
         <div className="mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
@@ -209,14 +218,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 className={`relative md:px-10 ${i === 0 ? "md:pl-0" : "md:border-l md:border-line"} ${i === 2 ? "md:pr-0" : ""}`}
               >
                 <div className="relative h-[8.5rem]" aria-hidden="true">
-                  <span className="ink-soak font-kai text-[7rem] font-bold leading-none text-foam/85">{s.han}</span>
+                  <span className="font-kai text-[7rem] font-bold leading-none text-foam">{s.han}</span>
                 </div>
                 <h3 className={`mt-6 text-foam ${zh ? "font-kai text-[1.45rem] tracking-[0.12em]" : "font-mincho text-[1.4rem] font-bold"}`}>
                   {s.term}
                 </h3>
                 <p className="mt-3 max-w-[32ch] text-foam-2">{s.body}</p>
                 <p className="mt-6 flex max-w-[34ch] gap-3 text-[0.86rem] leading-[1.75] text-foam-3">
-                  <span className="mt-[0.72em] h-px w-5 shrink-0 bg-shu" aria-hidden="true" />
+                  <span className="mt-[0.72em] h-px w-5 shrink-0 bg-wave-3" aria-hidden="true" />
                   {s.proof}
                 </p>
               </li>
@@ -225,6 +234,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
+      <Passage kind="mountains" seed={12} flip />
       {/* ——— Projects ——— */}
       <section id="projects" aria-labelledby="projects-title" className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
         <Heading id="projects" lang={lang}>
@@ -238,7 +248,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         >
           <span
             aria-hidden="true"
-            className="ink-soak pointer-events-none absolute right-0 top-4 select-none font-kai text-[clamp(10rem,22vw,18rem)] font-bold leading-none text-wave-2 opacity-[0.35]"
+            className="pointer-events-none absolute right-0 top-4 select-none font-kai text-[clamp(10rem,22vw,18rem)] font-bold leading-none text-wave-2 opacity-[0.35]"
           >
             {fateflux.han}
           </span>
@@ -279,7 +289,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               className="group relative grid gap-6 border-b border-line py-12 lg:grid-cols-12 lg:gap-8"
             >
               <div className="lg:col-span-1">
-                <span aria-hidden="true" className="font-kai text-[2.5rem] font-bold leading-none text-wave-3 transition-colors duration-700 group-hover:text-shu-2">
+                <span aria-hidden="true" className="font-kai text-[2.5rem] font-bold leading-none text-wave-3 transition-colors duration-700 group-hover:text-wave-3">
                   {p.han}
                 </span>
               </div>
@@ -307,7 +317,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* ——— Trace: a ruler measured in years ——— */}
-      <WaterLine />
+      <Passage kind="mist" seed={3} />
       <section id="trace" aria-labelledby="trace-title" className="relative overflow-x-clip">
         <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="max-w-[46ch]">
@@ -329,14 +339,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 key={m.place}
                 data-reveal
                 style={{ "--i": i } as React.CSSProperties}
-                className={`border-t pt-5 ${i === 0 ? "border-shu" : "border-line-2"}`}
+                className={`border-t pt-5 ${i === 0 ? "border-foam-2" : "border-line-2"}`}
               >
                 <h3 className="text-[1.1rem] text-foam">
                   {m.title}
                   <span className="text-foam-3"> · </span>
                   <span className="text-foam-2">{m.place}</span>
                 </h3>
-                <p className={`mt-1 font-mono text-[0.72rem] tabular-nums tracking-[0.04em] ${i === 0 ? "text-shu-2" : "text-foam-3"}`}>{m.period}</p>
+                <p className={`mt-1 font-mono text-[0.72rem] tabular-nums tracking-[0.04em] ${i === 0 ? "text-foam" : "text-foam-3"}`}>{m.period}</p>
                 {m.note && <p className="mt-3 max-w-[48ch] text-[0.9rem] text-foam-3">{m.note}</p>}
               </li>
             ))}
@@ -355,9 +365,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   className="grid gap-1 border-b border-line py-4 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-6"
                 >
                   {h.href ? (
-                    <a href={h.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 text-foam transition-colors hover:text-shu-2">
+                    <a href={h.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 text-foam transition-colors hover:text-foam">
                       {h.title}
-                      <ArrowUpRight className="h-3 w-3 text-foam-3 transition-colors group-hover:text-shu-2" />
+                      <ArrowUpRight className="h-3 w-3 text-foam-3 transition-colors group-hover:text-wave-3" />
                     </a>
                   ) : (
                     <span className="text-foam">{h.title}</span>
@@ -371,7 +381,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* ——— Writing ——— */}
-      <WaterLine />
+      <Passage kind="waves" seed={4} flip />
       <section id="writing" aria-labelledby="writing-title" className="relative overflow-x-clip">
         <div className="relative mx-auto max-w-[1440px] px-[var(--gutter)] py-28 sm:py-36">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -397,12 +407,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     {p.date.replaceAll("-", ".")}
                   </time>
                   <span>
-                    <span className="phrase block font-kai text-[1.25rem] leading-[1.6] text-foam transition-colors duration-500 group-hover:text-shu-2">
+                    <span className="phrase block font-kai text-[1.25rem] leading-[1.6] text-foam transition-colors duration-500 group-hover:text-wave-3">
                       {zh ? p.title : p.titleEn}
                     </span>
                     <span className="mt-2 block max-w-[64ch] text-[0.92rem] text-foam-3">{zh ? p.summary : p.summaryEn}</span>
                   </span>
-                  <ArrowRight className="hidden h-4 w-4 text-foam-3 transition-transform duration-500 ease-out-expo group-hover:translate-x-1 group-hover:text-shu-2 sm:block" />
+                  <ArrowRight className="hidden h-4 w-4 text-foam-3 transition-transform duration-500 ease-out-expo group-hover:translate-x-1 group-hover:text-wave-3 sm:block" />
                 </Link>
               </li>
             ))}
@@ -411,7 +421,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* ——— Contact: the statement and its reflection on water ——— */}
-      <WaterLine />
+      <Passage kind="mountains" seed={6} />
       <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-[var(--gutter)] pb-24 pt-32 sm:pt-44">
           <div
@@ -428,14 +438,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </span>
               ))}
             </h2>
-            {/* Reflection: the line nearest the water, mirrored, strongest at the waterline. */}
-            <div aria-hidden="true" className="pointer-events-none mt-[0.08em] h-[0.9em] select-none overflow-hidden">
-              <span
-                className="ink-bleed block -scale-y-100 whitespace-nowrap text-wave-3 opacity-40 [mask-image:linear-gradient(to_bottom,transparent_20%,#000)]"
-              >
-                {t.contact.titleLines[t.contact.titleLines.length - 1]}
-              </span>
-            </div>
+            <BreathRibbon
+              path={[[10, 30], [160, 48], [330, 44], [470, 22], [590, 30]]}
+              width={600}
+              height={70}
+              maxW={15}
+              className="mt-4 h-[2.6rem] w-[min(100%,30rem)]"
+            />
           </div>
 
           <div className="relative mt-10 grid gap-12 lg:grid-cols-12 lg:gap-8">
@@ -443,7 +452,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p className="max-w-[44ch] text-foam-2">{t.contact.body}</p>
               <a
                 href={`mailto:${links.email}`}
-                className="group mt-8 inline-flex items-center gap-3 border-b border-shu/60 pb-2 font-mincho text-[clamp(1.2rem,2.5vw,1.8rem)] font-medium text-foam transition-colors duration-500 hover:border-shu-2 hover:text-shu-2"
+                className="group mt-8 inline-flex items-center gap-3 border-b border-wave-3/60 pb-2 font-mincho text-[clamp(1.2rem,2.5vw,1.8rem)] font-medium text-foam transition-colors duration-500 hover:border-foam hover:text-foam"
               >
                 {links.email}
                 <ArrowRight className="h-5 w-5 transition-transform duration-500 ease-out-expo group-hover:translate-x-1" />

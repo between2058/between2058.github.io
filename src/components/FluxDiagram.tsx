@@ -63,7 +63,7 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
           y1={(n * 10) / 2}
           x2="100"
           y2={(n * 10) / 2}
-          stroke="var(--color-shu)"
+          stroke="var(--color-wave-3)"
           strokeWidth="1"
           vectorEffect="non-scaling-stroke"
         />
@@ -74,7 +74,7 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
           <li key={s.k} className={`relative ${i ? "mt-4" : ""}`}>
             <span
               className={`absolute -left-[1.42rem] top-[0.55rem] h-1.5 w-1.5 rounded-full ${
-                i === stages[lang].length - 1 ? "bg-shu-2" : "bg-foam-3"
+                i === stages[lang].length - 1 ? "bg-foam" : "bg-foam-3"
               }`}
               aria-hidden="true"
             />

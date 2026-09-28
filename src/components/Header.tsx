@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { Dictionary, Locale } from "@/content/site";
-import { Seal } from "./Seal";
 
 const sections = ["work", "method", "projects", "trace", "writing", "contact"] as const;
 
@@ -47,8 +46,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-[var(--gutter)]">
         <Link href={`/${lang}`} className="group flex items-center gap-3" aria-label={t.meta.title}>
-          <Seal className="h-7 w-7 transition-transform duration-700 ease-out-expo group-hover:rotate-[-6deg]" />
-          <span className="text-[0.85rem] tracking-[0.02em] text-foam-2 transition-colors group-hover:text-foam">
+          <span className="font-mincho text-[1rem] font-bold tracking-[0.01em] text-foam-2 transition-colors group-hover:text-foam">
             between2058
           </span>
         </Link>
@@ -68,7 +66,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
                 href={switchHref}
                 hrefLang={other === "zh" ? "zh-Hant-TW" : "en"}
                 aria-label={t.langSwitch.label}
-                className="text-[0.82rem] text-foam-2 transition-colors hover:text-shu-2"
+                className="text-[0.82rem] text-foam-2 transition-colors hover:text-foam"
               >
                 {t.langSwitch.short}
               </Link>

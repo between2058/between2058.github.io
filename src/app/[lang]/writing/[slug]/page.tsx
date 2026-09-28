@@ -66,7 +66,7 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
               href={post.medium}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 transition-colors hover:text-shu-2"
+              className="group inline-flex items-center gap-1.5 transition-colors hover:text-foam"
             >
               {t.writing.medium}
               <ArrowUpRight className="h-3 w-3" />

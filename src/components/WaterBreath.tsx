@@ -11,7 +11,7 @@ const MAX_W = 22;
 /**
  * Water-Breathing stroke: a fast pointer sweep across the hero leaves a tapering ribbon
  * of water (indigo body, pale core, a foam line) that curls at its tail and dissolves.
- * One stroke sweeps beneath the name on load.
+ * Works for mouse and touch drags; the painted BreathRibbon is its static counterpart.
  */
 export function WaterBreath({ className = "" }: { className?: string }) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -130,7 +130,6 @@ export function WaterBreath({ className = "" }: { className?: string }) {
       }
     };
     const onMove = (e: PointerEvent) => {
-      if (e.pointerType === "touch") return;
       const p = local(e);
       const last = current?.pts[current.pts.length - 1];
       if (current && last) {
@@ -154,40 +153,8 @@ export function WaterBreath({ className = "" }: { className?: string }) {
     host.addEventListener("pointermove", onMove);
     host.addEventListener("pointerleave", onLeave);
 
-    // The opening stroke, under the name.
-    const anchor = host.querySelector<HTMLElement>("[data-stroke-anchor]");
-    let intro = 0;
-    if (anchor) {
-      const r = anchor.getBoundingClientRect();
-      const h = host.getBoundingClientRect();
-      const x0 = r.left - h.left - 20;
-      const x1 = r.right - h.left + 60;
-      const y = r.bottom - h.top + 6;
-      const s: Stroke = { pts: [], born: 0, done: false };
-      strokes.push(s);
-      const t0 = performance.now() + 450;
-      const step = () => {
-        const u = Math.min(1, (performance.now() - t0) / 650);
-        if (u > 0) {
-          const e = 1 - Math.pow(1 - u, 3);
-          const x = x0 + (x1 - x0) * e;
-          s.pts.push({ x, y: y - Math.sin(e * Math.PI) * 18 + e * 10, t: performance.now() });
-          if (s.pts.length > 40) s.pts.shift();
-        }
-        if (u < 1) {
-          intro = requestAnimationFrame(step);
-        } else {
-          s.done = true;
-          s.born = performance.now() + 500;
-        }
-        kick();
-      };
-      intro = requestAnimationFrame(step);
-    }
-
     return () => {
       cancelAnimationFrame(raf);
-      cancelAnimationFrame(intro);
       window.clearTimeout(idle);
       ro.disconnect();
       host.removeEventListener("pointermove", onMove);

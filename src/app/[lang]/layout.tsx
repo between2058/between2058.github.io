@@ -83,26 +83,6 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
             __html: "document.documentElement.classList.add('js')",
           }}
         />
-        <svg width="0" height="0" aria-hidden="true" className="absolute">
-          <filter id="ink-bleed" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="warp" />
-            <feGaussianBlur in="warp" stdDeviation="1.4" />
-          </filter>
-          <filter id="ink-soak" x="-30%" y="-30%" width="160%" height="160%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="core" />
-            <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="wash" />
-            <feDisplacementMap in="wash" in2="noise" scale="36" xChannelSelector="G" yChannelSelector="R" result="spread" />
-            <feFlood floodColor="#2c5f8a" floodOpacity="0.6" />
-            <feComposite in2="spread" operator="in" result="halo" />
-            <feMerge>
-              <feMergeNode in="halo" />
-              <feMergeNode in="core" />
-            </feMerge>
-          </filter>
-        </svg>
-        <div className="grain" aria-hidden="true" />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-ink-2 focus:px-4 focus:py-2 focus:text-foam"
