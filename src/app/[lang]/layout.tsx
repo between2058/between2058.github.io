@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
+import { Geist, Geist_Mono, LXGW_WenKai_TC, Noto_Sans_TC, Shippori_Mincho_B1 } from "next/font/google";
 import { dictionaries, isLocale, locales } from "@/content/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -15,11 +15,18 @@ const notoSans = Noto_Sans_TC({
   display: "swap",
   preload: false,
 });
-const notoSerif = Noto_Serif_TC({
-  weight: ["200", "300", "500"],
-  variable: "--font-noto-serif-tc",
+const wenkai = LXGW_WenKai_TC({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-lxgw",
   display: "swap",
   preload: false,
+});
+const mincho = Shippori_Mincho_B1({
+  weight: ["500", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-shippori",
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://between2058.vercel.app";
@@ -31,7 +38,7 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 export const viewport: Viewport = {
-  themeColor: "#0a0e0e",
+  themeColor: "#0b1624",
   colorScheme: "dark",
 };
 
@@ -67,7 +74,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   return (
     <html
       lang={lang === "zh" ? "zh-Hant-TW" : "en"}
-      className={`${geist.variable} ${geistMono.variable} ${notoSans.variable} ${notoSerif.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${notoSans.variable} ${wenkai.variable} ${mincho.variable}`}
       suppressHydrationWarning
     >
       <body className="relative min-h-dvh overflow-x-hidden">
@@ -87,7 +94,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="core" />
             <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="wash" />
             <feDisplacementMap in="wash" in2="noise" scale="36" xChannelSelector="G" yChannelSelector="R" result="spread" />
-            <feFlood floodColor="#2f6f69" floodOpacity="0.6" />
+            <feFlood floodColor="#2c5f8a" floodOpacity="0.6" />
             <feComposite in2="spread" operator="in" result="halo" />
             <feMerge>
               <feMergeNode in="halo" />
@@ -95,14 +102,10 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
             </feMerge>
           </filter>
         </svg>
-        <div className="field" aria-hidden="true" />
-        <div className="fog-frame" aria-hidden="true">
-          <div className="fog" />
-        </div>
         <div className="grain" aria-hidden="true" />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-ink-2 focus:px-4 focus:py-2 focus:text-fog"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-ink-2 focus:px-4 focus:py-2 focus:text-foam"
         >
           {lang === "zh" ? "跳到主要內容" : "Skip to content"}
         </a>

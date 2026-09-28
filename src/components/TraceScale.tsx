@@ -6,7 +6,7 @@ type Span = {
   to: number | null; // null = still open
   row: number;
   label: string;
-  tone: "copper" | "fog" | "teal";
+  tone: "shu" | "foam" | "wave";
 };
 
 const START = 2018;
@@ -24,8 +24,8 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
 
   const zh = lang === "zh";
   const spans: Span[] = [
-    { key: "yzu", from: 2018, to: 2022, row: 0, label: zh ? "元智大學 電機" : "Yuan Ze EE", tone: "fog" },
-    { key: "ntu", from: 2022, to: null, row: 1, label: zh ? "臺大 電信所" : "NTU GICE", tone: "teal" },
+    { key: "yzu", from: 2018, to: 2022, row: 0, label: zh ? "元智大學 電機" : "Yuan Ze EE", tone: "foam" },
+    { key: "ntu", from: 2022, to: null, row: 1, label: zh ? "臺大 電信所" : "NTU GICE", tone: "wave" },
   ];
   const points = [
     { key: "posts", at: 2020 + 1.5 / 12, row: 1, label: zh ? "兩篇文章" : "Two posts" },
@@ -38,16 +38,16 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         {spans.map((s) => {
           const left = pct(s.from);
           const width = `calc(${pct(s.to ?? end)} - ${left})`;
-          const color = s.tone === "copper" ? "bg-copper-2" : s.tone === "teal" ? "bg-teal-3" : "bg-fog-2";
+          const color = s.tone === "shu" ? "bg-shu-2" : s.tone === "wave" ? "bg-wave-3" : "bg-foam-2";
           return (
             <div key={s.key} className="absolute" style={{ left, width, top: `${s.row * 2.6}rem` }}>
-              <p className="truncate pb-1.5 text-[0.8rem] text-fog-2">{s.label}</p>
+              <p className="truncate pb-1.5 text-[0.8rem] text-foam-2">{s.label}</p>
               {s.to === null ? (
                 <div
                   className="h-px"
                   style={{
                     backgroundImage:
-                      "linear-gradient(to right, var(--color-teal-3) 55%, transparent 55%)",
+                      "linear-gradient(to right, var(--color-wave-3) 55%, transparent 55%)",
                     backgroundSize: "6px 1px",
                     maskImage: "linear-gradient(to right, #000 30%, transparent)",
                   }}
@@ -55,21 +55,21 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
               ) : (
                 <div className={`h-px ${color}`} />
               )}
-              <span className={`absolute bottom-[-3px] left-0 h-[7px] w-px ${s.to === null ? "bg-teal-3" : color}`} />
+              <span className={`absolute bottom-[-3px] left-0 h-[7px] w-px ${s.to === null ? "bg-wave-3" : color}`} />
               {s.to !== null && <span className={`absolute bottom-[-3px] right-0 h-[7px] w-px ${color}`} />}
             </div>
           );
         })}
         {points.map((p) => (
           <div key={p.key} className="absolute" style={{ left: pct(p.at), top: `${p.row * 2.6 + 5.2}rem` }}>
-            <span className="absolute -left-[3px] top-0 h-[6px] w-[6px] rounded-full border border-fog-3" />
-            <p className="whitespace-nowrap pl-3 text-[0.75rem] leading-[6px] text-fog-3">{p.label}</p>
+            <span className="absolute -left-[3px] top-0 h-[6px] w-[6px] rounded-full border border-foam-3" />
+            <p className="whitespace-nowrap pl-3 text-[0.75rem] leading-[6px] text-foam-3">{p.label}</p>
           </div>
         ))}
         {/* Now */}
         <div className="absolute bottom-0 right-0 top-0 flex flex-col items-end">
-          <p className="pb-1.5 text-[0.8rem] text-copper-2">{zh ? "和碩 · 現在" : "Pegatron · now"}</p>
-          <span className="w-px flex-1 bg-copper" />
+          <p className="pb-1.5 text-[0.8rem] text-shu-2">{zh ? "和碩 · 現在" : "Pegatron · now"}</p>
+          <span className="w-px flex-1 bg-shu" />
         </div>
       </div>
 
@@ -84,9 +84,9 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         />
         {years.map((y) => (
           <div key={y} className="absolute top-0" style={{ left: pct(y) }}>
-            <span className="absolute left-0 top-0 h-3 w-px bg-fog-3" />
+            <span className="absolute left-0 top-0 h-3 w-px bg-foam-3" />
             <span
-              className={`absolute left-0 top-4 font-mono ${y === START ? "" : "-translate-x-1/2"} text-[0.68rem] tabular-nums text-fog-3 ${
+              className={`absolute left-0 top-4 font-mono ${y === START ? "" : "-translate-x-1/2"} text-[0.68rem] tabular-nums text-foam-3 ${
                 (y - START) % 2 ? "hidden sm:block" : ""
               }`}
             >

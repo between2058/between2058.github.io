@@ -40,7 +40,7 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
     <article className="mx-auto max-w-[760px] px-[var(--gutter)] pb-32 pt-32 sm:pt-40" lang="zh-Hant-TW">
       <Link
         href={`/${lang}/writing`}
-        className="group inline-flex items-center gap-2 text-[0.85rem] text-fog-3 transition-colors hover:text-fog"
+        className="group inline-flex items-center gap-2 text-[0.85rem] text-foam-3 transition-colors hover:text-foam"
         lang={zh ? "zh-Hant-TW" : "en"}
       >
         <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-out-expo group-hover:-translate-x-1" />
@@ -48,15 +48,15 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
       </Link>
 
       <header className="mt-12 border-b border-line-2 pb-10">
-        <h1 className="phrase text-balance font-serif text-[clamp(1.7rem,3.6vw,2.4rem)] font-light leading-[1.5] tracking-[0.02em] text-fog">
+        <h1 className="phrase text-balance font-kai text-[clamp(1.8rem,3.8vw,2.6rem)] leading-[1.5] tracking-[0.02em] text-foam">
           {post.title}
         </h1>
         {!zh && (
-          <p className="mt-3 text-[1.05rem] font-light text-fog-2" lang="en">
+          <p className="mt-3 font-mincho text-[1.1rem] font-medium text-foam-2" lang="en">
             {post.titleEn}
           </p>
         )}
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.85rem] text-fog-3" lang={zh ? "zh-Hant-TW" : "en"}>
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.85rem] text-foam-3" lang={zh ? "zh-Hant-TW" : "en"}>
           <time dateTime={post.date} className="font-mono text-[0.75rem] tabular-nums">
             {post.date.replaceAll("-", ".")}
           </time>
@@ -66,7 +66,7 @@ export default async function PostPage({ params }: PageProps<"/[lang]/writing/[s
               href={post.medium}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 transition-colors hover:text-copper-2"
+              className="group inline-flex items-center gap-1.5 transition-colors hover:text-shu-2"
             >
               {t.writing.medium}
               <ArrowUpRight className="h-3 w-3" />

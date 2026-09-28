@@ -1,7 +1,4 @@
-/**
- * A small square seal (印) carrying 張, carved from a split block:
- * one diagonal cut runs through it, the 破 in the identity.
- */
+/** A small square vermilion seal (印) carrying 張. */
 export function Seal({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
@@ -10,14 +7,13 @@ export function Seal({ className = "" }: { className?: string }) {
         x="16"
         y="22.5"
         textAnchor="middle"
-        fontFamily="var(--font-serif)"
-        fontWeight="500"
+        fontFamily="var(--font-kai)"
+        fontWeight="700"
         fontSize="19"
         fill="#efe6dc"
       >
         張
       </text>
-      <path d="M1 21 L31 11" stroke="var(--color-ink)" strokeWidth="1.1" />
     </svg>
   );
 }

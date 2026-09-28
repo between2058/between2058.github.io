@@ -20,9 +20,9 @@ export function CopyEmail({ email, label, done }: { email: string; label: string
     <button
       type="button"
       onClick={copy}
-      className="inline-flex items-center gap-2 py-2 text-[0.85rem] text-fog-3 transition-colors duration-300 hover:text-fog"
+      className="inline-flex items-center gap-2 py-2 text-[0.85rem] text-foam-3 transition-colors duration-300 hover:text-foam"
     >
-      {copied ? <CheckIcon className="h-3.5 w-3.5 text-copper-2" /> : <CopyIcon className="h-3.5 w-3.5" />}
+      {copied ? <CheckIcon className="h-3.5 w-3.5 text-shu-2" /> : <CopyIcon className="h-3.5 w-3.5" />}
       <span aria-live="polite">{copied ? done : label}</span>
     </button>
   );

@@ -29,10 +29,10 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
 
   return (
     <figure className="grid grid-cols-1 gap-6 sm:grid-cols-[auto_minmax(4rem,1fr)_auto] sm:items-center sm:gap-0">
-      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[0.86rem] text-fog-2 sm:block sm:space-y-[0.55rem]">
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[0.86rem] text-foam-2 sm:block sm:space-y-[0.55rem]">
         {list.map((s) => (
           <li key={s} className="flex items-center gap-2.5 sm:justify-end">
-            <span className="sm:order-2 h-1 w-1 rounded-full bg-teal-3" aria-hidden="true" />
+            <span className="sm:order-2 h-1 w-1 rounded-full bg-wave-3" aria-hidden="true" />
             <span>{s}</span>
           </li>
         ))}
@@ -63,7 +63,7 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
           y1={(n * 10) / 2}
           x2="100"
           y2={(n * 10) / 2}
-          stroke="var(--color-copper)"
+          stroke="var(--color-shu)"
           strokeWidth="1"
           vectorEffect="non-scaling-stroke"
         />
@@ -74,12 +74,12 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
           <li key={s.k} className={`relative ${i ? "mt-4" : ""}`}>
             <span
               className={`absolute -left-[1.42rem] top-[0.55rem] h-1.5 w-1.5 rounded-full ${
-                i === stages[lang].length - 1 ? "bg-copper-2" : "bg-fog-3"
+                i === stages[lang].length - 1 ? "bg-shu-2" : "bg-foam-3"
               }`}
               aria-hidden="true"
             />
-            <p className="text-[0.78rem] text-teal-3">{s.k}</p>
-            <p className="text-[0.92rem] text-fog">{s.v}</p>
+            <p className="text-[0.78rem] text-wave-3">{s.k}</p>
+            <p className="text-[0.92rem] text-foam">{s.v}</p>
           </li>
         ))}
       </ol>

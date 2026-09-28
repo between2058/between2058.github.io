@@ -48,16 +48,16 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-[var(--gutter)]">
         <Link href={`/${lang}`} className="group flex items-center gap-3" aria-label={t.meta.title}>
           <Seal className="h-7 w-7 transition-transform duration-700 ease-out-expo group-hover:rotate-[-6deg]" />
-          <span className="text-[0.85rem] tracking-[0.02em] text-fog-2 transition-colors group-hover:text-fog">
+          <span className="text-[0.85rem] tracking-[0.02em] text-foam-2 transition-colors group-hover:text-foam">
             between2058
           </span>
         </Link>
 
         <nav aria-label={lang === "zh" ? "主要導覽" : "Primary"} className="hidden md:block">
-          <ul className="flex items-center gap-7 text-[0.84rem] text-fog-3">
+          <ul className="flex items-center gap-7 text-[0.84rem] text-foam-3">
             {sections.map((id) => (
               <li key={id}>
-                <Link href={hrefFor(id)} className="transition-colors duration-300 hover:text-fog">
+                <Link href={hrefFor(id)} className="transition-colors duration-300 hover:text-foam">
                   {t.nav[id]}
                 </Link>
               </li>
@@ -68,7 +68,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
                 href={switchHref}
                 hrefLang={other === "zh" ? "zh-Hant-TW" : "en"}
                 aria-label={t.langSwitch.label}
-                className="text-[0.82rem] text-fog-2 transition-colors hover:text-copper-2"
+                className="text-[0.82rem] text-foam-2 transition-colors hover:text-shu-2"
               >
                 {t.langSwitch.short}
               </Link>
@@ -81,7 +81,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
             href={switchHref}
             hrefLang={other === "zh" ? "zh-Hant-TW" : "en"}
             aria-label={t.langSwitch.label}
-            className="px-1 py-2 text-[0.85rem] text-fog-2"
+            className="px-1 py-2 text-[0.85rem] text-foam-2"
           >
             {t.langSwitch.short}
           </Link>
@@ -90,7 +90,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center text-fog-2"
+            className="flex h-10 w-10 items-center justify-center text-foam-2"
           >
             <span className="sr-only">{lang === "zh" ? "目錄" : "Menu"}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -114,7 +114,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary }) {
                     <Link
                       href={hrefFor(id)}
                       onClick={() => setOpen(false)}
-                      className="flex items-baseline justify-between px-3 py-2.5 text-[0.95rem] text-fog-2 hover:text-fog"
+                      className="flex items-baseline justify-between px-3 py-2.5 text-[0.95rem] text-foam-2 hover:text-foam"
                     >
                       {t.nav[id]}
                     </Link>

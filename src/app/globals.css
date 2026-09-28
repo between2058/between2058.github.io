@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
-/* 癸水 × 破軍 — ink, fog, deep teal, a thread of copper, a seal of dark red. */
+/* A night sea in woodblock grammar: indigo water, foam-white crests, one vermilion seal. */
 @theme {
-  --color-ink: #0a0e0e;
-  --color-ink-2: #0f1515;
-  --color-ink-3: #152020;
-  --color-fog: #dfe5e3;
-  --color-fog-2: #aebab7;
-  --color-fog-3: #7e8f8b;
-  --color-teal: #1c4a47;
-  --color-teal-2: #2f6f69;
-  --color-teal-3: #6fa39c;
-  --color-copper: #c07c47;
-  --color-copper-2: #e0a472;
-  --color-seal: #8a2f28;
-  --color-line: rgb(223 229 227 / 0.09);
-  --color-line-2: rgb(223 229 227 / 0.16);
+  --color-ink: #0b1624;
+  --color-ink-2: #0f1d2f;
+  --color-ink-3: #16283f;
+  --color-foam: #efe8da;
+  --color-foam-2: #c3c7c6;
+  --color-foam-3: #8d9aa8;
+  --color-wave: #16355c;
+  --color-wave-2: #2c5f8a;
+  --color-wave-3: #7eaad0;
+  --color-shu: #c8553d;
+  --color-shu-2: #e2775c;
+  --color-seal: #b8412e;
+  --color-paper: #ece2cc;
+  --color-line: rgb(239 232 218 / 0.1);
+  --color-line-2: rgb(239 232 218 / 0.18);
 
   --font-sans: var(--font-geist), var(--font-noto-sans-tc), "PingFang TC", "Microsoft JhengHei", sans-serif;
-  --font-serif: var(--font-noto-serif-tc), "Songti TC", "PMingLiU", serif;
+  --font-kai: var(--font-lxgw), "Kaiti TC", "DFKai-SB", serif;
+  --font-mincho: var(--font-shippori), "Hiragino Mincho ProN", serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -27,7 +29,6 @@
 :root {
   color-scheme: dark;
   --gutter: clamp(1rem, 4vw, 3.5rem);
-  --grid: 72px;
 }
 
 html {
@@ -45,16 +46,14 @@ html {
 
 body {
   background: var(--color-ink);
-  color: var(--color-fog);
+  color: var(--color-foam);
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.7;
-  font-feature-settings: "ss01", "cv11";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-:lang(zh) body,
 body:lang(zh) {
   line-height: 1.85;
   letter-spacing: 0.02em;
@@ -67,21 +66,20 @@ dd {
 }
 
 ::selection {
-  background: var(--color-copper);
-  color: var(--color-ink);
+  background: var(--color-shu);
+  color: var(--color-foam);
 }
 
 :focus-visible {
-  outline: 1px solid var(--color-copper-2);
+  outline: 1px solid var(--color-shu-2);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-teal-2) var(--color-ink);
+  scrollbar-color: var(--color-wave-2) var(--color-ink);
 }
-
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -90,78 +88,43 @@ dd {
   background: var(--color-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-teal);
+  background: var(--color-wave);
   border: 3px solid var(--color-ink);
   border-radius: 10px;
 }
 
 input,
 textarea {
-  caret-color: var(--color-copper-2);
+  caret-color: var(--color-shu-2);
 }
 
-/* The observation field: a hairline grid that fades toward the edges, with drifting fog. */
-.field {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-  background-size: var(--grid) var(--grid);
-  background-position: calc(var(--gutter) - 1px) -1px;
-  mask-image: radial-gradient(ellipse 90% 75% at 50% 35%, #000 30%, transparent 85%);
-  opacity: 0.55;
-}
-
-.fog-frame {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.fog {
-  position: absolute;
-  inset: -20%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(38% 30% at 72% 28%, rgb(47 111 105 / 0.22), transparent 70%),
-    radial-gradient(30% 26% at 18% 78%, rgb(28 74 71 / 0.28), transparent 70%),
-    radial-gradient(22% 18% at 88% 86%, rgb(192 124 71 / 0.06), transparent 70%);
-  filter: blur(40px);
-  animation: fog-drift 38s ease-in-out infinite alternate;
-}
-
-@keyframes fog-drift {
-  from {
-    transform: translate3d(-2%, -1%, 0) scale(1);
-  }
-  to {
-    transform: translate3d(2%, 2%, 0) scale(1.06);
-  }
-}
-
-/* Film grain: ink on wet paper. */
+/* Paper grain over everything: the page is printed, not lit. */
 .grain {
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.07;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Ink bleed behind large Han marks: a warped wash. */
+/* 青海波: overlapping concentric arcs, the textile pattern of calm water. */
+.seigaiha {
+  --s: 56px;
+  --c: rgb(126 170 208 / 0.14);
+  background-color: transparent;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%),
+    radial-gradient(circle at 0% 50%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%),
+    radial-gradient(circle at 100% 50%, transparent 18%, var(--c) 19% 21%, transparent 22% 34%, var(--c) 35% 37%, transparent 38% 50%, var(--c) 51% 53%, transparent 54%);
+  background-size: var(--s) calc(var(--s) / 2);
+}
+
+/* Ink wash behind large characters. */
 .ink-bleed {
   filter: url(#ink-bleed);
 }
-
-/* Ink soaking into wet paper: a crisp core with a teal halo spreading unevenly around it. */
 .ink-soak {
   filter: url(#ink-soak);
 }
@@ -173,25 +136,14 @@ textarea {
   line-break: strict;
 }
 
-/* Fog pools: slow, local mist inside a section. */
-.pool {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  width: var(--w, 46rem);
-  aspect-ratio: 1.6;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(47 111 105 / var(--a, 0.3)), transparent 85%);
-  filter: blur(30px);
-  animation: pool-drift 26s ease-in-out infinite alternate;
-}
-@keyframes pool-drift {
-  from {
-    transform: translate3d(-3%, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(4%, -6%, 0) scale(1.08);
-  }
+/* A woodblock title slip (題簽): paper, a hairline frame inside a frame. */
+.cartouche {
+  background: var(--color-paper);
+  color: #1b2533;
+  box-shadow:
+    inset 0 0 0 3px var(--color-paper),
+    inset 0 0 0 4px rgb(27 37 51 / 0.55),
+    0 18px 40px -18px rgb(0 0 0 / 0.6);
 }
 
 /* The waterline between sections: a hairline that never lies quite flat. */
@@ -216,83 +168,34 @@ textarea {
   }
 }
 
-/* Translucent glass: instrument readouts, the FateFlux diagram panel, the mobile menu. */
+/* Glass: readouts over water only. */
 .glass {
-  background: rgb(15 21 21 / 0.55);
+  background: rgb(15 29 47 / 0.62);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   border: 1px solid var(--color-line-2);
 }
 
-/* Links in running text. */
 .prose-link {
-  color: var(--color-fog);
+  color: var(--color-foam);
   text-decoration: underline;
-  text-decoration-color: rgb(192 124 71 / 0.55);
+  text-decoration-color: rgb(200 85 61 / 0.6);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.3em;
   transition: text-decoration-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
 }
 .prose-link:hover {
-  color: var(--color-copper-2);
-  text-decoration-color: var(--color-copper-2);
-}
-
-/* The 破 cut: the name split along one diagonal, recomposing into register. */
-.cut {
-  position: relative;
-  display: inline-block;
-  --cut-l: 62%;
-  --cut-r: 38%;
-}
-.cut__a,
-.cut__b {
-  display: block;
-  transition: transform 1.6s var(--ease-out-expo), opacity 1.2s var(--ease-out-expo);
-  will-change: transform;
-}
-.cut__a {
-  clip-path: polygon(0 0, 100% 0, 100% var(--cut-r), 0 var(--cut-l));
-  transform: translate3d(calc(var(--cut-x, 0) * -1px), 0, 0);
-}
-.cut__b {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(0 var(--cut-l), 100% var(--cut-r), 100% 100%, 0 100%);
-  transform: translate3d(calc(var(--cut-x, 0) * 1px), 0, 0);
-  color: var(--color-fog-2);
-}
-.cut__line {
-  position: absolute;
-  left: -3%;
-  right: -3%;
-  top: calc((var(--cut-l) + var(--cut-r)) / 2);
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-copper) 18%, var(--color-copper-2) 62%, transparent);
-  transform-origin: center;
-  transform: rotate(var(--cut-angle, -8deg)) scaleX(var(--cut-draw, 1));
-  opacity: var(--cut-line-opacity, 0.7);
-  transition: transform 1.4s var(--ease-out-expo), opacity 1s var(--ease-out-expo);
-}
-.cut[data-state="split"] {
-  --cut-x: 18;
-  --cut-draw: 0;
+  color: var(--color-shu-2);
+  text-decoration-color: var(--color-shu-2);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fog,
-  .pool,
   .waterline svg {
     animation: none;
   }
-  .cut__a,
-  .cut__b,
-  .cut__line {
-    transition: none;
-  }
 }
 
-/* Reveal: content is visible by default; motion only refines it once JS confirms support. */
+/* Reveal: visible by default; motion only refines it once JS confirms support. */
 .js [data-reveal] {
   opacity: 0;
   transform: translate3d(0, 14px, 0);
@@ -321,7 +224,7 @@ textarea {
 .article {
   font-size: 1.0625rem;
   line-height: 1.95;
-  color: var(--color-fog-2);
+  color: var(--color-foam-2);
 }
 .article > * + * {
   margin-top: 1.25em;
@@ -330,8 +233,8 @@ textarea {
 .article h2,
 .article h3,
 .article h4 {
-  font-family: var(--font-serif);
-  color: var(--color-fog);
+  font-family: var(--font-kai);
+  color: var(--color-foam);
   font-weight: 500;
   line-height: 1.4;
   margin-top: 2.4em;
@@ -351,20 +254,20 @@ textarea {
   font-size: 1.05rem;
 }
 .article strong {
-  color: var(--color-fog);
+  color: var(--color-foam);
   font-weight: 600;
 }
 .article a {
-  color: var(--color-fog);
+  color: var(--color-foam);
   text-decoration: underline;
-  text-decoration-color: rgb(192 124 71 / 0.55);
+  text-decoration-color: rgb(200 85 61 / 0.6);
   text-underline-offset: 0.3em;
 }
 .article blockquote {
-  border-left: 1px solid var(--color-teal-2);
+  border-left: 1px solid var(--color-wave-2);
   padding: 0.2em 0 0.2em 1.2em;
-  color: var(--color-fog-3);
-  font-family: var(--font-serif);
+  color: var(--color-foam-3);
+  font-family: var(--font-kai);
 }
 .article ol,
 .article ul {
@@ -380,7 +283,7 @@ textarea {
   margin-top: 0.35em;
 }
 .article li::marker {
-  color: var(--color-copper);
+  color: var(--color-shu);
 }
 .article img {
   width: 100%;
@@ -428,3 +331,51 @@ textarea {
   text-align: left;
 }
 
+
+/* The sea breathes: the great wave swells and settles; claws shimmer; spray drifts. */
+.wave-swell {
+  animation: swell 9s ease-in-out infinite alternate;
+}
+.wave-swell-late {
+  animation: swell 11s ease-in-out -4s infinite alternate;
+}
+@keyframes swell {
+  from {
+    transform: translate3d(0, 6px, 0) scale(0.985);
+  }
+  to {
+    transform: translate3d(-10px, -4px, 0) scale(1.01);
+  }
+}
+.wave-claws {
+  animation: shimmer 4.5s ease-in-out infinite alternate;
+}
+.wave-spray {
+  animation: spray 7s ease-in-out infinite alternate;
+}
+@keyframes shimmer {
+  from {
+    opacity: 0.86;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes spray {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate3d(-14px, -8px, 0);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wave-swell,
+  .wave-swell-late,
+  .wave-claws,
+  .wave-spray {
+    animation: none;
+  }
+}

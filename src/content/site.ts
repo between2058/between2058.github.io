@@ -41,11 +41,8 @@ export type Dictionary = {
     roles: string[];
     contact: string;
     fateflux: string;
-    readouts: { k: string; v: string }[];
-    clockLabel: string;
-    instrumentLabel: string;
   };
-  work: { title: string; lead: string; employer: string; fields: Field[]; discretion: string };
+  work: { title: string; lead: string; why: string; employer: string; fields: Field[]; discretion: string };
   method: { title: string; lead: string; steps: Step[] };
   projects: { title: string; items: Project[] };
   trace: {
@@ -74,29 +71,28 @@ const zh: Dictionary = {
   meta: {
     title: "張舜程 Johnny Chang",
     description:
-      "ML Engineer，在和碩做 AI for 3D、CAD 與模擬；FateFlux.ai 創辦人。拆解複雜系統，再把它重新組合成真正能用的東西。",
+      "張舜程，ML Engineer，在和碩把 AI 帶進產品的設計與驗證；FateFlux.ai 創辦人。拆解複雜系統，再把它重新組合成真正能用的東西。",
   },
   nav: { work: "工作", method: "方法", projects: "作品", trace: "軌跡", writing: "文章", contact: "聯絡" },
   langSwitch: { label: "Switch to English", target: "en", short: "EN" },
   hero: {
-    thesis: "拆解複雜系統，再把它重新組合成真正能用的東西。",
-    roles: ["ML Engineer，和碩聯合科技：AI for 3D、CAD、Simulation", "FateFlux.ai 創辦人"],
+    thesis: "拆解複雜系統，再把它重新組合成​真正能用的東西。",
+    roles: ["在和碩擔任 ML Engineer，把 AI 帶進產品的設計與驗證", "FateFlux.ai 創辦人"],
     contact: "與我聯絡",
     fateflux: "看看 FateFlux",
-    readouts: [{ k: "觀測者", v: "between2058" }],
-    clockLabel: "時間",
-    instrumentLabel: "觀測儀：移動游標會在水面留下漣漪",
   },
   work: {
     title: "現在在做的事",
-    lead: "我在和碩（Pegatron）擔任 ML Engineer，做工程領域的 AI 與數位孿生（Digital Twin）。",
+    lead: "一個產品在量產之前，要經過一輪又一輪的設計、模擬、修改。有人畫 CAD，有人跑模擬，大家等結果；這個迴圈轉得多快，決定了一個設計能被打磨到多好。",
+    why: "我在和碩做的，是讓 AI 走進這個迴圈。當機器看得懂形狀、讀得懂也畫得出圖面、能很快估出模擬的結果，工程師就能在同樣的時間裡多試好幾輪，把錯誤留在虛擬世界，而不是產線上。",
     employer: "和碩聯合科技 Pegatron · ML Engineer · 現職",
     fields: [
-      { name: "AI for 3D", note: "讓模型理解幾何與形狀。" },
-      { name: "AI for CAD", note: "讓 AI 進入工程設計的流程。" },
-      { name: "AI for Simulation", note: "用學習模型加速或逼近物理模擬，服務數位孿生。" },
+      { name: "3D", note: "讓模型理解與生成形狀，機器才看得懂它要處理的東西。" },
+      { name: "CAD", note: "讓 AI 讀懂工程圖面，也畫得出能繼續編輯的 CAD。" },
+      { name: "模擬", note: "用學習模型逼近物理模擬，把等結果的時間縮短。" },
+      { name: "數位孿生", note: "把這些接成一個平台，讓設計先在虛擬世界裡被驗證。" },
     ],
-    discretion: "工作細節屬於公司，這裡只寫領域。",
+    discretion: "具體的專案屬於公司，這裡只談為什麼要做。",
   },
   method: {
     title: "方法",
@@ -172,7 +168,7 @@ const zh: Dictionary = {
     lead: "以年為刻度。現在在最右端，還沒結束的線段以虛線延伸。",
     scaleLabel: "2018 年到現在的軌跡刻度",
     marks: [
-      { period: "現在", title: "ML Engineer", place: "和碩聯合科技 Pegatron", note: "AI for Engineering & Digital Twins" },
+      { period: "現在", title: "ML Engineer", place: "和碩聯合科技 Pegatron", note: "把 AI 帶進工程設計、模擬與數位孿生。" },
       { period: "2022 —", title: "碩士", place: "國立臺灣大學 電信工程學研究所", note: "iDSSP Lab，生物科技組。電信所首屆書審面試，正取第 4 名。" },
       { period: "2018 — 2022", title: "學士", place: "元智大學 電機工程學系", note: "CVIT Lab，研究以深度學習與電腦視覺辨識吉他和弦。" },
     ],
@@ -210,29 +206,28 @@ const en: Dictionary = {
   meta: {
     title: "Johnny Chang 張舜程",
     description:
-      "ML Engineer building AI for 3D, CAD and simulation at Pegatron. Founder of FateFlux.ai. I take complex systems apart and put them back together as things that work.",
+      "Johnny Chang, ML Engineer at Pegatron bringing AI into how products are designed and validated. Founder of FateFlux.ai. I take complex systems apart and put them back together as things that work.",
   },
   nav: { work: "Work", method: "Method", projects: "Projects", trace: "Trace", writing: "Writing", contact: "Contact" },
   langSwitch: { label: "切換到中文", target: "zh", short: "中" },
   hero: {
     thesis: "I take complex systems apart and put them back together as things that work.",
-    roles: ["ML Engineer at Pegatron: AI for 3D, CAD and simulation", "Founder of FateFlux.ai"],
+    roles: ["ML Engineer at Pegatron, bringing AI into how products are designed and validated", "Founder of FateFlux.ai"],
     contact: "Get in touch",
     fateflux: "See FateFlux",
-    readouts: [{ k: "Observer", v: "between2058" }],
-    clockLabel: "Time",
-    instrumentLabel: "Observation instrument: moving the pointer leaves ripples on the water",
   },
   work: {
     title: "What I work on",
-    lead: "I'm an ML Engineer at Pegatron, working on AI for engineering and digital twins.",
+    lead: "Before a product ships, it goes through round after round of design, simulate, revise. Someone draws the CAD, someone runs the simulation, everyone waits for results. How fast that loop turns decides how good a design can get.",
+    why: "At Pegatron I bring AI into that loop. When machines can understand shapes, read and draw engineering models, and estimate simulation results quickly, engineers get more rounds in the same time, and mistakes stay in the virtual world instead of on the production line.",
     employer: "Pegatron · ML Engineer · Present",
     fields: [
-      { name: "AI for 3D", note: "Models that understand geometry and shape." },
-      { name: "AI for CAD", note: "Bringing AI into the engineering design workflow." },
-      { name: "AI for Simulation", note: "Learned models that speed up or approximate physics simulation for digital twins." },
+      { name: "3D", note: "Models that understand and generate shape, so the machine can see what it is working on." },
+      { name: "CAD", note: "AI that reads engineering drawings and produces CAD you can keep editing." },
+      { name: "Simulation", note: "Learned models that approximate physics simulation, so waiting for results takes less time." },
+      { name: "Digital twin", note: "Connecting it all into one platform, so a design is proven in the virtual world first." },
     ],
-    discretion: "The details belong to the company, so this page names the fields only.",
+    discretion: "The specific projects belong to the company; this page is about why the work matters.",
   },
   method: {
     title: "Method",
@@ -308,7 +303,7 @@ const en: Dictionary = {
     lead: "Measured in years. Now sits at the right end; lines that haven't closed trail off dotted.",
     scaleLabel: "Trace scale from 2018 to now",
     marks: [
-      { period: "Now", title: "ML Engineer", place: "Pegatron", note: "AI for Engineering & Digital Twins" },
+      { period: "Now", title: "ML Engineer", place: "Pegatron", note: "Bringing AI into engineering design, simulation and digital twins." },
       { period: "2022 —", title: "M.S.", place: "Graduate Institute of Communication Engineering, National Taiwan University", note: "iDSSP Lab, biotech group. Admitted 4th in the institute's first review-and-interview intake." },
       { period: "2018 — 2022", title: "B.S.", place: "Electrical Engineering, Yuan Ze University", note: "CVIT Lab: guitar chord recognition with deep learning and computer vision." },
     ],
