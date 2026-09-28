@@ -1,0 +1,163 @@
+<blockquote>
+<p>在這個漸漸邁向大數據的時代裡，資料將會成為最珍貴的寶物，為了要快速用程式分析這些大數據，我們不但要將未來的各種事物直接導向數位化，更要學習如何把過去的傳統紙本資料轉化為數位格式。</p>
+</blockquote>
+<h2 id="前言">前言</h2>
+<p>今天就要來介紹我自己實際遇到的例子，以及我如何實作python來處理。</p>
+<p>一開始，我拿到一份銀行寄來的信用卡交易紀錄，總共有945頁，為了要做些後續的計算與統計甚至是視覺化的圖表來分析這一堆資料，但是它又不是我們所熟悉的excel檔，所以剛好利用大一所學的程式語言python，來想辦法把這些資料轉成pandas的Dataframe，變成一個不會弄丟且操作自如的資料庫。</p>
+<h2 id="心路歷程">心路歷程</h2>
+<p>起初，上網查到一個 pytesseract似乎可以幫我完成任務，也就是Tesseract在python上的套件，是Google目前的一個開源專案，可以辨識掃描文件的文字或數字，是一個可以減少人力資源的好工具。</p>
+<p>但是，對整張表格直接做辨識似乎效果不太好，數字的部分雖然辨識率還蠻高的，文字的部分表現得就沒有這麼理想。</p>
+<p>因此，我詢問了大學教授的意見，他說如果用深度學習會很快，但他認為我可以先用比較一般的方式試試看，於是他建議我使用 openCV 的 Hough Line Transform 來對表格中的框線去做偵測，得到座標之後就可以切出一小塊一小塊圖片，再去使用 pytesseract 看看會不會辨識率提高一點。</p>
+<p>回到宿舍上網查了一下 openCV 官網的 Hough Line Transform 介紹，直接先拿下了範例程式碼來使用看看，再根據自己的需求做點改變 ，以下說明一下我的心路歷程 :</p>
+<h3 id="hough-transform">Hough Transform</h3>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#f92672">import</span> cv2
+</span></span><span class="ln"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span class="ln"><span><span style="color:#75715e"># 讀取圖片，檔名為自定義</span>
+</span></span><span class="ln"><span>img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;Scan001.png&#39;</span>)
+</span></span><span class="ln"><span><span style="color:#75715e"># 將圖片轉成灰階，以利邊緣偵測</span>
+</span></span><span class="ln"><span>gray <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(img,cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+</span></span><span class="ln"><span><span style="color:#75715e"># 用openCV的Canny函式去做邊緣偵測</span>
+</span></span><span class="ln"><span>edges <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>Canny(gray,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">150</span>,apertureSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span class="ln"><span><span style="color:#75715e"># 用openCV的HoughLines函式找出所有構成邊緣線段的4個點座標(x1,y1,x2,y2)</span>
+</span></span><span class="ln"><span>minLineLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span class="ln"><span>maxLineGap <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span class="ln"><span>lines <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>HoughLinesP(edges,<span style="color:#ae81ff">0.01</span>,np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">180</span>,<span style="color:#ae81ff">350</span>,minLineLength,maxLineGap,<span style="color:#ae81ff">2500</span>)
+</span></span><span class="ln"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> lines:
+</span></span><span class="ln"><span><span style="color:#75715e">#  將線段的四個點座標分別assign到x1,y1,x2,y2</span>
+</span></span><span class="ln"><span>    x1,y1,x2,y2 <span style="color:#f92672">=</span> i[<span style="color:#ae81ff">0</span>]
+</span></span><span class="ln"><span><span style="color:#75715e">#  利用openCV的line函式，對 img 化上顏色為綠色、粗度為1pixel的線段</span>
+</span></span><span class="ln"><span>    cv2<span style="color:#f92672">.</span>line(img,(x1,y1),(x2,y2),(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">1</span>)
+</span></span><span class="ln"><span><span style="color:#75715e"># 將結果存下來，檔名為test.png</span>
+</span></span><span class="ln"><span>cv2<span style="color:#f92672">.</span>imwrite(<span style="color:#e6db74">&#39;test.png&#39;</span>,img)
+</span></span><span class="ln"><span>cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+</span></span></code></pre></div><p>輸出結果的test.png結果如下圖:</p>
+<p><img src="/images/blog/table-extraction/img1.png" alt="" loading="lazy"></p>
+<p>我們可以看到opencv已經幫我把所有格線都畫下來了，唯一美中不足的是，仍然會偵測到許多明明不是格線，卻還是畫線的地方，那是因為<strong>紙本文件本身不夠清晰的緣故</strong>，讓程式誤判了許多直線。</p>
+<h4 id="問題一">問題一</h4>
+<blockquote>
+<p>因為我最後必須把每一格資料清楚地切下來，但是實在是誤判太多雜線了，若是照著這些雜線切下去，一定會出大事&hellip;&hellip;.</p>
+</blockquote>
+<p>於是我在原先的程式碼中新增了一段程式，用來判斷線段的斜率，來篩選出水平線與垂直線 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>verti_lst <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>horiz_lst <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> lines:
+</span></span><span class="ln"><span><span style="color:#75715e">#  將線段的四個點座標分別assign到x1,y1,x2,y2</span>
+</span></span><span class="ln"><span>    x1,y1,x2,y2 <span style="color:#f92672">=</span> i[<span style="color:#ae81ff">0</span>]
+</span></span><span class="ln"><span>    
+</span></span><span class="ln"><span><span style="color:#75715e">#  計算斜率</span>
+</span></span><span class="ln"><span>    slope <span style="color:#f92672">=</span> (y2<span style="color:#f92672">-</span>y1)<span style="color:#f92672">/</span>(x2<span style="color:#f92672">-</span>x1)
+</span></span><span class="ln"><span>    
+</span></span><span class="ln"><span><span style="color:#75715e">#  判斷斜率篩選出垂直線與水平線</span>
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">if</span> slope <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>inf:
+</span></span><span class="ln"><span>        cv2<span style="color:#f92672">.</span>line(img,(x1,y1),(x2,y2),(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">1</span>)
+</span></span><span class="ln"><span>        
+</span></span><span class="ln"><span><span style="color:#75715e">#  將垂直線的 x1座標紀錄在verti_lst裡</span>
+</span></span><span class="ln"><span>        verti_lst<span style="color:#f92672">.</span>append(x1)
+</span></span><span class="ln"><span>    
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">if</span> slope <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span class="ln"><span>        cv2<span style="color:#f92672">.</span>line(img,(x1,y1),(x2,y2),(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">1</span>)
+</span></span><span class="ln"><span><span style="color:#75715e">#  將水平線的 y1座標紀錄在horiz_lst裡</span>
+</span></span><span class="ln"><span>        horiz_lst<span style="color:#f92672">.</span>append(y1)
+</span></span></code></pre></div><p>讓我們來看看 horiz_lst 裡面的紀錄的水平線座標 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>horiz_lst 
+</span></span><span class="ln"><span>[<span style="color:#ae81ff">632</span>,<span style="color:#ae81ff">630</span>,<span style="color:#ae81ff">1313</span>,<span style="color:#ae81ff">824</span>,<span style="color:#ae81ff">825</span>,<span style="color:#ae81ff">601</span>,<span style="color:#ae81ff">72</span>,<span style="color:#ae81ff">315</span>,<span style="color:#ae81ff">125</span>,<span style="color:#ae81ff">1217</span>,<span style="color:#ae81ff">507</span>,<span style="color:#ae81ff">792</span>,<span style="color:#ae81ff">1121</span>,<span style="color:#ae81ff">124</span>,<span style="color:#ae81ff">1409</span>,<span style="color:#ae81ff">127</span>,<span style="color:#ae81ff">1218</span>,<span style="color:#ae81ff">793</span>,<span style="color:#ae81ff">602</span>,<span style="color:#ae81ff">823</span>,<span style="color:#ae81ff">221</span>,<span style="color:#ae81ff">1314</span>,<span style="color:#ae81ff">877</span>,<span style="color:#ae81ff">506</span>,<span style="color:#ae81ff">1069</span>,<span style="color:#ae81ff">1068</span>,<span style="color:#ae81ff">1408</span>,<span style="color:#ae81ff">1122</span>,<span style="color:#ae81ff">697</span>,<span style="color:#ae81ff">74</span>,<span style="color:#ae81ff">71</span>,<span style="color:#ae81ff">878</span>,<span style="color:#ae81ff">509</span>,<span style="color:#ae81ff">411</span>,<span style="color:#ae81ff">696</span>,<span style="color:#ae81ff">1070</span>,<span style="color:#ae81ff">972</span>,<span style="color:#ae81ff">126</span>,<span style="color:#ae81ff">412</span>,<span style="color:#ae81ff">414</span>,<span style="color:#ae81ff">223</span>,<span style="color:#ae81ff">1123</span>,<span style="color:#ae81ff">316</span>,<span style="color:#ae81ff">219</span>,<span style="color:#ae81ff">317</span>,<span style="color:#ae81ff">128</span>,<span style="color:#ae81ff">73</span>,<span style="color:#ae81ff">410</span>,<span style="color:#ae81ff">318</span>,<span style="color:#ae81ff">603</span>,<span style="color:#ae81ff">1220</span>,<span style="color:#ae81ff">604</span>,<span style="color:#ae81ff">129</span>,<span style="color:#ae81ff">974</span>,<span style="color:#ae81ff">220</span>,<span style="color:#ae81ff">973</span>,<span style="color:#ae81ff">122</span>,<span style="color:#ae81ff">75</span>,<span style="color:#ae81ff">508</span>,<span style="color:#ae81ff">1316</span>,<span style="color:#ae81ff">698</span>,<span style="color:#ae81ff">699</span>,<span style="color:#ae81ff">222</span>,<span style="color:#ae81ff">413</span>,<span style="color:#ae81ff">1411</span>,<span style="color:#ae81ff">1315</span>,<span style="color:#ae81ff">1410</span>,<span style="color:#ae81ff">319</span>,<span style="color:#ae81ff">1219</span>,<span style="color:#ae81ff">701</span>,<span style="color:#ae81ff">1124</span>,<span style="color:#ae81ff">794</span>,<span style="color:#ae81ff">98</span>,<span style="color:#ae81ff">822</span>,<span style="color:#ae81ff">827</span>,<span style="color:#ae81ff">415</span>,<span style="color:#ae81ff">826</span>,<span style="color:#ae81ff">99</span>,<span style="color:#ae81ff">1072</span>,<span style="color:#ae81ff">505</span>,<span style="color:#ae81ff">795</span>,<span style="color:#ae81ff">879</span>,<span style="color:#ae81ff">224</span>,<span style="color:#ae81ff">93</span>,<span style="color:#ae81ff">975</span>,<span style="color:#ae81ff">97</span>,<span style="color:#ae81ff">76</span>,<span style="color:#ae81ff">510</span>,<span style="color:#ae81ff">976</span>,<span style="color:#ae81ff">94</span>,<span style="color:#ae81ff">1311</span>,<span style="color:#ae81ff">526</span>,<span style="color:#ae81ff">880</span>,<span style="color:#ae81ff">92</span>,<span style="color:#ae81ff">1125</span>,<span style="color:#ae81ff">1071</span>,<span style="color:#ae81ff">605</span>,<span style="color:#ae81ff">320</span>,<span style="color:#ae81ff">95</span>,<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">123</span>,<span style="color:#ae81ff">96</span>,<span style="color:#ae81ff">113</span>,<span style="color:#ae81ff">114</span>,<span style="color:#ae81ff">88</span>,<span style="color:#ae81ff">881</span>,<span style="color:#ae81ff">112</span>,<span style="color:#ae81ff">115</span>,<span style="color:#ae81ff">606</span>,<span style="color:#ae81ff">1412</span>,<span style="color:#ae81ff">1318</span>,<span style="color:#ae81ff">89</span>,<span style="color:#ae81ff">695</span>,<span style="color:#ae81ff">796</span>,<span style="color:#ae81ff">90</span>,<span style="color:#ae81ff">1221</span>,<span style="color:#ae81ff">511</span>,<span style="color:#ae81ff">116</span>,<span style="color:#ae81ff">1222</span>,<span style="color:#ae81ff">91</span>,<span style="color:#ae81ff">525</span>,<span style="color:#ae81ff">828</span>,<span style="color:#ae81ff">702</span>,<span style="color:#ae81ff">1317</span>,<span style="color:#ae81ff">151</span>,<span style="color:#ae81ff">118</span>,<span style="color:#ae81ff">1407</span>]
+</span></span></code></pre></div><p>看起來opencv並沒有按照線條的高低順序做排列，但是我們可以用sorted()來對這個list按照大小做排列:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>sorted(horiz_lst)
+</span></span><span class="ln"><span>[<span style="color:#ae81ff">71</span>,<span style="color:#ae81ff">72</span>,<span style="color:#ae81ff">73</span>,<span style="color:#ae81ff">74</span>,<span style="color:#ae81ff">75</span>,<span style="color:#ae81ff">76</span>,<span style="color:#ae81ff">88</span>,<span style="color:#ae81ff">89</span>,<span style="color:#ae81ff">90</span>,<span style="color:#ae81ff">91</span>,<span style="color:#ae81ff">92</span>,<span style="color:#ae81ff">93</span>,<span style="color:#ae81ff">94</span>,<span style="color:#ae81ff">95</span>,<span style="color:#ae81ff">96</span>,<span style="color:#ae81ff">97</span>,<span style="color:#ae81ff">98</span>,<span style="color:#ae81ff">99</span>,<span style="color:#ae81ff">112</span>,<span style="color:#ae81ff">113</span>,<span style="color:#ae81ff">114</span>,<span style="color:#ae81ff">115</span>,<span style="color:#ae81ff">116</span>,<span style="color:#ae81ff">118</span>,<span style="color:#ae81ff">122</span>,<span style="color:#ae81ff">123</span>,<span style="color:#ae81ff">124</span>,<span style="color:#ae81ff">125</span>,<span style="color:#ae81ff">126</span>,<span style="color:#ae81ff">127</span>,<span style="color:#ae81ff">128</span>,<span style="color:#ae81ff">129</span>,<span style="color:#ae81ff">151</span>,<span style="color:#ae81ff">219</span>,<span style="color:#ae81ff">220</span>,<span style="color:#ae81ff">221</span>,<span style="color:#ae81ff">222</span>,<span style="color:#ae81ff">223</span>,<span style="color:#ae81ff">224</span>,<span style="color:#ae81ff">315</span>,<span style="color:#ae81ff">316</span>,<span style="color:#ae81ff">317</span>,<span style="color:#ae81ff">318</span>,<span style="color:#ae81ff">319</span>,<span style="color:#ae81ff">320</span>,<span style="color:#ae81ff">410</span>,<span style="color:#ae81ff">411</span>,<span style="color:#ae81ff">412</span>,<span style="color:#ae81ff">413</span>,<span style="color:#ae81ff">414</span>,<span style="color:#ae81ff">415</span>,<span style="color:#ae81ff">505</span>,<span style="color:#ae81ff">506</span>,<span style="color:#ae81ff">507</span>,<span style="color:#ae81ff">508</span>,<span style="color:#ae81ff">509</span>,<span style="color:#ae81ff">510</span>,<span style="color:#ae81ff">511</span>,<span style="color:#ae81ff">525</span>,<span style="color:#ae81ff">526</span>,<span style="color:#ae81ff">601</span>,<span style="color:#ae81ff">602</span>,<span style="color:#ae81ff">603</span>,<span style="color:#ae81ff">604</span>,<span style="color:#ae81ff">605</span>,<span style="color:#ae81ff">606</span>,<span style="color:#ae81ff">630</span>,<span style="color:#ae81ff">632</span>,<span style="color:#ae81ff">695</span>,<span style="color:#ae81ff">696</span>,<span style="color:#ae81ff">697</span>,<span style="color:#ae81ff">698</span>,<span style="color:#ae81ff">699</span>,<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">701</span>,<span style="color:#ae81ff">702</span>,<span style="color:#ae81ff">792</span>,<span style="color:#ae81ff">793</span>,<span style="color:#ae81ff">794</span>,<span style="color:#ae81ff">795</span>,<span style="color:#ae81ff">796</span>,<span style="color:#ae81ff">822</span>,<span style="color:#ae81ff">823</span>,<span style="color:#ae81ff">824</span>,<span style="color:#ae81ff">825</span>,<span style="color:#ae81ff">826</span>,<span style="color:#ae81ff">827</span>,<span style="color:#ae81ff">828</span>,<span style="color:#ae81ff">877</span>,<span style="color:#ae81ff">878</span>,<span style="color:#ae81ff">879</span>,<span style="color:#ae81ff">880</span>,<span style="color:#ae81ff">881</span>,<span style="color:#ae81ff">972</span>,<span style="color:#ae81ff">973</span>,<span style="color:#ae81ff">974</span>,<span style="color:#ae81ff">975</span>,<span style="color:#ae81ff">976</span>,<span style="color:#ae81ff">1068</span>,<span style="color:#ae81ff">1069</span>,<span style="color:#ae81ff">1070</span>,<span style="color:#ae81ff">1071</span>,<span style="color:#ae81ff">1072</span>,<span style="color:#ae81ff">1121</span>,<span style="color:#ae81ff">1122</span>,<span style="color:#ae81ff">1123</span>,<span style="color:#ae81ff">1124</span>,<span style="color:#ae81ff">1125</span>,<span style="color:#ae81ff">1217</span>,<span style="color:#ae81ff">1218</span>,<span style="color:#ae81ff">1219</span>,<span style="color:#ae81ff">1220</span>,<span style="color:#ae81ff">1221</span>,<span style="color:#ae81ff">1222</span>,<span style="color:#ae81ff">1311</span>,<span style="color:#ae81ff">1313</span>,<span style="color:#ae81ff">1314</span>,<span style="color:#ae81ff">1315</span>,<span style="color:#ae81ff">1316</span>,<span style="color:#ae81ff">1317</span>,<span style="color:#ae81ff">1318</span>,<span style="color:#ae81ff">1407</span>,<span style="color:#ae81ff">1408</span>,<span style="color:#ae81ff">1409</span>,<span style="color:#ae81ff">1410</span>,<span style="color:#ae81ff">1411</span>,<span style="color:#ae81ff">1412</span>]
+</span></span></code></pre></div><p>如此一來，我們已經成功按照高低順序紀錄下opencv幫我們抓下來的所有水平線y軸座標，可是我們可以發現 list 中有很多 &ldquo;連號的座標&rdquo;，我在這邊把它理解為同樣一條格線，電腦可能在上面重複畫了好幾條線，只是我們人眼認為只有一條而已。</p>
+<p>同時也發現，越明顯的格線(也就是我們真正要的格線)，電腦會幫它畫上更多次，所以我寫了一個function，把剛剛的 座標list 作為輸入，最後希望輸出真正格線的y座標</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reselect_y_coordinates</span>(coordinates_lst):
+</span></span><span class="ln"><span>    coordinates_lst <span style="color:#f92672">=</span> sorted(coordinates_lst)
+</span></span><span class="ln"><span>    bag <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>    result <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> coordinates_lst:
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">if</span> len(bag) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span class="ln"><span>            bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span class="ln"><span>            <span style="color:#66d9ef">if</span> i<span style="color:#f92672">-</span>bag[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:               <span style="color:#f92672">//</span>判斷連號
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span class="ln"><span>                <span style="color:#66d9ef">if</span> len(bag) <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">5</span>:            <span style="color:#f92672">//</span>若連號的數量<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">5</span>
+</span></span><span class="ln"><span>                    result<span style="color:#f92672">.</span>append(bag[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])  <span style="color:#f92672">//</span>把最後一號記錄下來
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>clear()
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><p>結果如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>reselect_y_coordinates(sorted(horiz_lst))
+</span></span><span class="ln"><span>[<span style="color:#ae81ff">76</span>,<span style="color:#ae81ff">99</span>,<span style="color:#ae81ff">116</span>,<span style="color:#ae81ff">129</span>,<span style="color:#ae81ff">224</span>,<span style="color:#ae81ff">320</span>,<span style="color:#ae81ff">415</span>,<span style="color:#ae81ff">511</span>,<span style="color:#ae81ff">606</span>,<span style="color:#ae81ff">702</span>,<span style="color:#ae81ff">796</span>,<span style="color:#ae81ff">828</span>,<span style="color:#ae81ff">881</span>,<span style="color:#ae81ff">976</span>,<span style="color:#ae81ff">1072</span>,<span style="color:#ae81ff">1125</span>,<span style="color:#ae81ff">1222</span>,<span style="color:#ae81ff">1318</span>]
+</span></span></code></pre></div><p>例如 : 122,123,124,125,126,127,128,129中，一共畫了8條，因此判定它就是一條我們所要的水平線，所以我們取最後一號129作為待會要切割的y軸座標。</p>
+<p>例如 : 151，只畫了1條線，因此判定它就是所謂的雜線，所以就把它丟掉吧 !</p>
+<p>例如 : 219,220,221,222,223,224中，一共畫了6條，因此判定它也是我們要的水平線，取224作為待會要切割的y軸座標。</p>
+<p>所以現在我們得到了[129,224]，這就是我要的 !</p>
+<p>同理，垂直線也用一樣的方式 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reselect_x_coordinates</span>(coordinates_lst):
+</span></span><span class="ln"><span>    coordinates_lst <span style="color:#f92672">=</span> sorted(coordinates_lst)
+</span></span><span class="ln"><span>    bag <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>    result <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> coordinates_lst:
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">if</span> len(bag) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span class="ln"><span>            bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span class="ln"><span>            <span style="color:#66d9ef">if</span> i<span style="color:#f92672">-</span>bag[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span class="ln"><span>                <span style="color:#66d9ef">if</span> len(bag) <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">3</span>:
+</span></span><span class="ln"><span>                    result<span style="color:#f92672">.</span>append(bag[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>clear()
+</span></span><span class="ln"><span>                bag<span style="color:#f92672">.</span>append(i)
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><p>現在得到格線的x軸y軸座標後，我們可以輕易地把每一小格都切下來，方法如下 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(image_name)
+</span></span><span class="ln"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,len(horiz_lst)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,len(verti_lst)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span class="ln"><span>        crop_img <span style="color:#f92672">=/</span> img[horiz_lst[i]:horiz_lst[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>],verti_lst[j]:verti_lst[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]]
+</span></span><span class="ln"><span>        cv2<span style="color:#f92672">.</span>imwrite(str(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">+</span>str(j)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;.png&#34;</span>)
+</span></span></code></pre></div><p>如此就可以得到一小格一小格的圖片啦~</p>
+<p><img src="/images/blog/table-extraction/img2.png" alt="" loading="lazy"></p>
+<h3 id="文字辨識">文字辨識</h3>
+<p>當我們得到這些圖片之後，我們可以開始使用 pytesseractx來做簡單的文字辨識，這邊幫大家做了一個簡單的function，有興趣的人可以自行輸入你想辨識的圖片，它將會幫你輸出辨識結果，程式碼如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image,ImageEnhance
+</span></span><span class="ln"><span><span style="color:#f92672">import</span> pytesseract
+</span></span><span class="ln"><span>pytesseract<span style="color:#f92672">.</span>pytesseract<span style="color:#f92672">.</span>tesseract_cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;C:/Program Files/Tesseract-OCR/tesseract.exe&#39;</span>
+</span></span><span class="ln"><span>tessdata_dir_config <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;--tessdata-dir &#34;c://Program Files (x86)//Tesseract-OCR//tessdata&#34;&#39;</span>
+</span></span><span class="ln"><span><span style="color:#75715e"># resize_num為放大倍率、b為對比度</span>
+</span></span><span class="ln"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pic_to_word</span>(filepath,filename,resize_num,b):
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span class="ln"><span>        img <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(str(filepath)<span style="color:#f92672">+</span>str(filename))
+</span></span><span class="ln"><span>        <span style="color:#75715e"># 圖片放大</span>
+</span></span><span class="ln"><span>        img <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>resize((im<span style="color:#f92672">.</span>width <span style="color:#f92672">*</span> int(resize_num), im<span style="color:#f92672">.</span>height <span style="color:#f92672">*</span> int(resize_num)))
+</span></span><span class="ln"><span>        <span style="color:#75715e"># 圖片二值化</span>
+</span></span><span class="ln"><span>        imgry <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;L&#39;</span>)
+</span></span><span class="ln"><span>        <span style="color:#75715e"># 對比度增強</span>
+</span></span><span class="ln"><span>        sharpness <span style="color:#f92672">=</span> ImageEnhance<span style="color:#f92672">.</span>Contrast(imgry)
+</span></span><span class="ln"><span>        sharp_img <span style="color:#f92672">=</span> sharpness<span style="color:#f92672">.</span>enhance(b)
+</span></span><span class="ln"><span>        content <span style="color:#f92672">=</span> pytesseract<span style="color:#f92672">.</span>image_to_string(sharp_img, lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;chi_tra&#39;</span>)
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span class="ln"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(str(e)))
+</span></span><span class="ln"><span><span style="color:#66d9ef">return</span> content
+</span></span></code></pre></div><p>以我的例子來說，我想要把所有的小格子逐一辨識完之後，直接變成一個pandas的資料結構dataframe裡，方法如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/Johnny/Desktop/銀行交易紀錄/豆腐/&#34;</span>
+</span></span><span class="ln"><span>result <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">15</span>):
+</span></span><span class="ln"><span>    lst <span style="color:#f92672">=</span> []
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">16</span>):
+</span></span><span class="ln"><span>        filename <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">+</span>str(j)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;.png&#34;</span>
+</span></span><span class="ln"><span>        resize_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span class="ln"><span>        b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span class="ln"><span>        lst<span style="color:#f92672">.</span>append(pic_to_word(filepath,filename,resize_num,b))
+</span></span><span class="ln"><span>    result<span style="color:#f92672">.</span>append(lst)
+</span></span><span class="ln"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(result)
+</span></span></code></pre></div><p><img src="/images/blog/table-extraction/img3.png" alt="" loading="lazy"></p>
+<p>這樣就簡單製作好了一個dataframe了 ，若各位對pandas的基本操作還不熟，我之後會考慮出幾個的我的實際使用pandas做專案的實作文兼教學文，再請各位多多支持 !</p>
+<p>但是結果並不如預期，其實pytesseract辨識的成果已經不錯了，數字的部分我給90分，但中文字的部分我只能給59分&hellip;&hellip;.</p>
+<p>我們要追求的是都要100分呀~~~~~~~~</p>
+<h2 id="結語">結語</h2>
+<p>我認為有以下還能改進的地方:</p>
+<ol>
+<li>最根本的問題，紙本文件要清楚、整潔。</li>
+<li>第二重要的問題，掃描機必須夠強。</li>
+<li>我切豆腐的演算法還不夠好，我希望還能更加完善。</li>
+<li>若上面兩點都能有所改進的話，也許pytesseract的辨識率會大幅增加。</li>
+<li>但我們仍然不放棄使用深度學習的方式來做這個project，所以之後有機會的話，我會嘗試出一篇是搭配深度學習方法的文章(等我學會)。</li>
+</ol>

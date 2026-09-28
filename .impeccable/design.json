@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T00:00:00Z",
+  "title": "Design System: between2058",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "oklch(19.8% 0.033 255)",
+        "tonalRamp": [
+          "#030b19",
+          "#1a2635",
+          "#364353",
+          "#556274",
+          "#758496",
+          "#98a6ba",
+          "#bbcbdf",
+          "#e0f0ff"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "oklch(22.8% 0.040 255)",
+        "tonalRamp": [
+          "#020b1c",
+          "#172638",
+          "#344357",
+          "#526378",
+          "#72849b",
+          "#95a7bf",
+          "#b8cbe4",
+          "#ddf0ff"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Raised Ink",
+        "canonical": "oklch(27.4% 0.049 255)",
+        "tonalRamp": [
+          "#000b1f",
+          "#14263d",
+          "#30435c",
+          "#4e637d",
+          "#6f84a0",
+          "#91a7c4",
+          "#b4cbe9",
+          "#d9f1ff"
+        ]
+      },
+      "key-line": {
+        "role": "neutral",
+        "displayName": "Key Line",
+        "canonical": "oklch(16.9% 0.028 251)",
+        "tonalRamp": [
+          "#030c16",
+          "#1b2632",
+          "#374351",
+          "#566371",
+          "#768493",
+          "#98a7b6",
+          "#bccbdb",
+          "#e1f0ff"
+        ]
+      },
+      "foam": {
+        "role": "neutral",
+        "displayName": "Foam",
+        "canonical": "oklch(93.3% 0.020 85)",
+        "tonalRamp": [
+          "#0f0a03",
+          "#2a241a",
+          "#474136",
+          "#676154",
+          "#888275",
+          "#aba497",
+          "#cfc8bb",
+          "#f5eee0"
+        ]
+      },
+      "foam-2": {
+        "role": "neutral",
+        "displayName": "Sea Fog",
+        "canonical": "oklch(82.6% 0.005 180)",
+        "tonalRamp": [
+          "#090c0b",
+          "#232625",
+          "#3f4342",
+          "#5f6261",
+          "#7f8382",
+          "#a2a6a5",
+          "#c6cac9",
+          "#ebefee"
+        ]
+      },
+      "foam-3": {
+        "role": "neutral",
+        "displayName": "Distant Grey-Blue",
+        "canonical": "oklch(68.0% 0.025 250)",
+        "tonalRamp": [
+          "#040c15",
+          "#1c2631",
+          "#38434f",
+          "#576370",
+          "#778491",
+          "#99a7b5",
+          "#bdcbda",
+          "#e2f0ff"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Washi Paper",
+        "canonical": "oklch(91.5% 0.031 86)",
+        "tonalRamp": [
+          "#110a00",
+          "#2c2413",
+          "#49412f",
+          "#69604d",
+          "#8b816d",
+          "#aea48f",
+          "#d2c8b3",
+          "#f8eed7"
+        ]
+      },
+      "wave": {
+        "role": "primary",
+        "displayName": "Prussian Wave",
+        "canonical": "oklch(32.8% 0.079 255)",
+        "tonalRamp": [
+          "#00072b",
+          "#05244a",
+          "#23436b",
+          "#42638d",
+          "#6284b1",
+          "#84a8d6",
+          "#a7ccfc",
+          "#ccf2ff"
+        ]
+      },
+      "wave-2": {
+        "role": "primary",
+        "displayName": "Registered Mid-Blue",
+        "canonical": "oklch(47.1% 0.089 247)",
+        "tonalRamp": [
+          "#00082d",
+          "#00264d",
+          "#0e456e",
+          "#326591",
+          "#5487b5",
+          "#76abda",
+          "#9acfff",
+          "#bef5ff"
+        ]
+      },
+      "wave-pale": {
+        "role": "primary",
+        "displayName": "Pale Water Band",
+        "canonical": "oklch(68.2% 0.075 242)",
+        "tonalRamp": [
+          "#000b27",
+          "#002846",
+          "#164666",
+          "#386688",
+          "#5988ac",
+          "#7babd1",
+          "#9ed0f7",
+          "#c3f6ff"
+        ]
+      },
+      "wave-3": {
+        "role": "primary",
+        "displayName": "Washed Wave Light",
+        "canonical": "oklch(72.0% 0.073 245)",
+        "tonalRamp": [
+          "#000a27",
+          "#002746",
+          "#1b4566",
+          "#3c6588",
+          "#5c87ac",
+          "#7eaad0",
+          "#a2cff6",
+          "#c6f5ff"
+        ]
+      },
+      "open-water": {
+        "role": "neutral",
+        "displayName": "Open Water",
+        "canonical": "oklch(27.0% 0.060 254)",
+        "tonalRamp": [
+          "#000a23",
+          "#0e2642",
+          "#2b4361",
+          "#496383",
+          "#6985a6",
+          "#8ba8cb",
+          "#afccf0",
+          "#d3f2ff"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist Band",
+        "canonical": "oklch(34.9% 0.070 255)",
+        "tonalRamp": [
+          "#000927",
+          "#092546",
+          "#274367",
+          "#456389",
+          "#6685ac",
+          "#87a8d1",
+          "#abccf7",
+          "#cff2ff"
+        ]
+      },
+      "range": {
+        "role": "neutral",
+        "displayName": "Far Range",
+        "canonical": "oklch(34.3% 0.070 253)",
+        "tonalRamp": [
+          "#000927",
+          "#072546",
+          "#254366",
+          "#446388",
+          "#6485ac",
+          "#86a8d0",
+          "#a9cdf6",
+          "#cef2ff"
+        ]
+      },
+      "shu": {
+        "role": "secondary",
+        "displayName": "Shu Vermilion",
+        "canonical": "oklch(59.3% 0.152 33)",
+        "tonalRamp": [
+          "#2d0000",
+          "#5a0000",
+          "#800800",
+          "#a6351e",
+          "#cd5941",
+          "#f57d63",
+          "#ffa287",
+          "#ffd1ba"
+        ]
+      },
+      "shu-2": {
+        "role": "secondary",
+        "displayName": "Shu Glow",
+        "canonical": "oklch(68.5% 0.139 35)",
+        "tonalRamp": [
+          "#2d0000",
+          "#560000",
+          "#7b1600",
+          "#a13c23",
+          "#c75f45",
+          "#ef8267",
+          "#ffa78a",
+          "#ffd1b7"
+        ]
+      },
+      "seal": {
+        "role": "secondary",
+        "displayName": "Seal Red",
+        "canonical": "oklch(53.9% 0.158 32)",
+        "tonalRamp": [
+          "#2d0000",
+          "#5c0000",
+          "#810000",
+          "#a83220",
+          "#cf5742",
+          "#f87b64",
+          "#ff9f87",
+          "#ffd0bc"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Foam Hairline",
+        "canonical": "rgb(239 232 218 / 0.1)"
+      },
+      "line-2": {
+        "role": "neutral",
+        "displayName": "Foam Hairline Strong",
+        "canonical": "rgb(239 232 218 / 0.18)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the first viewport only."
+      },
+      "headline": {
+        "displayName": "Headline (Latin)",
+        "purpose": "English section headings."
+      },
+      "headline-zh": {
+        "displayName": "Headline (Chinese)",
+        "purpose": "Chinese section headings, phrase line-breaking."
+      },
+      "title": {
+        "displayName": "Title (Latin)",
+        "purpose": "Step, project and field names in English."
+      },
+      "title-zh": {
+        "displayName": "Title (Chinese)",
+        "purpose": "Step and project names in Chinese."
+      },
+      "cartouche": {
+        "displayName": "Cartouche",
+        "purpose": "張舜程 set vertically on the title slip."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running copy; 1.85 line-height in Chinese."
+      },
+      "body-article": {
+        "displayName": "Article",
+        "purpose": "Long-form writing in a 760px column."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tags, notes, periods, nav links."
+      },
+      "date": {
+        "displayName": "Date",
+        "purpose": "Dates and years only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "slip-lift",
+        "value": "inset 0 0 0 3px #ece2cc, inset 0 0 0 4px rgb(27 37 51 / 0.55), 0 18px 40px -18px rgb(0 0 0 / 0.6)",
+        "purpose": "The cartouche only: frame-inside-a-frame plus paper lift."
+      },
+      {
+        "name": "glass",
+        "value": "background: rgb(15 29 47 / 0.62); backdrop-filter: blur(14px) saturate(1.2); border: 1px solid rgb(239 232 218 / 0.18)",
+        "purpose": "Floating readouts: FateFlux diagram panel, mobile nav sheet."
+      },
+      {
+        "name": "header-scrolled",
+        "value": "background: rgb(11 22 36 / 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgb(239 232 218 / 0.1)",
+        "purpose": "Header backing after 24px of scroll."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 1px solid #e2775c; outline-offset: 4px; border-radius: 2px",
+        "purpose": "Global focus-visible."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All UI transitions and reveals."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity, translateY 14px, blur 6px; 1.2s ease-out-expo; 90ms stagger",
+        "purpose": "Section content entering view; visible without JS."
+      },
+      {
+        "name": "swell",
+        "value": "9s / 11s ease-in-out infinite alternate; translate(-10px,-4px) scale 0.985 to 1.01",
+        "purpose": "The great wave and near/far waves breathing."
+      },
+      {
+        "name": "shimmer",
+        "value": "4.5s ease-in-out infinite alternate; opacity 0.86 to 1",
+        "purpose": "Foam claws."
+      },
+      {
+        "name": "spray",
+        "value": "7s ease-in-out infinite alternate; translate(-14px,-8px), opacity 0.7 to 1",
+        "purpose": "Spray drift."
+      },
+      {
+        "name": "breath-stroke",
+        "value": "1100ms dissolve, 22px max width",
+        "purpose": "Pointer/touch Water-Breathing ribbon on the hero canvas."
+      },
+      {
+        "name": "hover",
+        "value": "300ms to 700ms colour transitions",
+        "purpose": "Links 300ms, buttons and rows 500ms, header 700ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action per view; foam on ink, turning vermilion on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#contact\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:12px;background:var(--color-foam,#efe8da);color:var(--color-ink,#0b1624);padding:12px 24px;border-radius:2px;font-family:var(--font-sans,Geist,sans-serif);font-size:0.92rem;font-weight:500;text-decoration:none;transition:background-color .5s,color .5s} .ds-btn-primary svg{transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1)} .ds-btn-primary:hover{background:var(--color-shu,#c8553d);color:var(--color-foam,#efe8da)} .ds-btn-primary:hover svg{transform:translateX(4px)} .ds-btn-primary:focus-visible{outline:1px solid var(--color-shu-2,#e2775c);outline-offset:4px}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Secondary actions and outbound links: sea-fog text with a pale-wave underline and a line-art arrow.",
+      "html": "<a class=\"ds-text-link\" href=\"https://fateflux.ai\">See FateFlux <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 11L11 5M6 5h5v5\"/></svg></a>",
+      "css": ".ds-text-link{display:inline-flex;align-items:center;gap:6px;color:var(--color-foam-2,#c3c7c6);text-decoration:underline;text-decoration-color:rgb(126 170 208 / .6);text-decoration-thickness:1px;text-underline-offset:.35em;font-family:var(--font-sans,Geist,sans-serif);transition:color .3s,text-decoration-color .3s} .ds-text-link svg{transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1)} .ds-text-link:hover{color:var(--color-foam,#efe8da);text-decoration-color:var(--color-foam,#efe8da)} .ds-text-link:hover svg{transform:translate(2px,-2px)} .ds-text-link:focus-visible{outline:1px solid var(--color-shu-2,#e2775c);outline-offset:4px;border-radius:2px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed header: mincho wordmark, small grey-blue section links, hairline divider, language switch.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-mark\">between2058</span><ul><li><a href=\"#work\">Work</a></li><li><a href=\"#method\">Method</a></li><li><a href=\"#projects\">Projects</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"ds-nav-div\" aria-hidden=\"true\"></li><li><a class=\"ds-nav-lang\" href=\"#\">中文</a></li></ul></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 32px;background:rgb(11 22 36 / .7);backdrop-filter:blur(12px);border-bottom:1px solid rgb(239 232 218 / .1)} .ds-nav-mark{font-family:var(--font-mincho,'Shippori Mincho B1',serif);font-weight:700;font-size:1rem;color:var(--color-foam-2,#c3c7c6)} .ds-nav ul{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0;font-family:var(--font-sans,Geist,sans-serif);font-size:.84rem} .ds-nav a{color:var(--color-foam-3,#8d9aa8);text-decoration:none;transition:color .3s} .ds-nav a:hover{color:var(--color-foam,#efe8da)} .ds-nav a:focus-visible{outline:1px solid var(--color-shu-2,#e2775c);outline-offset:4px;border-radius:2px} .ds-nav-div{width:1px;height:12px;background:rgb(239 232 218 / .18)} .ds-nav .ds-nav-lang{color:var(--color-foam-2,#c3c7c6);font-size:.82rem}"
+    },
+    {
+      "name": "Title Cartouche and Seal",
+      "kind": "custom",
+      "refersTo": "cartouche",
+      "description": "The signature title slip: vertical WenKai name on washi with a double inset frame, the vermilion seal below.",
+      "html": "<div class=\"ds-cartouche-wrap\"><p class=\"ds-cartouche\" lang=\"zh-Hant-TW\">張舜程</p><svg class=\"ds-seal\" viewBox=\"0 0 32 32\" aria-hidden=\"true\"><rect x=\"1\" y=\"1\" width=\"30\" height=\"30\" rx=\"2.5\" fill=\"#b8412e\"/><text x=\"16\" y=\"22.5\" text-anchor=\"middle\" font-family=\"LXGW WenKai TC, Kaiti TC, serif\" font-weight=\"700\" font-size=\"19\" fill=\"#efe6dc\">張</text></svg></div>",
+      "css": ".ds-cartouche-wrap{display:inline-flex;flex-direction:column;align-items:center;gap:12px;padding:24px;background:#0b1624} .ds-cartouche{margin:0;writing-mode:vertical-rl;background:var(--color-paper,#ece2cc);color:#1b2533;padding:20px 12px;font-family:var(--font-kai,'LXGW WenKai TC',serif);font-size:1.7rem;line-height:1.25;letter-spacing:.35em;box-shadow:inset 0 0 0 3px #ece2cc,inset 0 0 0 4px rgb(27 37 51 / .55),0 18px 40px -18px rgb(0 0 0 / .6)} .ds-seal{width:36px;height:36px}"
+    },
+    {
+      "name": "Glass Readout",
+      "kind": "card",
+      "refersTo": "glass-panel",
+      "description": "Translucent ink panel for the FateFlux diagram and the mobile nav sheet; the only bounded surface.",
+      "html": "<div class=\"ds-glass\"><p class=\"ds-glass-k\">Interpret</p><p class=\"ds-glass-v\">AI reads them together</p></div>",
+      "css": ".ds-glass{background:rgb(15 29 47 / .62);backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgb(239 232 218 / .18);border-radius:3px;padding:32px;max-width:320px;font-family:var(--font-sans,Geist,sans-serif)} .ds-glass-k{margin:0;font-size:.78rem;color:var(--color-wave-3,#7eaad0)} .ds-glass-v{margin:4px 0 0;font-size:.92rem;color:var(--color-foam,#efe8da)}"
+    },
+    {
+      "name": "Ruled List Row",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Writing entries: mono date column, WenKai title turning pale-wave on hover, ruled with foam hairlines, never carded.",
+      "html": "<a class=\"ds-row\" href=\"#\"><time class=\"ds-row-date\">2020.02.21</time><span><span class=\"ds-row-title\">使用python萃取掃描文件中的表格</span><span class=\"ds-row-sum\">Extracting tables from scanned documents.</span></span><span class=\"ds-row-arrow\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\"/></svg></span></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:8rem 1fr auto;align-items:baseline;gap:32px;padding:32px 16px;border-top:1px solid rgb(239 232 218 / .18);border-bottom:1px solid rgb(239 232 218 / .1);text-decoration:none;transition:background-color .5s} .ds-row:hover{background:rgb(15 29 47 / .6)} .ds-row-date{font-family:var(--font-mono,'Geist Mono',monospace);font-size:.72rem;letter-spacing:.08em;color:var(--color-foam-3,#8d9aa8)} .ds-row-title{display:block;font-family:var(--font-kai,'LXGW WenKai TC',serif);font-size:1.25rem;line-height:1.6;color:var(--color-foam,#efe8da);transition:color .5s} .ds-row-sum{display:block;margin-top:8px;font-size:.92rem;color:var(--color-foam-3,#8d9aa8)} .ds-row-arrow{color:var(--color-foam-3,#8d9aa8);transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1),color .5s} .ds-row:hover .ds-row-title,.ds-row:hover .ds-row-arrow{color:var(--color-wave-3,#7eaad0)} .ds-row:hover .ds-row-arrow{transform:translateX(4px)} .ds-row:focus-visible{outline:1px solid var(--color-shu-2,#e2775c);outline-offset:4px}"
+    },
+    {
+      "name": "Seigaiha Field",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "青海波 section texture: three overlapping half-ring sets per 48x24 tile in pale water blue at low opacity.",
+      "html": "<svg class=\"ds-seigaiha\" aria-hidden=\"true\"><defs><pattern id=\"ds-sgh\" width=\"48\" height=\"24\" patternUnits=\"userSpaceOnUse\"><g><path d=\"M-23 24A23 23 0 0 1 23 24Z\" fill=\"#0f1d2f\"/><path d=\"M-21 24A21 21 0 0 1 21 24M-15 24A15 15 0 0 1 15 24M-9 24A9 9 0 0 1 9 24\" fill=\"none\" stroke=\"#6f9fc4\" stroke-opacity=\".2\" stroke-width=\"1.2\"/></g><g><path d=\"M25 24A23 23 0 0 1 71 24Z\" fill=\"#0f1d2f\"/><path d=\"M27 24A21 21 0 0 1 69 24M33 24A15 15 0 0 1 63 24M39 24A9 9 0 0 1 57 24\" fill=\"none\" stroke=\"#6f9fc4\" stroke-opacity=\".2\" stroke-width=\"1.2\"/></g><g><path d=\"M1 12A23 23 0 0 1 47 12Z\" fill=\"#0f1d2f\"/><path d=\"M3 12A21 21 0 0 1 45 12M9 12A15 15 0 0 1 39 12M15 12A9 9 0 0 1 33 12\" fill=\"none\" stroke=\"#6f9fc4\" stroke-opacity=\".2\" stroke-width=\"1.2\"/></g></pattern></defs><rect width=\"100%\" height=\"100%\" fill=\"url(#ds-sgh)\"/></svg>",
+      "css": ".ds-seigaiha{display:block;width:320px;height:160px;background:#0f1d2f}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night-Sea Scroll",
+    "overview": "The site is one woodblock print unrolled vertically. A generated great wave fills the first viewport over a flat moon, brushed mountains and mist bands; below it, every section is joined to the next by a painted landscape passage (breaking-wave band, mountain range, or mist) so the page reads as a single continuous scroll rather than a stack of panels. The ground is deep night indigo; foam white carries crests, claws and all text; vermilion appears as a seal and as the one live accent.\n\nThe artwork speaks in woodblock grammar: flat registered colour bands, a near-black key line at print weight around every form, foam stripes on the water, and foam claws cut like a carver's talons. All geometry is generated in code from seeded parameters; nothing is traced from a source image. The UI around it is quiet and editorial: hairline rules, generous section rhythm, large brush-script or mincho headings, and near-square corners. Motion is slow and oceanic (a swelling wave, shimmering claws, drifting spray, a pointer stroke that leaves a water ribbon) and stops entirely under reduced motion.\n\nThe owner-pinned direction (PRODUCT.md, Brand Commitments) binds this world: ukiyo-e breaking-wave energy and the Water-Breathing stroke look, Prussian-blue bodies with foam-white crests, a full expressive first viewport, and original generated artwork only. The superseded observation-system look (instrument ring, teal, copper cut, visible 癸 marks) is rejected.",
+    "keyCharacteristics": [
+      "Flat, registered indigo-to-pale water bands outlined by a key line (#06101b), never soft-shaded.",
+      "Foam white is simultaneously the crest colour and the text colour; the art and the words share one ink.",
+      "One vermilion family, rationed to the seal, the primary-button hover, and the focus ring.",
+      "Painted landscape passages join sections instead of rules, cards or background shifts alone.",
+      "Bilingual type pairs by script: LXGW WenKai TC for Chinese display, Shippori Mincho B1 for Latin display, Geist for UI and body.",
+      "Slow, long exponential ease-out motion; nothing bounces."
+    ],
+    "rules": [
+      {
+        "name": "The One Seal Rule",
+        "body": "Vermilion is the seal, the primary button's hover, and the focus ring. It never colours body text, links, rules or illustration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shared Ink Rule",
+        "body": "Text uses the same foam as the crests. Hierarchy comes from the foam / foam-2 / foam-3 steps, not from new hues.",
+        "section": "colors"
+      },
+      {
+        "name": "The Registered Colour Rule",
+        "body": "Inside the artwork every region is one flat fill bounded by the key line. The only printed gradation is the bokashi band at the top of the sky (#050c16 to #0b1624, 150 of 1000 units). Other gradients in the build are scrims and masks that dissolve art into ground (hero legibility scrim, passage mountain feet, seigaiha fade); they never shade a form.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Scripts Rule",
+        "body": "Every heading switches face by locale: WenKai with open positive tracking and `word-break: keep-all` phrase breaking for Chinese; Shippori Mincho bold with tight tracking for English.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono-Is-Time Rule",
+        "body": "Geist Mono sets dates and years. It is not a label, kicker or ornament face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Han Mark Rule",
+        "body": "Large single han characters are the device for marking steps and projects: 7rem WenKai bold in foam for method steps, 2.5rem in `wave-3` for project rows, and a clamp(10rem, 22vw, 18rem) watermark in `wave-2` at 35% behind the lead project.",
+        "section": "typography"
+      },
+      {
+        "name": "The Unrolled Scroll Rule",
+        "body": "Sections are joined by a painted Passage (breaking-wave band 130 to 200px, mountain range 130 to 230px, or mist 90 to 150px) that alternates kind and mirrors direction down the page. A wave passage's sea surface becomes the next section's ground colour, so there is no seam.",
+        "section": "layout"
+      },
+      {
+        "name": "The Paper-Only Shadow Rule",
+        "body": "The only drop shadow belongs to paper (the cartouche). Ink surfaces never cast shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** outline every art form with the key line (#06101b) and fill it with one flat band colour.",
+      "**Do** join sections with a Passage, alternating wave, mountain and mist and mirroring direction.",
+      "**Do** keep vermilion to the seal, the primary-button hover and the focus ring.",
+      "**Do** switch heading faces by locale: WenKai for Chinese, Shippori Mincho for English, with `phrase` line breaking on Chinese headings.",
+      "**Do** generate any new artwork from seeded geometry in `lib/wave.ts` or the same grammar.",
+      "**Do** ease motion with cubic-bezier(0.16, 1, 0.3, 1) over 300ms to 1.2s, and stop all of it under reduced motion."
+    ],
+    "donts": [
+      "**Don't** use vermilion for text, links, rules or water.",
+      "**Don't** shade art forms with gradients; the bokashi sky band is the only printed gradation.",
+      "**Don't** round corners beyond 3px or wrap content in cards.",
+      "**Don't** use Geist Mono for labels, kickers or headings.",
+      "**Don't** trace or copy Hokusai or Demon Slayer imagery, characters or logos.",
+      "**Don't** bring back the superseded observation-system palette and marks (teal, copper cut, instrument ring, visible 癸)."
+    ]
+  }
+}

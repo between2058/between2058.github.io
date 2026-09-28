@@ -1,0 +1,138 @@
+<blockquote>
+<p>在這個漸漸邁向大數據的時代裡，資料將會成為最珍貴的寶物，為了要快速用程式分析這些大數據，我們不但要將未來的各種事物直接導向數位化，更要學習如何把過去的傳統紙本資料轉化為數位格式。</p>
+</blockquote>
+<h1 id="前言">前言</h1>
+<p>先簡單描述一下我們的原始資料(raw data):</p>
+<p>總共有15份pdf檔，每份約200頁，約共3000頁。
+每個pdf檔裡面含有約50個人的證交所成交紀錄表。
+本專案一共有將近600個人。
+試想 : 若今天我想知道某某某在2013年11月12號中，一共買進多少股票，該怎麼做?</p>
+<p>你可以告訴我 : 「很簡單啊，找到某某某的交易紀錄，按一按計算機就好了。」</p>
+<p>但，</p>
+<p>如果某某某在2013年11月12號共有500筆交易紀錄呢 ?
+如果我想知道其他天的呢 ?
+如果我想統計這一個月以來的一共買進賣出多少股票呢 ?
+有太多太多如果了，人工方式按計算機是行不通的，何不將他製做成一個資料庫呢 ?</p>
+<h1 id="開始任務">開始任務</h1>
+<h2 id="定下目標">定下目標</h2>
+<p>我想把這將近600人的臺灣證交所交易紀錄表，製作成pandas的dataframe，方便之後可以使用pandas提供的優秀函式庫來做資料分析。</p>
+<h2 id="發現問題打算怎麼做">發現問題，打算怎麼做?</h2>
+<p>首先要思考電腦要如何消化這一大疊的資料套表。</p>
+<ol>
+<li>有沒有pdf電子檔 ? 如果沒有，趕快去掃描。</li>
+<li>有了pdf電子檔以後，裡面的文字是不是能夠複製的那種(反白)? 如果不是，趕快去想辦法文字辨識(可參考我的文章)。</li>
+<li>假設此pdf電子檔有內嵌文字，那麼就有跡可循了。</li>
+</ol>
+<h2 id="資料前處理">資料前處理</h2>
+<p>這次的例子比較幸運，有pdf電子檔也有內嵌文字，因此我二話不說先做了一個小實驗 ，直接把pdf內容反白複製貼上到一個記事本裡面 ，假設我覺得內容的格式很適合利用python做字串處理，那就採用這種好笑的方法。
+看了下圖以後，第一個想到的就是.split()，第二個想到的是他剛好每一筆資料就是記事本的一行，可以利用txt讀檔的角度來處理，在前處理的過程中應該能夠減輕不少煩惱。(ps. 雖然這個方法很好笑，但是我認為現實問題沒有標準解法，只有比較符合需求的解法)</p>
+<p><img src="/images/blog/twse-pdf/p2_img2.png" alt="" loading="lazy"></p>
+<p>因此，馬上來把這15份pdf檔的內容每一頁通通複製貼上在同一個記事本裡面，取名為 AB_type_text.txt 存下來，然後試著用python讀取它 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\Johnny\Desktop\python\AB_type_text.txt&#34;</span>, <span style="color:#e6db74">&#39;r&#39;</span>,encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> infile:
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> infile:
+</span></span><span class="ln"><span>        print(i)
+</span></span></code></pre></div><p>output類似以下結果，已掌握把記事本一行一行print()出來的技巧</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>訴訟編號姓名
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span>授權人求償金額小計
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">54</span>,<span style="color:#ae81ff">100</span>
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span>第2頁
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span>臺灣證券交易所成交資料表
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span>其他成交日期證券代號證商代號交易帳號身分證號客戶姓名買賣別交易種類成交時間全國成交序號委託書號成交單價成交股數成交金額錯誤註記成交回報印表機委託種類
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">01</span> <span style="color:#ae81ff">20060602</span> xxxx <span style="color:#ae81ff">6950</span> <span style="color:#ae81ff">0034780</span> F311233333 陳卻B <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">09132272</span> <span style="color:#ae81ff">000086439</span> <span style="color:#ae81ff">60344</span> <span style="color:#ae81ff">002015</span> <span style="color:#ae81ff">000002000</span> <span style="color:#ae81ff">0000040300</span> N <span style="color:#ae81ff">1380</span> <span style="color:#ae81ff">0</span>
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">01</span> <span style="color:#ae81ff">20061016</span> xxxx <span style="color:#ae81ff">6950</span> <span style="color:#ae81ff">0034780</span> F311233333 陳卻S <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">14300000</span> <span style="color:#ae81ff">000888517</span> <span style="color:#ae81ff">26008</span> <span style="color:#ae81ff">001780</span> <span style="color:#ae81ff">000000120</span> <span style="color:#ae81ff">0000002136</span> N <span style="color:#ae81ff">1380</span> <span style="color:#ae81ff">0</span>
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">01</span> <span style="color:#ae81ff">20061201</span> xxxx <span style="color:#ae81ff">6950</span> <span style="color:#ae81ff">0034780</span> F311233333 陳卻B <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">09575742</span> <span style="color:#ae81ff">000350647</span> <span style="color:#ae81ff">60229</span> <span style="color:#ae81ff">001710</span> <span style="color:#ae81ff">000001000</span> <span style="color:#ae81ff">0000017100</span> N <span style="color:#ae81ff">1380</span> <span style="color:#ae81ff">0</span>
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">01</span> <span style="color:#ae81ff">20061201</span> xxxx <span style="color:#ae81ff">6950</span> <span style="color:#ae81ff">0034780</span> F311233333 陳卻B <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">09575742</span> <span style="color:#ae81ff">000350648</span> <span style="color:#ae81ff">60229</span> <span style="color:#ae81ff">001710</span> <span style="color:#ae81ff">000002000</span> <span style="color:#ae81ff">0000034200</span> N <span style="color:#ae81ff">1380</span> <span style="color:#ae81ff">0</span>
+</span></span><span class="ln"><span>
+</span></span><span class="ln"><span><span style="color:#ae81ff">01</span> <span style="color:#ae81ff">20061220</span> xxxx <span style="color:#ae81ff">6950</span> <span style="color:#ae81ff">0034780</span> F311233333 陳卻S <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">12075720</span> <span style="color:#ae81ff">000656286</span> <span style="color:#ae81ff">60588</span> <span style="color:#ae81ff">001860</span> <span style="color:#ae81ff">000003000</span> <span style="color:#ae81ff">0000055800</span> N <span style="color:#ae81ff">1380</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>接著讓我來專注在我們想要的臺灣證券交易所成交資料表上面。
+我先假設這15個pdf檔格式非常整齊統一，例如每個人的格式都一樣的情況下，我才可以設立條件來做全盤的篩選出我要交易資料表。
+所以我先來觀察其中的一筆資料:</p>
+<h3 id="觀察一-">觀察一 :</h3>
+<p><strong>好不好 .split() ?</strong></p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;01 20060602 xxxx 6950 0034780 F311233333 陳卻B 0 09132272 000086439 60344 002015 000002000 0000040300 N 1380 0&#34;</span>
+</span></span><span class="ln"><span><span style="color:#75715e"># 以空白格切割字串</span>
+</span></span><span class="ln"><span>str <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span class="ln"><span>print(str)
+</span></span><span class="ln"><span><span style="color:#f92672">====================================================================</span>
+</span></span><span class="ln"><span>output:
+</span></span><span class="ln"><span>[<span style="color:#e6db74">&#39;01&#39;</span>, <span style="color:#e6db74">&#39;20060602&#39;</span>, <span style="color:#e6db74">&#39;xxxx&#39;</span>, <span style="color:#e6db74">&#39;6950&#39;</span>, <span style="color:#e6db74">&#39;0034780&#39;</span>, <span style="color:#e6db74">&#39;F311233333&#39;</span>, <span style="color:#e6db74">&#39;陳卻B&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;09132272&#39;</span>, <span style="color:#e6db74">&#39;000086439&#39;</span>, <span style="color:#e6db74">&#39;60344&#39;</span>, <span style="color:#e6db74">&#39;002015&#39;</span>, <span style="color:#e6db74">&#39;000002000&#39;</span>, <span style="color:#e6db74">&#39;0000040300&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;1380&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>]
+</span></span></code></pre></div><p>結果 : split()效果很好，同時已將這一行字串轉為一個list了。</p>
+<h3 id="觀察二-">觀察二 :</h3>
+<p><strong>這個 list 長度有多長 ?</strong></p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>print(len(str))
+</span></span><span class="ln"><span><span style="color:#f92672">====================================================================</span>
+</span></span><span class="ln"><span>output:
+</span></span><span class="ln"><span><span style="color:#ae81ff">17</span>
+</span></span></code></pre></div><h3 id="觀察三-">觀察三 :</h3>
+<p><strong>長度為17可以做為證交所交易資料的篩選條件嗎 ?</strong></p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\Johnny\Desktop\python\AB_type_text.txt&#34;</span>, <span style="color:#e6db74">&#39;r&#39;</span>,encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> infile:
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> infile:
+</span></span><span class="ln"><span>        i <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">if</span> len(i) <span style="color:#f92672">==</span> <span style="color:#ae81ff">17</span>:
+</span></span><span class="ln"><span>            print(i)
+</span></span><span class="ln"><span><span style="color:#f92672">====================================================================</span>
+</span></span><span class="ln"><span>output:
+</span></span><span class="ln"><span>[<span style="color:#e6db74">&#39;01&#39;</span>, <span style="color:#e6db74">&#39;20060602&#39;</span>, <span style="color:#e6db74">&#39;xxxx&#39;</span>, <span style="color:#e6db74">&#39;6950&#39;</span>, <span style="color:#e6db74">&#39;0034780&#39;</span>, <span style="color:#e6db74">&#39;F311233333&#39;</span>, <span style="color:#e6db74">&#39;陳卻B&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;09132272&#39;</span>, <span style="color:#e6db74">&#39;000086439&#39;</span>, <span style="color:#e6db74">&#39;60344&#39;</span>, <span style="color:#e6db74">&#39;002015&#39;</span>, <span style="color:#e6db74">&#39;000002000&#39;</span>, <span style="color:#e6db74">&#39;0000040300&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;1380&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>]
+</span></span><span class="ln"><span>[<span style="color:#e6db74">&#39;0000440&#39;</span>, <span style="color:#e6db74">&#39;1060013978&#39;</span>, <span style="color:#e6db74">&#39;F311233333&#39;</span>, <span style="color:#e6db74">&#39;0950113&#39;</span>, <span style="color:#e6db74">&#39;1060517&#39;</span>, <span style="color:#e6db74">&#39;證保法字第１０６０００１６９０號財團法人證券投資人及期貨交易人保護中心93020196215&#39;</span>, <span style="color:#e6db74">&#39;陳卻1010204&#39;</span>, <span style="color:#e6db74">&#39;1010206&#39;</span>, <span style="color:#e6db74">&#39;706&#39;</span>, <span style="color:#e6db74">&#39;融資買進1234&#39;</span>, <span style="color:#e6db74">&#39;ㄚㄚㄚ阿華永台中+&#39;</span>, <span style="color:#e6db74">&#39;000000000000000&#39;</span>, <span style="color:#e6db74">&#39;+&#39;</span>, <span style="color:#e6db74">&#39;000000001000000&#39;</span>, <span style="color:#e6db74">&#39;+&#39;</span>, <span style="color:#e6db74">&#39;000000001000000&#39;</span>, <span style="color:#e6db74">&#39;融資</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>]
+</span></span></code></pre></div><p>結果:光是使用長度條件來篩選會不小心篩選到其他長度也是為17的資料。
+然而，證交所的第二個元素是日期，且為%Y%m%d的8碼格式，而另外一筆資料的第二個元素的字串長度並不是8，所以我們再多設立一個條件試試看。</p>
+<h3 id="觀察四-">觀察四 :</h3>
+<p><strong>長度為17 且 第二個元素字串長度為8 有用嗎?</strong></p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\Johnny\Desktop\python\AB_type_text.txt&#34;</span>, <span style="color:#e6db74">&#39;r&#39;</span>,encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> infile:
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> infile:
+</span></span><span class="ln"><span>        i <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">if</span> len(i) <span style="color:#f92672">==</span> <span style="color:#ae81ff">17</span> <span style="color:#f92672">and</span> len(i[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span>:
+</span></span><span class="ln"><span>            print(i)
+</span></span><span class="ln"><span><span style="color:#f92672">====================================================================</span>
+</span></span><span class="ln"><span>[<span style="color:#e6db74">&#39;01&#39;</span>, <span style="color:#e6db74">&#39;20060602&#39;</span>, <span style="color:#e6db74">&#39;xxxx&#39;</span>, <span style="color:#e6db74">&#39;6950&#39;</span>, <span style="color:#e6db74">&#39;0034780&#39;</span>, <span style="color:#e6db74">&#39;F311233333&#39;</span>, <span style="color:#e6db74">&#39;陳卻B&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;09132272&#39;</span>, <span style="color:#e6db74">&#39;000086439&#39;</span>, <span style="color:#e6db74">&#39;60344&#39;</span>, <span style="color:#e6db74">&#39;002015&#39;</span>, <span style="color:#e6db74">&#39;000002000&#39;</span>, <span style="color:#e6db74">&#39;0000040300&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;1380&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>]
+</span></span></code></pre></div><p>結果: 恭喜成功，我們成功只篩選出證交所資料囉~ 美中不足的是，姓名後面寫了一個B，其實那是一個非常有意義的資料，那代表著這一筆資料是BUY，反之S則是SELL。因此我們最好把這個有用的資訊趕快跟姓名隔開。</p>
+<h3 id="觀察五-">觀察五 :</h3>
+<p><strong>把B和姓名隔開。</strong></p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\Johnny\Desktop\python\AB_type_text.txt&#34;</span>, <span style="color:#e6db74">&#39;r&#39;</span>,encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> infile:
+</span></span><span class="ln"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> infile:
+</span></span><span class="ln"><span>        i <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span class="ln"><span>        <span style="color:#66d9ef">if</span> len(i) <span style="color:#f92672">==</span> <span style="color:#ae81ff">17</span> <span style="color:#f92672">and</span> len(i[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span>:
+</span></span><span class="ln"><span>            i<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">7</span>,i[<span style="color:#ae81ff">6</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span class="ln"><span>            i[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> i[<span style="color:#ae81ff">6</span>][:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span class="ln"><span>            print(i)
+</span></span><span class="ln"><span><span style="color:#f92672">====================================================================</span>
+</span></span><span class="ln"><span>output:
+</span></span><span class="ln"><span>[<span style="color:#e6db74">&#39;01&#39;</span>, <span style="color:#e6db74">&#39;20060602&#39;</span>, <span style="color:#e6db74">&#39;xxxx&#39;</span>, <span style="color:#e6db74">&#39;6950&#39;</span>, <span style="color:#e6db74">&#39;0034780&#39;</span>, <span style="color:#e6db74">&#39;F311233333&#39;</span>, <span style="color:#e6db74">&#39;陳卻&#39;</span>,<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;09132272&#39;</span>, <span style="color:#e6db74">&#39;000086439&#39;</span>, <span style="color:#e6db74">&#39;60344&#39;</span>, <span style="color:#e6db74">&#39;002015&#39;</span>, <span style="color:#e6db74">&#39;000002000&#39;</span>, <span style="color:#e6db74">&#39;0000040300&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;1380&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>]
+</span></span></code></pre></div><p>結果: 恭喜阿恭喜，我們完成初步的資料前處理了~</p>
+<h2 id="轉成dataframe">轉成Dataframe</h2>
+<p>按照觀察出來的步驟，我們很快的可以篩選出這15份PDF檔中，每一個人的每一筆證交所成交紀錄的 list。
+接下來我們所要做的事就是把每一筆 list 接住，因此我們可以創建一個空的list在開頭，取名為result。之後每traversal一筆資料，就將其append到result裡頭(list包list的概念)</p>
+<p>有了list包list的概念以後，很輕易就可以做成pandas的dataframe，操作如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span class="ln"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(result)
+</span></span></code></pre></div><p>接著可以把不想要的欄位去掉，有兩種做法:</p>
+<ol>
+<li>把不要的去掉 ，用del</li>
+<li>把要的留著，類似條件式的篩選，也就是我的作法，如下:</li>
+</ol>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>col <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">13</span>,<span style="color:#ae81ff">14</span>]
+</span></span><span class="ln"><span>df <span style="color:#f92672">=</span> df[col]
+</span></span><span class="ln"><span>df
+</span></span></code></pre></div><p>還可以替欄位重新命名，做法如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>df<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;成交日期&#34;</span>,<span style="color:#e6db74">&#34;股票代碼&#34;</span>,<span style="color:#e6db74">&#34;證商帳號&#34;</span>,<span style="color:#e6db74">&#34;身分證字號&#34;</span>,<span style="color:#e6db74">&#34;姓名&#34;</span>,<span style="color:#e6db74">&#34;買賣別&#34;</span>,<span style="color:#e6db74">&#34;成交時間&#34;</span>,<span style="color:#e6db74">&#34;成交單價&#34;</span>,<span style="color:#e6db74">&#34;成交股數&#34;</span>,<span style="color:#e6db74">&#34;成交金額&#34;</span>]
+</span></span><span class="ln"><span>df
+</span></span></code></pre></div><p>還可以日期作為index，做法如下:</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>set_index(<span style="color:#e6db74">&#34;成交日期&#34;</span>)
+</span></span><span class="ln"><span>df
+</span></span></code></pre></div><p>我們得到了這樣的Dataframe :
+<img src="/images/blog/twse-pdf/p2_img3.png" alt="" loading="lazy"></p>
+<h2 id="dataframe-轉-csv">dataframe 轉 CSV</h2>
+<p>最後我們簡單的把這個Dataframe存成一個csv檔，作為保存。</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;證交所交易紀錄表.csv&#34;</span>,encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8-sig&#34;</span>)
+</span></span></code></pre></div><p>若日後還想用python讀取此csv檔案的話，也可以這麼做 :</p>
+<div class="code"><pre><code class="language-python" data-lang="python"><span class="ln"><span>df<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;證交所交易紀錄表.csv&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8-sig&#34;</span>, engine<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;python&#34;</span>)
+</span></span></code></pre></div><p><img src="/images/blog/twse-pdf/p2_img4.png" alt="" loading="lazy"></p>
