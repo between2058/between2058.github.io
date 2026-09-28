@@ -52,7 +52,7 @@ export function FluxDiagram({ lang }: { lang: Locale }) {
               key={i}
               d={`M 4 ${y} C 50 ${y}, 50 ${mid}, 96 ${mid}`}
               fill="none"
-              stroke="rgb(111 163 156 / 0.45)"
+              stroke="rgb(126 170 208 / 0.45)"
               strokeWidth="0.6"
               vectorEffect="non-scaling-stroke"
             />

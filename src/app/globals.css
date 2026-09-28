@@ -115,7 +115,7 @@ textarea {
     0 18px 40px -18px rgb(0 0 0 / 0.6);
 }
 
-/* Glass: readouts over water only. */
+/* Glass: the FateFlux diagram panel and the mobile menu. */
 .glass {
   background: rgb(15 29 47 / 0.62);
   backdrop-filter: blur(14px) saturate(1.2);

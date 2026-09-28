@@ -78,7 +78,7 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         <div
           className="absolute inset-x-0 top-0 h-[5px]"
           style={{
-            backgroundImage: "linear-gradient(to right, rgb(223 229 227 / 0.22) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(to right, rgb(239 232 218 / 0.22) 1px, transparent 1px)",
             backgroundSize: `calc(100% / ${((end - START) * 12).toFixed(3)}) 100%`,
           }}
         />

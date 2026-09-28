@@ -287,7 +287,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               className="group relative grid gap-6 border-b border-line py-12 lg:grid-cols-12 lg:gap-8"
             >
               <div className="lg:col-span-1">
-                <span aria-hidden="true" className="font-kai text-[2.5rem] font-bold leading-none text-wave-3 transition-colors duration-700 group-hover:text-wave-3">
+                <span aria-hidden="true" className="font-kai text-[2.5rem] font-bold leading-none text-wave-3 transition-colors duration-700 group-hover:text-foam">
                   {p.han}
                 </span>
               </div>
@@ -363,7 +363,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   className="grid gap-1 border-b border-line py-4 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-6"
                 >
                   {h.href ? (
-                    <a href={h.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 text-foam transition-colors hover:text-foam">
+                    <a href={h.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 text-foam underline decoration-transparent underline-offset-[0.35em] transition-colors hover:decoration-wave-3">
                       {h.title}
                       <ArrowUpRight className="h-3 w-3 text-foam-3 transition-colors group-hover:text-wave-3" />
                     </a>
