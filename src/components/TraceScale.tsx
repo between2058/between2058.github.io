@@ -25,7 +25,8 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
   const zh = lang === "zh";
   const spans: Span[] = [
     { key: "yzu", from: 2018, to: 2022, row: 0, label: zh ? "元智大學 電機" : "Yuan Ze EE", tone: "foam" },
-    { key: "ntu", from: 2022, to: null, row: 1, label: zh ? "臺大 電信所" : "NTU GICE", tone: "wave" },
+    { key: "ntu", from: 2022, to: 2023, row: 1, label: zh ? "臺大 電信所" : "NTU GICE", tone: "wave" },
+    { key: "pegatron", from: 2025, to: null, row: 0, label: zh ? "和碩" : "Pegatron", tone: "wave" },
   ];
   const points = [
     { key: "posts", at: 2020 + 1.5 / 12, row: 1, label: zh ? "兩篇文章" : "Two posts" },
@@ -41,7 +42,7 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
           const color = s.tone === "wave" ? "bg-wave-3" : "bg-foam-2";
           return (
             <div key={s.key} className="absolute" style={{ left, width, top: `${s.row * 2.6}rem` }}>
-              <p className="truncate pb-1.5 text-[0.8rem] text-foam-2">{s.label}</p>
+              <p className="whitespace-nowrap pb-1.5 text-[0.8rem] text-foam-2">{s.label}</p>
               {s.to === null ? (
                 <div
                   className="h-px"
@@ -68,7 +69,7 @@ export function TraceScale({ lang, label }: { lang: Locale; label: string }) {
         ))}
         {/* Now */}
         <div className="absolute bottom-0 right-0 top-0 flex flex-col items-end">
-          <p className="pb-1.5 text-[0.8rem] text-foam">{zh ? "和碩 · 現在" : "Pegatron · now"}</p>
+          <p className="pb-1.5 text-[0.8rem] text-foam">{zh ? "現在" : "Now"}</p>
           <span className="w-px flex-1 bg-foam-2" />
         </div>
       </div>

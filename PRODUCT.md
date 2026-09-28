@@ -42,7 +42,7 @@ An ML engineer whose day job is AI for engineering (3D, CAD, simulation, digital
 ## Capabilities and Constraints
 
 - **Confidential work**: Pegatron work may be described only at the domain level (AI for 3D, AI for CAD, AI for simulation, digital twins). No specific projects, customers, internal names, or results.
-- **Dates not yet confirmed**: start year at Pegatron and NTU graduation year are unknown. Do not invent them; show "present" / omit end years until the owner supplies them.
+- **Dates (owner-confirmed 2026-09-28)**: joined Pegatron January 2025; NTU M.S. 2022–2023.
 - Bilingual content must stay in sync; blog posts written only in Chinese may appear under both locales with a language note.
 
 ## Brand Commitments
@@ -59,7 +59,7 @@ An ML engineer whose day job is AI for engineering (3D, CAD, simulation, digital
 - **Current role**: ML Engineer, Pegatron (和碩聯合科技), AI for Engineering & Digital Twins (source: `between2058/between2058` README).
   - Owner-confirmed scope (2026-09-28): trains models that understand or generate 3D; makes AI read and produce CAD; uses AI to accelerate or replace simulation; integrates these into a digital-twin platform. Copy about this work should explain **why it matters** (the design–simulate–revise loop in manufacturing and what shortening it changes), in fresh words, never pasting the README phrasing. Still no specific projects, customers, numbers or results.
 - **FateFlux** (https://fateflux.ai, IG `@fateflux.ai`): MCP connector for ChatGPT / Claude plus public website. Covers Zi Wei Dou Shu (紫微斗數), BaZi (八字), Human Design, I Ching (易經), Wen Wang Gua (文王卦), Tarot, Astrology. Built with Next.js 16, React 19, Tailwind 4, Supabase, Anthropic SDK, deployed on Vercel. Tagline (zh): 「萬物都在變。FATEFLUX 讓 AI 讀懂命盤、關係與時間的流動，在無常中看見仍可選擇的方向。」
-- **Education**: M.S., Graduate Institute of Communication Engineering, National Taiwan University (2022–, iDSSP Lab, BioTech group; admitted 4th on the first review-and-interview track). B.S., Electrical Engineering, Yuan Ze University (2018–2022, CVIT Lab).
+- **Education**: M.S., Graduate Institute of Communication Engineering, National Taiwan University (2022–2023, iDSSP Lab, BioTech group; admitted 4th on the first review-and-interview track). B.S., Electrical Engineering, Yuan Ze University (2018–2022, CVIT Lab).
 - **Guitar chord recognition (當吉他遇見AI — 吉他和弦神偷)**: deep learning + computer vision chord recognition from guitar video. Demo: https://www.youtube.com/watch?v=hYTNauzK3q8; talk/video: https://youtu.be/kwQ3WmHKLTg.
 - **Awards**: 19th 育秀盃創意獎 Silver (software track, 2nd of 228 teams; http://award.ysed.org.tw/current_detail/293); YZU Student Maker Competition — 特優 (https://sites.google.com/g.yzu.edu.tw/2021maker/index?authuser=0); YZU College of EECS Project Competition — 特優; TQC+ Python3 certification (9/9); Taiwan Electromagnetics Industry-Academia Alliance certification.
 - **Writing**: two 2020 posts (zh-TW), content in `blogs/`, also on Medium:

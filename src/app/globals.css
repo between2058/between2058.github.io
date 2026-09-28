@@ -62,7 +62,7 @@ body:lang(zh) {
 p,
 li,
 dd {
-  text-wrap: pretty;
+  text-wrap-style: pretty;
 }
 
 ::selection {

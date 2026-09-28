@@ -85,7 +85,7 @@ const zh: Dictionary = {
     title: "現在在做的事",
     lead: "一個產品在量產之前，要經過一輪又一輪的設計、模擬、修改。有人畫 CAD，有人跑模擬，大家等結果；這個迴圈轉得多快，決定了一個設計能被打磨到多好。",
     why: "我在和碩做的，是讓 AI 走進這個迴圈。當機器看得懂形狀、讀得懂也畫得出圖面、能很快估出模擬的結果，工程師就能在同樣的時間裡多試好幾輪，把錯誤留在虛擬世界，而不是產線上。",
-    employer: "和碩聯合科技 Pegatron · ML Engineer · 現職",
+    employer: "和碩聯合科技 Pegatron · ML Engineer · 2025 年 1 月至今",
     fields: [
       { name: "3D", note: "讓模型理解與生成形狀，機器才看得懂它要處理的東西。" },
       { name: "CAD", note: "讓 AI 讀懂工程圖面，也畫得出能繼續編輯的 CAD。" },
@@ -168,8 +168,8 @@ const zh: Dictionary = {
     lead: "以年為刻度。現在在最右端，還沒結束的線段以虛線延伸。",
     scaleLabel: "2018 年到現在的軌跡刻度",
     marks: [
-      { period: "現在", title: "ML Engineer", place: "和碩聯合科技 Pegatron", note: "把 AI 帶進工程設計、模擬與數位孿生。" },
-      { period: "2022 —", title: "碩士", place: "國立臺灣大學 電信工程學研究所", note: "iDSSP Lab，生物科技組。電信所首屆書審面試，正取第 4 名。" },
+      { period: "2025.01 — 現在", title: "ML Engineer", place: "和碩聯合科技 Pegatron", note: "把 AI 帶進工程設計、模擬與數位孿生。" },
+      { period: "2022 — 2023", title: "碩士", place: "國立臺灣大學 電信工程學研究所", note: "iDSSP Lab，生物科技組。電信所首屆書審面試，正取第 4 名。" },
       { period: "2018 — 2022", title: "學士", place: "元智大學 電機工程學系", note: "CVIT Lab，研究以深度學習與電腦視覺辨識吉他和弦。" },
     ],
     honorsTitle: "紀錄",
@@ -220,7 +220,7 @@ const en: Dictionary = {
     title: "What I work on",
     lead: "Before a product ships, it goes through round after round of design, simulate, revise. Someone draws the CAD, someone runs the simulation, everyone waits for results. How fast that loop turns decides how good a design can get.",
     why: "At Pegatron I bring AI into that loop. When machines can understand shapes, read and draw engineering models, and estimate simulation results quickly, engineers get more rounds in the same time, and mistakes stay in the virtual world instead of on the production line.",
-    employer: "Pegatron · ML Engineer · Present",
+    employer: "Pegatron · ML Engineer · since January 2025",
     fields: [
       { name: "3D", note: "Models that understand and generate shape, so the machine can see what it is working on." },
       { name: "CAD", note: "AI that reads engineering drawings and produces CAD you can keep editing." },
@@ -303,8 +303,8 @@ const en: Dictionary = {
     lead: "Measured in years. Now sits at the right end; lines that haven't closed trail off dotted.",
     scaleLabel: "Trace scale from 2018 to now",
     marks: [
-      { period: "Now", title: "ML Engineer", place: "Pegatron", note: "Bringing AI into engineering design, simulation and digital twins." },
-      { period: "2022 —", title: "M.S.", place: "Graduate Institute of Communication Engineering, National Taiwan University", note: "iDSSP Lab, biotech group. Admitted 4th in the institute's first review-and-interview intake." },
+      { period: "Jan 2025 — now", title: "ML Engineer", place: "Pegatron", note: "Bringing AI into engineering design, simulation and digital twins." },
+      { period: "2022 — 2023", title: "M.S.", place: "Graduate Institute of Communication Engineering, National Taiwan University", note: "iDSSP Lab, biotech group. Admitted 4th in the institute's first review-and-interview intake." },
       { period: "2018 — 2022", title: "B.S.", place: "Electrical Engineering, Yuan Ze University", note: "CVIT Lab: guitar chord recognition with deep learning and computer vision." },
     ],
     honorsTitle: "Record",
