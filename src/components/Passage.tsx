@@ -37,9 +37,10 @@ export function Passage({
 
   if (kind === "mist") {
     return (
-      <svg viewBox={`0 0 ${W} 110`} preserveAspectRatio="xMidYMid slice" className="block h-[70px] w-full sm:h-[110px]" aria-hidden="true">
-        <path d={mistBand(seed, -80, 26, 1800, 26)} fill="#1a3150" />
-        <path d={mistBand(seed + 7, 260, 62, 1400, 20)} fill="#16294a" />
+      <svg viewBox={`0 0 ${W} 150`} preserveAspectRatio="xMidYMid slice" className="block h-[90px] w-full sm:h-[150px]" aria-hidden="true">
+        <path d={mountains(seed + 20, 400, 900, 118, 70).fill} fill="#12253d" />
+        <path d={mistBand(seed, -80, 34, 1800, 34)} fill="#1c3656" />
+        <path d={mistBand(seed + 7, 240, 90, 1400, 28)} fill="#16294a" />
       </svg>
     );
   }
@@ -64,7 +65,7 @@ export function Passage({
             <rect width={W} height="230" fill={`url(#${uid}-fade)`} />
           </mask>
         </defs>
-        <path d={mistBand(seed + 11, 360, 44, 1300, 22)} fill="#1a3150" />
+        <path d={mistBand(seed + 11, 360, 40, 1300, 30)} fill="#1a3150" />
         <g mask={`url(#${uid}-mask)`}>
           {[
             { m: a, fill: "#1c3a5c" },
@@ -72,7 +73,7 @@ export function Passage({
           ].map(({ m, fill }, i) => (
             <g key={i} strokeLinecap="round" strokeLinejoin="round">
               <path d={m.fill} fill={fill} />
-              <path d={m.outline} fill="none" stroke={KEY} strokeWidth="2.2" />
+              {m.outline && <path d={m.outline} fill="none" stroke={KEY} strokeWidth="2.2" />}
               <g fill={KEY} opacity="0.85">
                 {m.strokes.map((d, k) => (
                   <path key={k} d={d} />
@@ -81,42 +82,49 @@ export function Passage({
             </g>
           ))}
         </g>
-        <path d={mistBand(seed + 5, -60, 176, 1760, 20)} fill="#1f3b5e" />
+        <path d={mistBand(seed + 5, -60, 172, 1760, 26)} fill="#1f3b5e" />
       </svg>
     );
   }
 
-  // Waves: irregular crests over a sea whose surface undulates and runs into the next section.
+  // Waves: crests in uneven groups over a swelling sea; the sea surface hides the crests' feet.
   const rand = rng(seed * 97 + 13);
   const crests: WaveSpec[] = [];
-  let x = 60 + rand() * 80;
+  let x = 40 + rand() * 120;
   let i = 0;
   while (x < W + 40) {
-    const s = 0.65 + rand() * 0.7;
-    const cy = 150 + (rand() - 0.5) * 30;
+    const s = 0.6 + rand() * 0.8;
     crests.push({
       cx: x,
-      cy,
+      cy: 158 - s * 14 + (rand() - 0.5) * 12,
       r0: 58 * s,
-      k: 0.3,
+      k: 0.28 + rand() * 0.05,
       theta0: 0.5,
-      theta1: -3.5 - rand() * 0.4,
+      theta1: -3.3 - rand() * 0.8,
       band: 34 * s,
       base: 240,
-      backX: x + 130 * s,
-      faceX: x - 90 * s,
-      claws: 6 + Math.round(4 * s),
+      backX: x + 70 * s,
+      faceX: x - 80 * s,
+      claws: 5 + Math.round(5 * s),
       clawLen: 15 * s,
       seed: seed * 10 + i,
     });
-    x += 170 + rand() * 170;
+    // Sometimes two crests ride close together; sometimes open water between them.
+    x += rand() < 0.35 ? 95 + rand() * 50 : 170 + rand() * 170;
     i++;
   }
   const ground = into === "seigaiha" ? INK_2 : INK;
-  let sea = `M0 ${196}`;
-  for (let sx = 0; sx <= W; sx += 20) {
-    sea += ` L${sx} ${(190 + Math.sin(sx / 70 + seed) * 6 + Math.sin(sx / 23) * 2).toFixed(1)}`;
-  }
+  // The sea swells up into each crest, so the waves rise out of it instead of poking through.
+  const swell = (sx: number) => {
+    let y = 196 + Math.sin(sx / 140 + seed) * 6 + Math.sin(sx / 47 + seed * 2) * 2;
+    for (const c of crests) {
+      const d = (sx - (c.cx + c.r0 * 0.35)) / (c.r0 * 1.5);
+      y -= c.r0 * 0.75 * Math.exp(-d * d);
+    }
+    return y;
+  };
+  let sea = `M0 ${swell(0).toFixed(1)}`;
+  for (let sx = 10; sx <= W; sx += 10) sea += ` L${sx} ${swell(sx).toFixed(1)}`;
   const seaTop = sea;
   sea += ` L${W} 240 L0 240 Z`;
 

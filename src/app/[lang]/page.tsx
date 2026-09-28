@@ -76,7 +76,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         />
         <WaterBreath />
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-[var(--gutter)] pb-16 pt-[46svh] lg:items-center lg:pb-16 lg:pt-24">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-[var(--gutter)] pb-10 pt-[40svh] lg:items-center lg:pb-16 lg:pt-24">
           <div className="flex gap-6 sm:gap-9">
             <div className="flex shrink-0 flex-col items-center gap-3 pt-1">
               <p
@@ -98,7 +98,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </span>
                 <BreathRibbon
                   path={[[6, 120], [150, 154], [320, 146], [460, 110], [540, 124]]}
-                  className="-mt-1 block h-auto w-[min(92%,30rem)]"
+                  className="-mt-1 block h-auto w-[min(66%,30rem)] sm:w-[min(92%,30rem)]"
                 />
               </h1>
 

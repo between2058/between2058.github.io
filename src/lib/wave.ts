@@ -238,8 +238,10 @@ export function mountains(seed: number, x0: number, width: number, y: number, am
     const u = i / N;
     pts.push([x0 + u * width, y - height(u)]);
   }
-  const line = smoothPath(pts);
-  const fill = `${line} L${f(x0 + width)} ${f(y + 2)} L${f(x0)} ${f(y + 2)} Z`;
+  const fill = `${smoothPath(pts)} L${f(x0 + width)} ${f(y + 2)} L${f(x0)} ${f(y + 2)} Z`;
+  // The key line follows only the risen contour; where the range meets the ground it simply stops.
+  const risen = pts.filter(([, py]) => y - py > amp * 0.06);
+  const line = risen.length > 1 ? smoothPath(risen) : "";
   const strokes: string[] = [];
   for (const p of peaks) {
     const px = x0 + p.at * width;
@@ -273,19 +275,31 @@ export function mountains(seed: number, x0: number, width: number, y: number, am
 export function mistBand(seed: number, x: number, y: number, width: number, h: number) {
   const rand = rng(seed);
   let d = "";
+  const circle = (cx: number, cy: number, r: number) =>
+    `M${f(cx - r)} ${f(cy)} A${f(r)} ${f(r)} 0 1 1 ${f(cx + r)} ${f(cy)} A${f(r)} ${f(r)} 0 1 1 ${f(cx - r)} ${f(cy)} Z `;
   let cx = x;
   let row = 0;
   while (cx < x + width) {
     const hh = h * (0.75 + rand() * 0.5);
-    const w = Math.max(hh * 3, width * (0.14 + rand() * 0.2));
-    const yy = y + ((row % 3) - 1) * h * 0.42;
-    const r = hh / 4;
-    const x1 = cx + r;
-    const x2 = cx + w - r;
-    d += `M${f(x1)} ${f(yy)} H${f(x2)} A${f(r)} ${f(r)} 0 0 1 ${f(x2)} ${f(yy + hh / 2)} A${f(r)} ${f(r)} 0 0 1 ${f(x2)} ${f(
-      yy + hh,
-    )} H${f(x1)} A${f(r)} ${f(r)} 0 0 1 ${f(x1)} ${f(yy + hh / 2)} A${f(r)} ${f(r)} 0 0 1 ${f(x1)} ${f(yy)} Z `;
-    cx += w * (0.62 + rand() * 0.3);
+    const w = Math.max(hh * 4, width * (0.14 + rand() * 0.2));
+    const yy = y + ((row % 3) - 1) * h * 0.46;
+    const x1 = cx + hh * 0.5;
+    const x2 = cx + w - hh * 0.5;
+    d += `M${f(x1)} ${f(yy + hh * 0.18)} H${f(x2)} V${f(yy + hh)} H${f(x1)} Z `;
+    // Cloud-lobed ends: two or three overlapping round lobes, staggered.
+    const lobes = 2 + (rand() < 0.5 ? 1 : 0);
+    for (let k = 0; k < lobes; k++) {
+      const r = hh * (0.42 + rand() * 0.14);
+      const ly = yy + hh * (0.34 + (k / Math.max(1, lobes - 1)) * 0.36);
+      d += circle(x1 - k * hh * 0.34 + (k % 2) * hh * 0.18, ly, r);
+      d += circle(x2 + k * hh * 0.3 - (k % 2) * hh * 0.16, ly + (k % 2 ? -hh * 0.06 : hh * 0.06), r * (0.9 + rand() * 0.2));
+    }
+    // A few soft bumps along the top edge.
+    const bumps = Math.floor(w / (hh * 3));
+    for (let k = 1; k < bumps; k++) {
+      if (rand() < 0.45) d += circle(x1 + ((x2 - x1) * k) / bumps + (rand() - 0.5) * hh, yy + hh * 0.36, hh * (0.34 + rand() * 0.12));
+    }
+    cx += w * (0.6 + rand() * 0.35);
     row++;
   }
   return d;

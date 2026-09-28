@@ -99,7 +99,7 @@ function Range({ seed, x, width, y, amp, fill }: { seed: number; x: number; widt
   return (
     <g strokeLinecap="round" strokeLinejoin="round">
       <path d={m.fill} fill={fill} />
-      <path d={m.outline} fill="none" stroke={KEY} strokeWidth="2.4" />
+      {m.outline && <path d={m.outline} fill="none" stroke={KEY} strokeWidth="2.4" />}
       <g fill={KEY} opacity="0.85">
         {m.strokes.map((d, i) => (
           <path key={i} d={d} />
@@ -132,10 +132,10 @@ export function GreatWave({ className = "" }: { className?: string }) {
       <circle cx="1380" cy="230" r="104" fill="#ece2cc" stroke={KEY} strokeWidth="2.5" />
 
       {/* Mist bands and brushed mountains, far to near. */}
-      <path d={mistBand(4, 760, 450, 700, 26)} fill="#1a3150" />
+      <path d={mistBand(4, 760, 440, 700, 34)} fill="#1a3150" />
       <Range seed={3} x={720} width={760} y={640} amp={190} fill="#1c3a5c" />
       <Range seed={9} x={780} width={900} y={710} amp={100} fill="#15304d" />
-      <path d={mistBand(8, 800, 660, 900, 22)} fill="#1f3b5e" />
+      <path d={mistBand(8, 800, 650, 900, 30)} fill="#1f3b5e" />
 
       {/* Open water */}
       <rect y="740" width={W} height={H - 740} fill="#0f2743" />
